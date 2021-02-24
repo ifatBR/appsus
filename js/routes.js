@@ -14,6 +14,7 @@ import keepApp from './apps/keep/pages/keep-app.cmp.js'
 import keepNotes from './apps/keep/pages/keep-notes.cmp.js'
 import keepDeleted from './apps/keep/pages/keep-deleted.cmp.js'
 import keepReminder from './apps/keep/pages/keep-reminder.cmp.js'
+import noteEdit from './apps/keep/cmps/note-edit.cmp.js'
 
 
 const routes = [
@@ -68,7 +69,7 @@ const routes = [
                 component: keepNotes,
             },
             {
-                path:'notes',
+                path:'notes/:noteId?',
                 component: keepNotes,
             },
             {

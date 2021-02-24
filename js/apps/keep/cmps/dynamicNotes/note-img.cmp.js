@@ -1,7 +1,8 @@
 export default{
+    props:['info'],
     template:`
-    <div>   
-
+    <div class="flex">   
+        <img :src="info.url" class="note-img"/>
     </div>
     `
 }

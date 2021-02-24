@@ -10,13 +10,15 @@ export default {
     template: `
         <section>
             <keep-nav-bar/>
-            <button @click="openNoteEdit">new note</button>
-            <note-edit @loadNotes="loadNotes" v-if="true"/>
+            <note-edit class="new-note" @loadNotes="loadNotes"/>
             <router-view/>
+            <note-edit class="edit-note" v-if="isNoteEdit"/>
+            <div class="note-edit-screen" :class={is-edit:isNoteEdit}></div>
         </section>
     `,
     data() {
         return {
+            isNewNote:false,
             isNoteEdit: false,
             notes: null,
         };
@@ -25,6 +27,7 @@ export default {
         this.loadNotes();
         eventBus.$on('deleteNote', this.deleteNote);
         eventBus.$on('setNoteType', this.setNoteType);
+        eventBus.$on('openNoteEdit', this.openNoteEdit);
     },
     methods: {
         openNoteEdit() {
@@ -45,9 +48,10 @@ export default {
             .then(() => this.loadNotes());
         },
         setNoteType(params) {
-            const {id,noteType} = params;
-            console.log('type:', noteType)
-            keepService.setNoteType(id, noteType)
+            const {id,noteType, url} = params;
+            console.log('mommy got type:', noteType)
+            // console.log('url:', url)
+            keepService.setNoteType(id, noteType, url)
             .then(() => this.loadNotes());
         },
     },

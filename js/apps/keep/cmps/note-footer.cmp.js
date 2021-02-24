@@ -1,6 +1,7 @@
 export default {
     template: `
-    <section class="note-footer">  
+    <section class="note-footer"> 
+        <!-- <img :src="imgData">  -->
         <datalist id="colorList">
             <option value="#ffffff"></option>
             <option value="#6F8EFE"></option>
@@ -9,7 +10,8 @@ export default {
             <option value="#B5FF66"></option>
             <option value="#E183FF"></option>
         </datalist>
-        <button @click="saveNote(true)">Save</button>
+        <button >Save</button>
+        <!-- <button @click="saveNote(true)">Save</button> -->
         <button @click="saveNote(false)">Close</button>
         <button><input @change="setBgColor" type="color" v-model="color" list="colorList" value="#ffffff"/></button>
         <div class="note-exist">
@@ -17,7 +19,8 @@ export default {
         </div>
         <div class="note-new">
             <button @click="setNoteType('noteTxt')">Text</button>
-            <button @click="setNoteType('noteImg')">Image</button>
+            <!-- <button @click="setNoteType('noteImg')">Image</button> -->
+            <input type="file" class="file-input btn" name="image" @change="setNoteImg" />
             <button @click="setNoteType('noteTodo')">Todo</button>
         </div>
     </section>
@@ -25,24 +28,33 @@ export default {
     data() {
         return {
             color: 'white',
+            imgData:null
         };
     },
     methods: {
-        saveNote(isSaveNote) {
-            this.$emit('saveNote', isSaveNote);
-        },
-        noteIdToDelete(){
+        // saveNote(isSaveNote) {
+        //     this.$emit('saveNote', isSaveNote);
+        // },
+        noteIdToDelete() {
             this.$emit('noteIdToDelete');
         },
         setBgColor() {
-            this.$emit('changeBgColor', this.color)
+            this.$emit('changeBgColor', this.color);
         },
-        setNoteType(type){
-            if (type==='noteImg') selectImg();
-            this.$emit('setNoteType',type)
+        setNoteType(noteType, url=null) {
+            this.$emit('setNoteType', {noteType,url});
         },
-        selectImg(){
-            
-        }
+        setNoteImg(ev) {
+            var reader = new FileReader();
+            reader.onload = (event) => {
+                this.imgData = event.target.result;
+            }
+            reader.readAsDataURL(ev.target.files[0])     
+        },
     },
+    watch:{
+        imgData(){  
+            this.setNoteType('noteImg',this.imgData)
+        }
+    }
 };

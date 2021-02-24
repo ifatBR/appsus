@@ -1,7 +1,9 @@
 import noteFooter from './note-footer.cmp.js';
-import { eventBus } from '../../../services/event-bus.service.js';
+// import { eventBus } from '../../../services/event-bus.service.js';
 import noteTxt from './dynamicNotes/note-txt.cmp.js'
 import noteTodo from './dynamicNotes/note-todo.cmp.js'
+import noteImg from './dynamicNotes/note-img.cmp.js'
+
 export default {
     props: ['note'],
     template: `
@@ -10,7 +12,7 @@ export default {
             <h2>{{note.title}}</h2>
             <component :is="note.type" :info="note.info"></component>    
         </div>
-        <note-footer @noteIdToDelete="noteIdToDelete" @setNoteType="setNoteType"/>
+        <!-- <note-footer @noteIdToDelete="noteIdToDelete" @setNoteType="setNoteType"/> -->
     </section>
     `,
     data() {
@@ -25,9 +27,10 @@ export default {
         noteIdToDelete() {
             eventBus.$emit('deleteNote', this.note.id);
         },
-        setNoteType(type) {
-            eventBus.$emit('setNoteType', { id: this.note.id, noteType: type });
-        },
+        // setNoteType(type) {
+        //     console.log(type);
+        //     eventBus.$emit('setNoteType', { id: this.note.id, noteType: type });
+        // },
     },
     computed: {
         style(){
@@ -37,6 +40,7 @@ export default {
     components: {
         noteFooter,
         noteTxt,
-        noteTodo
+        noteTodo,
+        noteImg
     },
 };
