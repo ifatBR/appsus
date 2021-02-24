@@ -35,7 +35,9 @@ const gMails = [
 
 export const emailService = {
   query,
-  getById
+  getById,
+  post,
+  remove
 };
 
 function query() {
@@ -50,4 +52,24 @@ function query() {
 
 function getById(id) {
   return storageService.get(EMAIL_KEY, id);
+}
+
+function post(compose){
+  const newMail = _createMail();
+  newMail.subject = compose.subject;
+  newMail.body = compose.body;
+
+  return storageService.post(EMAIL_KEY,compose)
+      .then((mail)=> mail)
+}
+
+function remove(id){ 
+  return storageService.remove(EMAIL_KEY, id)
+}
+
+function _createMail(){
+  return {
+    isRead: false,
+    sentAt: Date.now()
+  }
 }

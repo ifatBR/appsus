@@ -1,34 +1,23 @@
-import { emailService } from '../services/email.service.js'
+import { emailService } from '../services/email.service.js';
+import emailPreview from './email-preview.cmp.js';
 
-export default{
-    template:`
+export default {
+  props: ['mails'],
+  template: `
     <section>   
         <ul class="mail-list clean-list">
-            <li v-for="mail in mails" @click="mailClicked(mail.id)" class="mail-li flex">
-                 <span class="mail-subject">{{mail.subject}}</span>
-               <div class="mail-body flex space-between">
-                    <span class="mail-body">{{mail.body}}</span>
-                    <span class="mail-date">{{mail.sentAt}}</span>
-                </div>
+            <li v-for="mail in mails" @click="mailClicked(mail.id)">
+                 <router-link :to="'/email/'+mail.id"><email-preview :mail="mail" /></router-link>
             </li>
         </ul>
     </section>
     `,
-    data(){
-        return{
-            mails:null
-        }
+  methods: {
+    mailClicked(id) {
+      this.$emit('mailClicked', id);
     },
-    methods:{
-        getMails(){
-            emailService.query()
-                .then((mails)=>this.mails = mails)
-        },
-        mailClicked(id){
-            this.$emit('mailClicked',id)
-        }
-    },
-    created(){
-        this.getMails()
-    }
-}
+  },
+  components: {
+    emailPreview,
+  },
+};

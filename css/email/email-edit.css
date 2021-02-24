@@ -1,0 +1,8 @@
+.email-edit{
+    background-color: brown;
+    position: fixed;
+    bottom: 0;
+    right: 50px;
+    width: 400px;
+    height: 400px;
+}
