@@ -12,8 +12,8 @@ export default {
             <keep-nav-bar/>
             <note-edit class="new-note" @loadNotes="loadNotes"/>
             <router-view/>
-            <note-edit class="edit-note" v-if="isNoteEdit"/>
-            <div class="note-edit-screen" :class={is-edit:isNoteEdit}></div>
+            <note-edit v-show="isNoteEdit" class="edit-note" :class="{'is-edit':isNoteEdit}" />
+            <div class="note-edit-screen" v-show="isNoteEdit" :class="{'is-edit':isNoteEdit}"></div>
         </section>
     `,
     data() {
