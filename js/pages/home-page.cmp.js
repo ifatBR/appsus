@@ -1,11 +1,12 @@
-import mainHeader from '../cmps/main-header.cmp.js'
+
 
 export default{
     template:`
     <div>   
+    <h1>homepage</h1>
     </div>
     `,
     components:{
-        mainHeader,
+  
     }
 }

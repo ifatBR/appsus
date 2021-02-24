@@ -34,27 +34,27 @@ const routes = [
                 component: emailInbox,
             },
             {
-                path:'/inbox',
+                path:'inbox',
                 component: emailInbox,
             },
             {
-                path:'/starred',
+                path:'starred',
                 component: emailStarred,
             },
             {
-                path:'/sent',
+                path:'sent',
                 component: emailSent,
             },
             {
-                path:'/draft',
+                path:'draft',
                 component: emailDraft,
             },
             {
-                path:'/deleted',
+                path:'deleted',
                 component: emailDeleted,
             },
             {
-                path:'/?/:emailId',
+                path:':emailId',
                 component: emailDetails,
             },
         ]
@@ -68,49 +68,49 @@ const routes = [
                 component: keepNotes,
             },
             {
-                path:'/notes',
+                path:'notes',
                 component: keepNotes,
             },
             {
-                path:'/reminder',
+                path:'reminder',
                 component: keepReminder,
             },
             {
-                path:'/deleted',
+                path:'deleted',
                 component: keepDeleted,
             },
         ]
     },
-    // {
-    //     path:'/book',
-    //     component: bookApp,
-    //     children:[
-    //         {
-    //             path:'/',
-    //             component: books,
-    //         },
-    //         {
-    //             path:'/books',
-    //             component: books,
-    //         },
-    //         {
-    //             path: '/about',
-    //             component: about,
-    //         },
-    //         {
-    //             path: '/book/addBooks',
-    //             component: bookAdd
-    //         },
-    //         {
-    //             path: '/book/:bookId',
-    //             component: bookDetails,
-    //         },
-    //         {
-    //             path: '/book/:bookId/:bookTitle/review',
-    //             component: reviewAdd,
-    //         },
-    //     ]
-    // },
+//     // {
+//     //     path:'/book',
+//     //     component: bookApp,
+//     //     children:[
+//     //         {
+//     //             path:'/',
+//     //             component: books,
+//     //         },
+//     //         {
+//     //             path:'/books',
+//     //             component: books,
+//     //         },
+//     //         {
+//     //             path: '/about',
+//     //             component: about,
+//     //         },
+//     //         {
+//     //             path: '/book/addBooks',
+//     //             component: bookAdd
+//     //         },
+//     //         {
+//     //             path: '/book/:bookId',
+//     //             component: bookDetails,
+//     //         },
+//     //         {
+//     //             path: '/book/:bookId/:bookTitle/review',
+//     //             component: reviewAdd,
+//     //         },
+//     //     ]
+//     // },
 ]
 
 export const myRouter = new VueRouter({routes});
