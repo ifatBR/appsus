@@ -1,14 +1,16 @@
 import noteList from '../cmps/note-list.cmp.js'
 
 export default{
-    props:['notes'],
     template:`
     <section>   
-        <h1>notes</h1>
-            <note-list :notes="notes"/>
+            <note-list/>
     </section>
     `,
     components:{
         noteList,
+    },
+    methods:{
+        noteIdToDelete(id){
+        console.log(id);}
     }
 }

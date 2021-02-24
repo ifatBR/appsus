@@ -4,7 +4,7 @@ import keepDeleted from './keep-deleted.cmp.js';
 import keepReminder from './keep-reminder.cmp.js';
 import noteEdit from '../cmps/note-edit.cmp.js';
 import { keepService } from '../services/keep.service.js';
-
+import { eventBus } from '../../../services/event-bus.service.js';
 
 export default {
     template: `
@@ -12,37 +12,50 @@ export default {
             <keep-nav-bar/>
             <button @click="openNoteEdit">new note</button>
             <note-edit @loadNotes="loadNotes" v-if="true"/>
-            <h1>keep app</h1>
-            <router-view :notes="notes"/>
+            <router-view/>
         </section>
     `,
-    data(){
-        return{
-        isNoteEdit:false,
-        notes:null
-    }
+    data() {
+        return {
+            isNoteEdit: false,
+            notes: null,
+        };
     },
-    created(){
+    created() {
         this.loadNotes();
+        eventBus.$on('deleteNote', this.deleteNote);
+        eventBus.$on('setNoteType', this.setNoteType);
     },
-    methods:{
-        openNoteEdit(){
-            this.isNoteEdit=true;
+    methods: {
+        openNoteEdit() {
+            this.isNoteEdit = true;
         },
-        closeNoteEdit(){
-            this.isNoteEdit=false;
+        closeNoteEdit() {
+            this.isNoteEdit = false;
         },
-        loadNotes(){
-            keepService.getNotes().then((notes) => {
-                (this.notes = notes)
-            })
-        }
+        loadNotes() {
+            keepService.getNotes()
+            .then((notes) => {
+                this.notes = notes;
+                eventBus.$emit('renderNotes', this.notes);
+            });
+        },
+        deleteNote(id) {
+            keepService.deleteNote(id)
+            .then(() => this.loadNotes());
+        },
+        setNoteType(params) {
+            const {id,noteType} = params;
+            console.log('type:', noteType)
+            keepService.setNoteType(id, noteType)
+            .then(() => this.loadNotes());
+        },
     },
     components: {
         keepNavBar,
         keepNotes,
         keepDeleted,
         keepReminder,
-        noteEdit
+        noteEdit,
     },
 };

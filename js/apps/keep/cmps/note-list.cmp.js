@@ -1,12 +1,11 @@
 import notePreview from './note-preview.cmp.js';
+import { eventBus } from "../../../services/event-bus.service.js"
 
 export default {
-    props:['notes'],
     template: `
     <section> 
-        <h1>list</h1>  
         <ul  v-if="notes" class="notes-list main-container clean-list grid justify-center">
-            <li v-if="notes" v-for="(note) in notes">
+            <li v-if="notes" v-for="(note) in notes" :key="note.id">
                 <note-preview :note="note"/>
             </li>
         </ul>   
@@ -14,7 +13,16 @@ export default {
     `,
     data() {
         return {
+            notes:null,
         };
+    },
+    created(){
+        eventBus.$on('renderNotes', this.renderNotes)
+    },
+    methods:{
+        renderNotes(notes){
+            this.notes = notes;
+        }
     },
     components: {
         notePreview,
