@@ -1,5 +1,6 @@
 import emailInbox from './email-inbox.cmp.js'
-// import emailDeleted from './email-inbox.cmp.js'
+import emailNavBar from '../cmps/email-nav-bar.cmp.js'
+import emailEdit from '../cmps/email-edit.cmp.js'
 
 export default{
     template:`
@@ -8,20 +9,27 @@ export default{
 
 
         <div class="main-email-app">
-        <nav class="aside-nav-bar flex column">
-        <router-link to="/email/inbox">Inbox</router-link>
-        <router-link to="/email/starred">Starred</router-link>
-        <router-link to="/email/sent">Sent</router-link>
-        <router-link to="/email/trash">Trash</router-link>
-        </nav>
 
-
+        <email-nav-bar @editMail="openCompose"></email-nav-bar>
+        <email-edit v-if="editMail" />
         <router-view />
+
         </div>
     </section>
     `,
+    data(){
+        return{
+            editMail:false
+        }
+    },
+    methods:{
+        openCompose(){
+            this.editMail=true
+        }
+    },
     components:{
         emailInbox,
-    //     emailDeleted
+        emailNavBar,
+        emailEdit
     }
 }
