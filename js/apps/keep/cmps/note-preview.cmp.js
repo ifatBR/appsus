@@ -1,9 +1,12 @@
+import noteFooter from './note-footer.cmp.js'
+
 export default{
     props:['note'],
     template:`
     <section class="note" :class="classColor">  
-        <h1>preview</h1>  
-        <h2>{{note.headline}}</h2>
+        <h2>{{note.title}}</h2>
+        <p>{{note.info.txt}}</p>
+        <note-footer/>
     </section>
     `,
     data(){
@@ -13,11 +16,14 @@ export default{
     },
     created(){
         this.color = this.note.style.bgColor;
-        // console.log('note:', this.note)
+        
     },
     computed:{
         classColor(){
             return 'note-'+this.note.style.bgColor
         }
+    },
+    components:{
+        noteFooter
     }
 }

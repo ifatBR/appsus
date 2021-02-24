@@ -2,3 +2,7 @@
     width: 300px;
     margin:auto;
 }
+
+.note-edit .free-txt{
+    resize:none;
+}
