@@ -12,7 +12,14 @@ export default {
         <button @click="saveNote(true)">Save</button>
         <button @click="saveNote(false)">Close</button>
         <button><input @change="setBgColor" type="color" v-model="color" list="colorList" value="#ffffff"/></button>
-        <button @click="deleteNote">X</button>
+        <div class="note-exist">
+            <button @click="noteIdToDelete">Delete</button>
+        </div>
+        <div class="note-new">
+            <button @click="setNoteType('noteTxt')">Text</button>
+            <button @click="setNoteType('noteImg')">Image</button>
+            <button @click="setNoteType('noteTodo')">Todo</button>
+        </div>
     </section>
     `,
     data() {
@@ -24,11 +31,18 @@ export default {
         saveNote(isSaveNote) {
             this.$emit('saveNote', isSaveNote);
         },
-        deleteNote(){
-            this.$emit('deleteNote');
+        noteIdToDelete(){
+            this.$emit('noteIdToDelete');
         },
         setBgColor() {
             this.$emit('changeBgColor', this.color)
         },
+        setNoteType(type){
+            if (type==='noteImg') selectImg();
+            this.$emit('setNoteType',type)
+        },
+        selectImg(){
+            
+        }
     },
 };

@@ -7,13 +7,14 @@ export default {
         <button @click="pinNote">📌</button>
         <input type="text" v-model="title" placeholder="title"/>
         <textarea class="free-txt" rows="2" cols="50" v-model="txt" placeholder="Write something..."></textarea>
-        <note-footer @saveNote="saveNote" @changeBgColor="changeBgColor"/>
+        <note-footer  @saveNote="saveNote" @changeBgColor="changeBgColor"/>
     </section>
     `,
     data(){
         return{
             title:'',
             txt:'',
+            type:'noteTxt',
             bgColor:''
         }
     },
@@ -31,9 +32,8 @@ export default {
         },
         saveNoteDetails(){
             const {title, txt, bgColor} = this;
-            keepService.saveNote('noteTxt',{title,txt, bgColor})
-            .then(() =>this.$emit('loadNotes'))
-            
+            keepService.saveNote(this.type,{title,txt, bgColor})
+            .then(() =>this.$emit('loadNotes'))  
         },
     },
     components:{

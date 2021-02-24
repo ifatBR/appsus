@@ -2,7 +2,9 @@ import { storageService } from '../../../services/async-storage.service.js';
 import { utilService } from '../../../services/util.service.js';
 export const keepService = {
     getNotes,
-    saveNote
+    saveNote,
+    deleteNote,
+    setNoteType
 };
 
 const KEEP_NOTES_KEY = 'keepNotes';
@@ -22,14 +24,43 @@ function saveNote(type,note) {
     const {title,txt,bgColor} = note;
     const info = {txt};
 
-    return _createEmptyNote(type,{title, info, bgColor}).then(newNote =>{
+    return _createNewNote(type,{title, info, bgColor}).then(newNote =>{
             console.log('new',newNote);
-        storageService.post(KEEP_NOTES_KEY, newNote);
+            storageService.post(KEEP_NOTES_KEY, newNote);
         }     
     )
 }
 
-function _createEmptyNote(type,{title, info, bgColor}) {
+function deleteNote(id){
+    return storageService.remove(KEEP_NOTES_KEY, id);
+}
+
+function setNoteType(id, noteType){
+    return storageService.get(KEEP_NOTES_KEY,id)
+    .then(note =>{
+        if(note.type === noteType) return;
+        note.type=noteType
+        note.info = setInfoType(noteType)
+        storageService.put(KEEP_NOTES_KEY,note)
+        })
+}
+function setInfoType(noteType){
+    if(noteType === 'noteTxt') return {txt:''};
+    if (noteType === 'noteImg') return {
+        url : '',
+        imgTitle : ''
+    }
+    if (noteType === 'noteTodo') return{'todos' :[{ txt: '', doneAt: null }]}
+}
+
+
+
+function addTodo() {
+    return { txt: '', doneAt: null };
+}
+
+
+function _createNewNote(type,{title, info, bgColor}) {
     const note = {
         type,
         id: utilService.makeId(),
@@ -42,18 +73,7 @@ function _createEmptyNote(type,{title, info, bgColor}) {
         },
     };
 
-    // if (type === 'noteImg') {
-    //     note.info['url'] = '';
-    //     note.info['imgTitle'] = '';
-    // } else if (type === 'noteTodo') {
-    //     note.info['todos'] = [''];
-    // }
-
     return Promise.resolve(note);
-}
-
-function addTodo(note) {
-    return { txt: '', doneAt: null };
 }
 
 function _createKeepNotes() {
@@ -72,23 +92,23 @@ function _createKeepNotes() {
         //         bgColor: 'blue',
         //     },
         // },
-        // {
-        //     type: 'noteTodo',
-        //     id: utilService.makeId(),
-        //     title: 'Par-ty!',
-        //     isPinned: false,
-        //     label: '', // Maybe- or DELETE
-        //     info: {
-        //         todos: [
-        //             { txt: 'buy flowers', doneAt: null },
-        //             { txt: 'bake cake', doneAt: null },
-        //             { txt: 'clean floor', doneAt: null },
-        //         ],
-        //     },
-        //     style: {
-        //         bgColor: 'white',
-        //     },
-        // },
+        {
+            type: 'noteTodo',
+            id: utilService.makeId(),
+            title: 'Par-ty!',
+            isPinned: false,
+            label: '', // Maybe- or DELETE
+            info: {
+                todos: [
+                    { txt: 'buy flowers', doneAt: null },
+                    { txt: 'bake cake', doneAt: null },
+                    { txt: 'clean floor', doneAt: null },
+                ],
+            },
+            style: {
+                bgColor: 'white',
+            },
+        },
         {
             type: 'noteTxt',
             id: utilService.makeId(),

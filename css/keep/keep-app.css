@@ -1,5 +1,6 @@
-@import "note-list.css";
-@import "note-preview.css";
-@import "note-edit.css";
-@import "note-footer.css";
+@import "cmps/note-list.css";
+@import "cmps/note-preview.css";
+@import "cmps/note-edit.css";
+@import "cmps/note-footer.css";
+@import "cmps/note-todo.css";
 
