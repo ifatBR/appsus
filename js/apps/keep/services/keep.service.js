@@ -1,7 +1,8 @@
 import { storageService } from '../../../services/async-storage.service.js';
-import {utilService} from '../../../services/util.service.js'
+import { utilService } from '../../../services/util.service.js';
 export const keepService = {
     getNotes,
+    saveNote
 };
 
 const KEEP_NOTES_KEY = 'keepNotes';
@@ -10,36 +11,45 @@ function getNotes() {
     return storageService.query(KEEP_NOTES_KEY).then((keepNotes) => {
         if (!keepNotes.length) {
             keepNotes = _createKeepNotes();
-            storageService.post(KEEP_NOTES_KEY, keepNotes);
+            _save(KEEP_NOTES_KEY, keepNotes);
             return keepNotes;
         }
-        return keepNotes[0];
+        return keepNotes;
     });
 }
 
-function _createEmptyNote(type) {
+function saveNote(type,note) {
+    const {title,txt,bgColor} = note;
+    const info = {txt};
+
+    return _createEmptyNote(type,{title, info, bgColor}).then(newNote =>{
+            console.log('new',newNote);
+        storageService.post(KEEP_NOTES_KEY, newNote);
+        }     
+    )
+}
+
+function _createEmptyNote(type,{title, info, bgColor}) {
     const note = {
         type,
         id: utilService.makeId(),
-        title: '',
+        title,
         isPinned: false,
         label: '', // Maybe- or DELETE
-        info: {},
+        info:info,
         style: {
-            bgColor: 'white',
+            bgColor,
         },
     };
 
-    if (type === 'noteImg') {
-        note.info['url'] = '';
-        note.info['imgTitle'] = '';
-    } else if (type === 'noteTxt') {
-        note.info['txt'] = '';
-    } else if (type === 'noteTodo') {
-        note.info['todos'] = [''];
-    }
+    // if (type === 'noteImg') {
+    //     note.info['url'] = '';
+    //     note.info['imgTitle'] = '';
+    // } else if (type === 'noteTodo') {
+    //     note.info['todos'] = [''];
+    // }
 
-    return note;
+    return Promise.resolve(note);
 }
 
 function addTodo(note) {
@@ -99,7 +109,7 @@ function _createKeepNotes() {
             isPinned: false,
             label: '', // Maybe- or DELETE
             info: {
-                txt: "I like bannanas",
+                txt: 'I like bannanas',
             },
             style: {
                 bgColor: 'pink',
@@ -112,11 +122,15 @@ function _createKeepNotes() {
             isPinned: false,
             label: '', // Maybe- or DELETE
             info: {
-                txt: "Hop hop",
+                txt: 'Hop hop',
             },
             style: {
                 bgColor: 'red',
             },
         },
     ];
+}
+
+function _save(entityType, entities) {
+    localStorage.setItem(entityType, JSON.stringify(entities))
 }
