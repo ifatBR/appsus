@@ -7,7 +7,7 @@ import emailInbox from './apps/email/pages/email-inbox.cmp.js'
 import emailStarred from './apps/email/pages/email-starred.cmp.js'
 import emailSent from './apps/email/pages/email-sent.cmp.js'
 import emailDraft from './apps/email/pages/email-draft.cmp.js'
-import emailDeleted from './apps/email/pages/email-deleted.cmp.js'
+import emailTrash from './apps/email/pages/email-trash.cmp.js'
 import emailDetails from './apps/email/pages/email-details.cmp.js'
 // keep
 import keepApp from './apps/keep/pages/keep-app.cmp.js'
@@ -50,8 +50,8 @@ const routes = [
                 component: emailDraft,
             },
             {
-                path:'deleted',
-                component: emailDeleted,
+                path:'trash',
+                component: emailTrash,
             },
             {
                 path:':emailId',
