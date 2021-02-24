@@ -3,9 +3,11 @@ import noteFooter from './note-footer.cmp.js'
 export default{
     props:['note'],
     template:`
-    <section class="note" :class="classColor">  
-        <h2>{{note.title}}</h2>
-        <p>{{note.info.txt}}</p>
+    <section class="note-preview flex column space-between" :class="classColor">  
+        <div>
+            <h2>{{note.title}}</h2>
+            <p>{{note.info.txt}}</p>
+        </div>
         <note-footer/>
     </section>
     `,

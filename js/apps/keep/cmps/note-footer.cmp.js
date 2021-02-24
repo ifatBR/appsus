@@ -12,7 +12,7 @@ export default {
         <button @click="saveNote(true)">Save</button>
         <button @click="saveNote(false)">Close</button>
         <button><input @change="setBgColor" type="color" v-model="color" list="colorList" value="#ffffff"/></button>
-        <button @click="deleteNote">X</button>
+        <button @click="deleteNote">Delete</button>
     </section>
     `,
     data() {
