@@ -1,15 +1,17 @@
 import { emailService } from '../services/email.service.js'
-import { eventBus } from '../../../services/event-bus.service.js';
+// import { eventBus } from '../../../services/event-bus.service.js';
+import { eventBus } from '../../../services/event-bus.service.js'
 
 export default{
     template:`
-    <section class="email-edit flex column align-center">   
+    <section class="email-edit">   
+        <button class="clean-btn" @click="closeEdit()">X</button>
         new mail
-        <form @submit.prevent="send"> 
+        <form class=" flex column align-center" @submit.prevent="send"> 
         <p> To <input type="email" v-model="compose.to"></p>
         <p>Subject <input type="text" v-model="compose.subject"></p>
         <p><textarea type="text" v-model="compose.body" cols="40" rows="10"></textarea></p>
-        <button>Send</button>
+        <button class="clean-btn">Send</button>
         </form>
     </section>
     `,
@@ -23,13 +25,20 @@ export default{
         }
     },
     methods:{
+        closeEdit(){
+            eventBus.$emit('closeEdit')
+        },
         send(){
          emailService.post(this.compose)
             .then((mail)=>{
-            eventBus.$emit('mail-composed');
+            eventBus.$emit('mailComposed');
             console.log('msg sent: '+mail)
         })
-        }
+        },
+    },
+    mounted(){
+        //   eventBus.$emit('closeEdit')
+        
     },
     components:{
         // emailInbox,

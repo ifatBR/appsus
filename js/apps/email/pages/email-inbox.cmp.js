@@ -22,12 +22,12 @@ export default {
     },
     deleteMail(mailId){
         emailService.remove(mailId)
-            .then(()=>this.getMails)
+            .then(()=>this.getMails())
     }
   },
   created() {
     this.getMails();
-    eventBus.$on('mail-composed', this.getMails);
+    eventBus.$on('mailComposed', this.getMails);
     eventBus.$on('deleteMail', this.deleteMail);
   },
   components: {
