@@ -1,6 +1,7 @@
 import emailInbox from './email-inbox.cmp.js'
 import emailNavBar from '../cmps/email-nav-bar.cmp.js'
 import emailEdit from '../cmps/email-edit.cmp.js'
+import { eventBus } from '../../../services/event-bus.service.js';
 
 export default{
     template:`
@@ -10,7 +11,7 @@ export default{
 
         <div class="main-email-app">
 
-        <email-nav-bar @editMail="openCompose"></email-nav-bar>
+        <email-nav-bar @editMail="openEdit"></email-nav-bar>
         <email-edit v-if="editMail" />
         <router-view />
 
@@ -23,9 +24,15 @@ export default{
         }
     },
     methods:{
-        openCompose(){
+        openEdit(){
             this.editMail=true
+        },
+        closeEdit(){
+            this.editMail=false
         }
+    },
+    created(){
+        eventBus.$on('closeEdit',this.closeEdit())
     },
     components:{
         emailInbox,

@@ -30,6 +30,34 @@ const gMails = [
     body: 'Google has new security terms. please check them out.',
     isRead: true,
     sentAt: 1553593930594,
+  },
+  {
+    id: utilService.makeId(),
+    subject: 'Wassap?',
+    body: 'Pick up!',
+    isRead: false,
+    sentAt: 1551133930594,
+  },
+  {
+    id: utilService.makeId(),
+  subject: 'New Sale In Renuar!!!!',
+  body: 'go to our site to be first to get our sale cloths',
+  isRead: false,
+  sentAt: 1551133652187,
+  },
+  {
+    id: utilService.makeId(),
+    subject: 'have you watched TV today?',
+    body: 'check out the new show!',
+    isRead: false,
+    sentAt: 1552593930594,
+  },
+  {
+    id: utilService.makeId(),
+    subject: 'New Terms',
+    body: 'Google has new security terms. please check them out.',
+    isRead: true,
+    sentAt: 1553593930594,
   }
 ];
 
@@ -59,7 +87,7 @@ function post(compose){
   newMail.subject = compose.subject;
   newMail.body = compose.body;
 
-  return storageService.post(EMAIL_KEY,compose)
+  return storageService.post(EMAIL_KEY,newMail)
       .then((mail)=> mail)
 }
 

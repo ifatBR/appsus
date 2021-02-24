@@ -10,6 +10,7 @@ export default{
                     <span class="mail-date">{{mail.sentAt}}</span>
                 </div>
                 <button @click.stop="deleteMail(mail.id)">X</button>
+
     </section>
     `,
     methods:{
