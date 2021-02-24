@@ -42,7 +42,7 @@ export default {
             this.$emit('setNoteType',type)
         },
         selectImg(){
-            
+         
         }
     },
 };
