@@ -4,9 +4,11 @@ import { keepService } from '../services/keep.service.js';
 export default {
     template: `
     <section> 
-        <h1>preview</h1>  
-        <ul class="notes-list clean-list">
-            <note-preview v-if="notes" :notes="notes"/>
+        <h1>list</h1>  
+        <ul class="notes-list main-container clean-list grid justify-center">
+            <li v-if="notes" v-for="(note) in notes">
+                <note-preview v-if="notes" :note="note"/>
+            </li>
         </ul>   
     </section>
     `,

@@ -11,8 +11,9 @@ function getNotes() {
         if (!keepNotes.length) {
             keepNotes = _createKeepNotes();
             storageService.post(KEEP_NOTES_KEY, keepNotes);
+            return keepNotes;
         }
-        return keepNotes;
+        return keepNotes[0];
     });
 }
 
@@ -20,7 +21,7 @@ function _createEmptyNote(type) {
     const note = {
         type,
         id: utilService.makeId(),
-        headline: '',
+        title: '',
         isPinned: false,
         label: '', // Maybe- or DELETE
         info: {},
@@ -31,7 +32,7 @@ function _createEmptyNote(type) {
 
     if (type === 'noteImg') {
         note.info['url'] = '';
-        note.info['title'] = '';
+        note.info['imgTitle'] = '';
     } else if (type === 'noteTxt') {
         note.info['txt'] = '';
     } else if (type === 'noteTodo') {
@@ -47,32 +48,45 @@ function addTodo(note) {
 
 function _createKeepNotes() {
     return [
+        // {
+        //     type: 'noteImg',
+        //     id: utilService.makeId(),
+        //     title: 'Blender I want',
+        //     isPinned: false,
+        //     label: '', // Maybe- or DELETE
+        //     info: {
+        //         url: '../../../imgs/keep/blender.jpg',
+        //         imgTitle: 'oster classic',
+        //     },
+        //     style: {
+        //         bgColor: 'blue',
+        //     },
+        // },
+        // {
+        //     type: 'noteTodo',
+        //     id: utilService.makeId(),
+        //     title: 'Par-ty!',
+        //     isPinned: false,
+        //     label: '', // Maybe- or DELETE
+        //     info: {
+        //         todos: [
+        //             { txt: 'buy flowers', doneAt: null },
+        //             { txt: 'bake cake', doneAt: null },
+        //             { txt: 'clean floor', doneAt: null },
+        //         ],
+        //     },
+        //     style: {
+        //         bgColor: 'white',
+        //     },
+        // },
         {
-            type: 'noteImg',
+            type: 'noteTxt',
             id: utilService.makeId(),
-            headline: 'Blender I want',
-            isPinned: false,
+            title: 'Affirmations',
+            isPinned: true,
             label: '', // Maybe- or DELETE
             info: {
-                url: '../../../imgs/keep/blender.jpg',
-                title: 'oster classic',
-            },
-            style: {
-                bgColor: 'blue',
-            },
-        },
-        {
-            type: 'noteTodo',
-            id: utilService.makeId(),
-            headline: 'Par-ty!',
-            isPinned: false,
-            label: '', // Maybe- or DELETE
-            info: {
-                todos: [
-                    { txt: 'buy flowers', doneAt: null },
-                    { txt: 'bake cake', doneAt: null },
-                    { txt: 'clean floor', doneAt: null },
-                ],
+                txt: "I should remember that I can do whatever I want, I'm a capable strong woman",
             },
             style: {
                 bgColor: 'white',
@@ -81,14 +95,27 @@ function _createKeepNotes() {
         {
             type: 'noteTxt',
             id: utilService.makeId(),
-            headline: 'Affirmations',
-            isPinned: true,
+            title: 'hey ho',
+            isPinned: false,
             label: '', // Maybe- or DELETE
             info: {
-                txt: "I should remember that I can do whatever I want, I'm a capable strong woman",
+                txt: "I like bannanas",
             },
             style: {
-                bgColor: 'white',
+                bgColor: 'pink',
+            },
+        },
+        {
+            type: 'noteTxt',
+            id: utilService.makeId(),
+            title: 'blabla',
+            isPinned: false,
+            label: '', // Maybe- or DELETE
+            info: {
+                txt: "Hop hop",
+            },
+            style: {
+                bgColor: 'red',
             },
         },
     ];
