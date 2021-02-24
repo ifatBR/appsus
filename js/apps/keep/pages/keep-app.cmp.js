@@ -9,7 +9,7 @@ export default {
         <section>
             <keep-nav-bar/>
             <button @click="openNoteEdit">new note</button>
-            <note-edit v-if="isNoteEdit"/>
+            <note-edit v-if="true"/>
             <h1>keep app</h1>
             <router-view/>
         </section>

@@ -1,4 +1,5 @@
 import { keepService } from '../services/keep.service.js';
+import noteFooter from './note-footer.cmp.js'
 
 export default {
     template: `
@@ -10,8 +11,12 @@ export default {
     </section>
     `,
     methods:{
-        pinNote(ev){
-            console.log('ev:', ev)
+        pinNote(){
+            console.log('pinned note');
+
         }
+    },
+    components:{
+        noteFooter,
     }
 }
