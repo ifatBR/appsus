@@ -46,3 +46,10 @@
     margin:0;
     padding:0
 }
+
+.clean-btn {
+    cursor: pointer;
+    outline: none;
+    border: none;
+  }
+  
