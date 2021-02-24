@@ -3,4 +3,13 @@
 @import "cmps/note-edit.css";
 @import "cmps/note-footer.css";
 @import "cmps/note-todo.css";
+@import "cmps/note-img.css";
 
+.note-edit-screen.is-edit{
+    position:absolute;
+    top:0;
+    left:0;
+    bottom:0;
+    right:0;
+    background-color: rgba(0, 0, 0, 0.151);
+}

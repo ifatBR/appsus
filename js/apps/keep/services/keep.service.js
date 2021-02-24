@@ -35,21 +35,18 @@ function deleteNote(id){
     return storageService.remove(KEEP_NOTES_KEY, id);
 }
 
-function setNoteType(id, noteType){
+function setNoteType(id, noteType, imgUrl){
     return storageService.get(KEEP_NOTES_KEY,id)
     .then(note =>{
         if(note.type === noteType) return;
         note.type=noteType
-        note.info = setInfoType(noteType)
+        note.info = _setInfoType(noteType, imgUrl)
         storageService.put(KEEP_NOTES_KEY,note)
         })
 }
-function setInfoType(noteType){
+function _setInfoType(noteType, imgUrl){
     if(noteType === 'noteTxt') return {txt:''};
-    if (noteType === 'noteImg') return {
-        url : '',
-        imgTitle : ''
-    }
+    if (noteType === 'noteImg') return {url : imgUrl }
     if (noteType === 'noteTodo') return{'todos' :[{ txt: '', doneAt: null }]}
 }
 
