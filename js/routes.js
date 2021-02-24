@@ -1,3 +1,21 @@
+// general
+import homePage from './pages/home-page.cmp.js'
+import about from './pages/about.cmp.js'
+// email
+import emailApp from './apps/email/pages/email-app.cmp.js'
+import emailInbox from './apps/email/pages/email-inbox.cmp.js'
+import emailStarred from './apps/email/pages/email-starred.cmp.js'
+import emailSent from './apps/email/pages/email-sent.cmp.js'
+import emailDraft from './apps/email/pages/email-draft.cmp.js'
+import emailDeleted from './apps/email/pages/email-deleted.cmp.js'
+import emailDetails from './apps/email/pages/email-details.cmp.js'
+// keep
+import keepApp from './apps/keep/pages/keep-app.cmp.js'
+import keepNotes from './apps/keep/pages/keep-notes.cmp.js'
+import keepDeleted from './apps/keep/pages/keep-deleted.cmp.js'
+import keepReminder from './apps/keep/pages/keep-reminder.cmp.js'
+
+
 const routes = [
     {
         path:'/',
@@ -47,19 +65,19 @@ const routes = [
         children:[
             {
                 path:'/',
-                component: notes,
+                component: keepNotes,
             },
             {
                 path:'/notes',
-                component: notes,
+                component: keepNotes,
             },
             {
                 path:'/reminder',
-                component: reminder,
+                component: keepReminder,
             },
             {
                 path:'/deleted',
-                component: deleted,
+                component: keepDeleted,
             },
         ]
     },
