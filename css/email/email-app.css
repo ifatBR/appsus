@@ -1,0 +1,33 @@
+.email-app{
+    display: flex;
+    flex-direction: column;
+    /* width: 1600px; */
+}
+
+.main-email-app{
+    display: flex;
+    flex-direction: row;
+}
+
+header{
+    height: 100px;
+    background-color: rgb(204, 255, 238);
+    text-align: center;
+}
+
+.aside-nav-bar{
+}
+
+.aside-nav-bar>*{
+    width: 150px;
+    background-color: rgba(147, 147, 255, 0.26);
+    padding: 20px;
+    margin: 5px;
+    border-radius: 12px;
+}
+
+.email-main-container{
+    background-color: rgb(253, 247, 247);
+    width: 80vw; 
+    height: 60vh;  
+}
