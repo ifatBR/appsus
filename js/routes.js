@@ -81,36 +81,36 @@ const routes = [
             },
         ]
     },
-    {
-        path:'/book',
-        component: bookApp,
-        children:[
-            {
-                path:'/',
-                component: books,
-            },
-            {
-                path:'/books',
-                component: books,
-            },
-            {
-                path: '/about',
-                component: about,
-            },
-            {
-                path: '/book/addBooks',
-                component: bookAdd
-            },
-            {
-                path: '/book/:bookId',
-                component: bookDetails,
-            },
-            {
-                path: '/book/:bookId/:bookTitle/review',
-                component: reviewAdd,
-            },
-        ]
-    },
+    // {
+    //     path:'/book',
+    //     component: bookApp,
+    //     children:[
+    //         {
+    //             path:'/',
+    //             component: books,
+    //         },
+    //         {
+    //             path:'/books',
+    //             component: books,
+    //         },
+    //         {
+    //             path: '/about',
+    //             component: about,
+    //         },
+    //         {
+    //             path: '/book/addBooks',
+    //             component: bookAdd
+    //         },
+    //         {
+    //             path: '/book/:bookId',
+    //             component: bookDetails,
+    //         },
+    //         {
+    //             path: '/book/:bookId/:bookTitle/review',
+    //             component: reviewAdd,
+    //         },
+    //     ]
+    // },
 ]
 
 export const myRouter = new VueRouter({routes});
