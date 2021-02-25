@@ -1,10 +1,12 @@
 import { emailService } from '../services/email.service.js';
+import { eventBus } from '../../../services/event-bus.service.js';
 
 export default {
   template: `
     <section v-if="mail">   
         <h1>{{mail.subject}}</h1>
         <p> {{mail.body}}</p>
+        <button @click="onReply(mail)">Reply</button>
     </section>
     `,
   data() {
@@ -19,6 +21,9 @@ export default {
     currId() {
       return this.$route.params.emailId;
     },
+    onReply(mail){
+      eventBus.$emit('reply', mail)
+    }
   },
   computed: {},
   created() {
