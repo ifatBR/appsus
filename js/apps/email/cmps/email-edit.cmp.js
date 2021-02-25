@@ -5,7 +5,7 @@ import { eventBus } from '../../../services/event-bus.service.js'
 export default{
     template:`
     <section class="email-edit">   
-        <button class="clean-btn" @click="closeEdit()">X</button>
+        <button class="clean-btn" @click="closeEdit">X</button>
         new mail
         <form class=" flex column align-center" @submit.prevent="send"> 
         <p> To <input type="email" v-model="compose.to"></p>
@@ -25,9 +25,6 @@ export default{
         }
     },
     methods:{
-        closeEdit(){
-            eventBus.$emit('closeEdit')
-        },
         send(){
          emailService.post(this.compose)
             .then((mail)=>{
@@ -35,10 +32,9 @@ export default{
             console.log('msg sent: '+mail)
         })
         },
-    },
-    mounted(){
-        //   eventBus.$emit('closeEdit')
-        
+        closeEdit(){
+            eventBus.$emit('closeEdit')
+        }
     },
     components:{
         // emailInbox,
