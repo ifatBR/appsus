@@ -25,6 +25,19 @@
     outline:none;
 }
 
+.note-edit .title{
+    margin-bottom: 20px;;
+    font-family: 'balsamic-bold-italic';
+}
+
+.note-edit p,
+.note-edit li,
+.note-edit textarea,
+.note-edit input{
+    font-family: 'balsamic';
+}
+
+
 .note-edit input{
     border:none;
     outline:none;
@@ -43,6 +56,11 @@
     display:block;
     position: absolute;
     right:10px;
+    cursor: pointer;
+}
+
+.note-edit .btn-pin-note:active{
+    transform: scale(1.2);
 }
 
 .note-edit .note-title{

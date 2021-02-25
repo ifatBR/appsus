@@ -22,7 +22,7 @@
     position:relative;
     padding:10px;
     border-radius: 5px;
-    border:1px solid rgba(226, 226, 226, 0.479);
+    border:1px solid rgba(226, 226, 226, 1);
 }
 
 
@@ -34,7 +34,7 @@
     right:0;
     bottom:0;
     display:block;
-    /* width: 250px; */
+    
     width: 100%;
     height: 100%;
 }
@@ -50,5 +50,9 @@
 }
 
 .note-preview:hover{
-    box-shadow: 1px 1px 2px rgba(79, 20, 94, 0.4);
+    box-shadow: 1px 1px 2px rgba(114, 74, 124, 0.4);
+    border:1px solid rgba(114, 74, 124, 0.2);
+    opacity:0.8;
+    cursor:pointer;
+
 }

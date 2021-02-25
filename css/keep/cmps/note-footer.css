@@ -10,6 +10,17 @@
     /* text-align: center; */
 }
 
+.note-types{
+    justify-self: flex-end;
+}
+.note-footer .btn-edit:hover{
+    color:grey;
+}
+
+.note-footer .btn-edit:active{
+    background-color: rgb(235, 235, 235);
+}
+
 .note-footer .btn-edit.save{
     font-weight: bold;
 }

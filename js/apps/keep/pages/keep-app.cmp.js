@@ -9,7 +9,7 @@ import { eventBus } from '../../../services/event-bus.service.js';
 export default {
     template: `
         <section class="keep-app">
-            <keep-nav-bar/>
+            <!-- <keep-nav-bar/> -->
             <note-edit v-if="currNote" :currNote="currNote" class="new-note" @loadNotes="loadNotes"  @getNewNote="getEmptyNote" @saveNote="saveNote"/>
             <router-view class="keep-router-view"/>
             <note-edit v-if="isNoteEdit" :currNote="currNote" class="edit-note" :class="{'is-edit':isNoteEdit}" @saveNote="saveNote" @closeNoteEdit="closeNoteEdit" @deleteNoteById="deleteNoteById"/>

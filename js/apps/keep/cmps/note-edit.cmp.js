@@ -11,7 +11,7 @@ export default {
     <section class="note-edit">
         <form @submit.prevent="saveNote" class="flex column">
             <button class="btn-pin-note" @click="pinNote" type="button">📌</button>
-            <input type="text" class="note-title" v-model="title" placeholder="title"/>
+            <input type="text" class="title" v-model="title" placeholder="title"/>
             <component :is="componentType" :info="info"></component>    
             <note-footer  @saveNote="saveNote" @changeBgColor="changeBgColor" @setNoteType="setNoteType" @closeNoteEdit="closeNoteEdit" @noteIdToDelete="noteIdToDelete"/>
         </form>

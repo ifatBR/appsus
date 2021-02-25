@@ -12,6 +12,7 @@
     width: 100%;
     height: 60px;
     box-shadow: 3px 0  7px 3px rgba(79, 20, 94, 0.4);
+    background-color: #fff;
     padding: 0 20px;
 }
 
@@ -28,4 +29,9 @@
 .main-router-view{
     margin-top: 80px;
     padding: 0 80px;
+}
+
+.homepage h1{
+    font-size:10em;
+    font-family:balsamic-bold;
 }
