@@ -5,6 +5,10 @@
 @import "cmps/note-todo.css";
 @import "cmps/note-img.css";
 
+/* .keep-app{
+    margin-top:80px;
+} */
+
 .note-edit-screen.is-edit{
     position:absolute;
     top:0;

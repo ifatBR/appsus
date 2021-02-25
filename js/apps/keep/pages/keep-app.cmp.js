@@ -8,7 +8,7 @@ import { eventBus } from '../../../services/event-bus.service.js';
 
 export default {
     template: `
-        <section>
+        <section class="keep-app">
             <keep-nav-bar/>
             <note-edit v-if="currNote" :currNote="currNote" class="new-note" @loadNotes="loadNotes" @click.native="getEmptyNote"/>
             <router-view/>
@@ -86,11 +86,14 @@ export default {
         },
         addNewTask(){
             const currInfo = this.currNote.info
-            if (!currInfo.todos) this.currNote.info['todos'] = [];
+            if (!currInfo.todos) this.currNote.info['todos'] = [];//this should happen before!!!!!!!!!!!
 
             keepService.getNewTask()
-            .then(task => this.currNote.info.todos.push(task))
-            .then(task => console.log(this.currNote.info.todos))
+            .then(task => {
+                this.currNote.info.todos.push(task)
+            })
+
+            // .then(task => console.log(this.currNote.info.todos))
             // .then(() => this.loadNotes())
         }
     },
@@ -100,6 +103,9 @@ export default {
             keepService.getNoteById(id).then((note) => (this.currNote = note));
             // .then(()=> this.openNoteEdit());
         },
+        currNote(){
+            console.log('mommy note changed');
+        }
     },
     components: {
         keepNavBar,

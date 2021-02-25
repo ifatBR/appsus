@@ -82,6 +82,11 @@ export default {
             eventBus.$emit('addNewTask');
         }
     },
+    watch:{
+        currNote(){
+            console.log('changed');
+        }
+    },
 
     components:{
         noteFooter,

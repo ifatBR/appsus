@@ -21,7 +21,8 @@ export default {
     },
     created() {
         console.log('todo edit info ', this.info);
-        this.$emit('addNewTask');
+        // this.$emit('addNewTask');
+        eventBus.$emit('addNewTask')
     },
     components: {
         editTodoPrev,

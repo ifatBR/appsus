@@ -6,10 +6,10 @@ const options = {
     el: '#app',
     router: myRouter,
     template: `
-    <section>
+    <section class="app-container">
         <user-msg />
         <main-header/>
-        <router-view />
+        <router-view class="main-router-view" />
     </section>
     `,
     components: {
