@@ -19,8 +19,13 @@
     height: 100%;
 }
 
+.burger-nav-bar:before{
+    font-family: 'font-aw-solid';
+
+    content:'\f0c9';
+}
+
 .main-router-view{
     margin-top: 80px;
     padding: 0 80px;
-
 }
