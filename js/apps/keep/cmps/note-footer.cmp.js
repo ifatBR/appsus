@@ -1,6 +1,6 @@
 export default {
     template: `
-    <section class="note-footer"> 
+    <section class="note-footer flex"> 
         <!-- <img :src="imgData">  -->
         <datalist id="colorList">
             <option value="#ffffff"></option>
@@ -13,21 +13,20 @@ export default {
         <button >Save</button>
         <!-- <button @click="saveNote(true)">Save</button> -->
         <button @click="closeNoteEdit" type="button">Close</button>
-        <button><input @change="setBgColor" type="color" v-model="color" list="colorList" value="#ffffff"/></button>
+        <button class="btn-edit btn-fa btn-color"><input @change="setBgColor" type="color" v-model="color" list="colorList" /></button>
         <div class="note-exist">
-            <button @click="noteIdToDelete" type="button">Delete</button>
+            <button @click="noteIdToDelete" type="button" class="btn-edit btn-fa btn-del"></button>
         </div>
         <div class="note-new">
-            <button @click="setNoteType('noteTxt')" type="button">Text</button>
-            <!-- <button @click="setNoteType('noteImg')">Image</button> -->
-            <input type="file" class="file-input btn" name="image" @change="setNoteImg" />
-            <button @click="setNoteType('noteTodo')" type="button">Todo</button>
+            <button @click="setNoteType('noteTxt')" type="button" class="btn-edit btn-fa btn-txt"></button>
+            <button class="btn-edit btn-fa btn-img"><input type="file" class="file-input absolute-full" name="image" @change="setNoteImg" /></button>
+            <button @click="setNoteType('noteTodo')" type="button" class="btn-edit btn-fa btn-todo"></button>
         </div>
     </section>
     `,
     data() {
         return {
-            color: 'white',
+            color: '#ffffff',
             imgData:null
         };
     },

@@ -8,12 +8,12 @@ import editNoteTxt from './dynamicNotes/edit-note-txt.cmp.js'
 export default {
     props:['currNote'],
     template: `
-    <section class="note-edit">
+    <section class="note-edit" >
         <form @submit.prevent="saveNote(true)" class="flex column">
             <button @click="pinNote">📌</button>
             <input type="text" v-model="title" placeholder="title"/>
             <!-- <textarea class="free-txt" rows="2" cols="50" v-model="txt" placeholder="Write something..."></textarea> -->
-            <component :is="componentType" :info="info"></component>    
+            <component :is="componentType" :info="info" @addNewTask="addNewTask"></component>    
             <note-footer  @saveNote="saveNote" @changeBgColor="changeBgColor" @setNoteType="setNoteType" @closeNoteEdit="closeNoteEdit"/>
         </form>
     </section>
@@ -32,6 +32,7 @@ export default {
         }
     },
     created(){
+        console.log(this.currNote);
         if(!this.currNote) return;
         this.showNoteDetails()
         // console.log('currNote:',this.currNote);
@@ -59,7 +60,13 @@ export default {
         
         setNoteType(params) {
             this.noteType= params.noteType;
-            if(!this.noteId) return;
+            this.componentType = 'edit-'+ this.noteType;
+            if(!this.$route.params.noteId) {
+                console.log('its a new note', this.componentType);
+                
+                //todo: maybe something here to show correct edit data
+                return;
+            }
             params['id'] = this.noteId;
             eventBus.$emit('setNoteType', params);
         },
@@ -70,18 +77,12 @@ export default {
             this.type=type;
             this.bgColor = bgColor;
             this.componentType = 'edit-'+this.currNote.type;
-            // if(!this.$route.params.noteId) return;
-            // console.log('details');
-            //!!!!!!!!!!!!!!!!!!!!!!!
-            //TODO
+        },
+        addNewTask(){
+            eventBus.$emit('addNewTask');
         }
     },
-    watch:{
-        '$route.params.noteId'(){
-            // if(!this.currNote) return;
-            // this.showNoteDetails()
-        }
-    },
+
     components:{
         noteFooter,
         editNoteImg,

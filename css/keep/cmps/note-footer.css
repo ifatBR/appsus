@@ -1,4 +1,68 @@
-.note-footer > *{
-    /* width: 25px; */
+.note-footer .btn-edit{
+    width: 30px;
+    height: 30px;
+    cursor:pointer;
 }
+
+.note-footer .btn-fa{
+    font-family: 'font-aw-reg';
+    /* text-align: center; */
+}
+
+.note-footer .btn-img{
+    position:relative;
+}
+
+.note-footer .file-input,
+::-webkit-file-upload-button{
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor:pointer;
+}
+
+.note-footer .btn-color {
+    font-family: 'font-aw-solid';
+    position: relative;
+}
+
+.note-footer .btn-color input{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    outline: none;
+    width: 100%;
+    height: 100%;
+    border:none;
+    background-color: transparent;
+    cursor:pointer;
+    opacity:0;
+}
+
+.note-footer .btn-color::before {
+    content: '\f53f';
+}
+
+.note-footer input::-webkit-color-swatch{
+    display:none;
+}
+
+.note-footer .btn-del::before{
+    content: '\f2ed';
+}
+.note-footer .btn-img::before{
+    content: '\f03e';
+}
+
+.note-footer .btn-todo::before{
+    content: '\f022';
+}
+.note-footer .btn-txt::before{
+    font-family: 'font-aw-solid';
+
+    content: '\f031';
+}
+
 

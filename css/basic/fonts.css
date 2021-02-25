@@ -1,4 +1,9 @@
 @font-face{
-    src: url();
-    font-family: '';
+    src: url('../fonts/fa-regular-400.ttf');
+    font-family: 'font-aw-reg';
+}
+
+@font-face{
+    src: url('../fonts/fa-solid-900.ttf');
+    font-family: 'font-aw-solid';
 }

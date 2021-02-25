@@ -24,14 +24,8 @@ export default {
     methods: {
         renderNotes(notes) {
             this.notes = notes;
-            // console.log('notes',this.notes);
+
         },
-    },
-    watch:{
-        notes(){
-            console.log('notes:', this.notes)
-            eventBus.$on('renderNotes', this.renderNotes);//the noted don't re-render!
-        }
     },
     components: {
         notePreview,

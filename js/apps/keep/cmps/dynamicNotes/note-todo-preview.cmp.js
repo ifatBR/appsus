@@ -1,4 +1,4 @@
-export default{
+export default{//delete me!!!!
     props:['task'],
     template:`
     <div class="todo preview flex">
@@ -12,7 +12,7 @@ export default{
     },
     watch:{
         task(){
-            console.log(task);
+            console.log(this.task);
             console.log(this.task.doneAt);
             this.isCheckTask=this.task.doneAt
         }

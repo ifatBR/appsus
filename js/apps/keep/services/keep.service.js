@@ -6,7 +6,9 @@ export const keepService = {
     deleteNote,
     setNoteType,
     getNoteById,
-    updateNote
+    updateNote,
+    getEmptyNote,
+    getNewTask
 };
 
 const KEEP_NOTES_KEY = 'keepNotes';
@@ -50,25 +52,32 @@ function setNoteType(id, noteType, imgUrl){
     return storageService.get(KEEP_NOTES_KEY,id)
     .then(note =>{
         if(note.type === noteType) return;
-        note.type=noteType
+        note.type= noteType
         note.info = _setInfoType(noteType, imgUrl)
         storageService.put(KEEP_NOTES_KEY,note)
         })
 }
+
+
+function getNewTask(){
+    const emptyTask = { txt: '', doneAt: null, id:utilService.makeId() };
+    return Promise.resolve(emptyTask);
+
+}
+
+function getEmptyNote(type='noteTxt'){
+    return _createNewNote(type,{title:'', info:{}, bgColor:'#ffffff'})
+}
+
 function _setInfoType(noteType, imgUrl){
     if(noteType === 'noteTxt') return {txt:''};
     if (noteType === 'noteImg') return {url : imgUrl }
-    if (noteType === 'noteTodo') return{'todos' :[{ txt: '', doneAt: null, id:utilService.makeId() }]}
-}
-
-
-
-function addTodo() {
-    return { txt: '', doneAt: null };
+    if (noteType === 'noteTodo') return{'todos' :[getNewTask()]}
 }
 
 
 function _createNewNote(type,{title, info, bgColor}) {
+
     const note = {
         type,
         id: utilService.makeId(),

@@ -10,7 +10,7 @@ export default {
     <section class="note-preview flex column space-between" v-bind:style="style">  
         <div>
             <h2>{{note.title}}</h2>
-            <component :is="note.type" :info="info"></component>   
+            <component :is="note.type" :info="this.note.info"></component>   
             <router-link :to="'keep/notes/'+note.id" @click.native="openNoteEdit" class="preview-link"></router-link>
         </div>
         <!-- <note-footer @noteIdToDelete="noteIdToDelete" @setNoteType="setNoteType"/> -->
@@ -19,7 +19,6 @@ export default {
     data() {
         return {
             color: null,
-            info: this.note.info
         };
     },
     created() {
@@ -35,11 +34,6 @@ export default {
             return {'background-color':this.note.style.bgColor}
         }
     },
-    // watch:{
-    //     note(){
-    //         console.log({...this.note.info});
-    //     }
-    // },
     components: {
         noteFooter,
         noteTxt,

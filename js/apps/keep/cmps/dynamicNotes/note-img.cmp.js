@@ -1,15 +1,8 @@
 export default{
     props:['info'],
     template:`
-    <div class="flex">   
-        <img :src="info.url" class="note-img" @click="changeImg"/>
+    <div class="flex preview-note-img-container">   
+        <img :src="info.url" class="note-img"/>
     </div>
     `,
-    methods:{
-        changeImg(){
-            //TODO pick different img
-            console.log('changing img');
-            if(!this.$route.params.noteId)return;
-        }
-    }
 }

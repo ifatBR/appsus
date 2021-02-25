@@ -1,4 +1,6 @@
 import editTodoPrev from './edit-note-todo-preview.cmp.js';
+import { eventBus } from '../../../../services/event-bus.service.js';
+
 export default {
     props: ['info'],
 
@@ -13,20 +15,13 @@ export default {
 `,
     methods: {
         removeTask(id) {
-            console.log('id:', id)
             const idx = this.info.todos.findIndex((task) => task.id === id);
             this.info.todos.splice(idx, 1);
         },
-        // toggleCheckTask(id){
-        //     const idx = this.info.todos.findIndex((task) => task.id === id);
-        //     const task = this.info.todos[idx];
-        //     if(task.doneAt){
-        //         task.doneAt =null;
-        //         return
-        //         }
-        //         task.doneAt = Date.now();
-        //         console.log(task.doneAt);
-        // }
+    },
+    created() {
+        console.log('todo edit info ', this.info);
+        this.$emit('addNewTask');
     },
     components: {
         editTodoPrev,
