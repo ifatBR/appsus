@@ -7,8 +7,10 @@ const gMails = [
     id: utilService.makeId(),
     subject: 'Wassap?',
     body: 'Pick up!',
+    to:'muki@gmail.com',
+    from:'me@gmail.com',
     isRead: false,
-    isSent: false,
+    isSent: true,
     isDeleted: false,
     sentAt: 1551133930594,
   },
@@ -16,6 +18,8 @@ const gMails = [
     id: utilService.makeId(),
     subject: 'New Sale In Renuar!!!!',
     body: 'go to our site to be first to get our sale cloths',
+    to:'me@gmail.com',
+    from:'muki@gmail.com',
     isRead: false,
     isSent: false,
     isDeleted: false,
@@ -25,6 +29,8 @@ const gMails = [
     id: utilService.makeId(),
     subject: 'have you watched TV today?',
     body: 'check out the new show!',
+    to:'me@gmail.com',
+    from:'muki@gmail.com',
     isRead: false,
     isSent: false,
     isDeleted: false,
@@ -34,6 +40,8 @@ const gMails = [
     id: utilService.makeId(),
     subject: 'New Terms',
     body: 'Google has new security terms. please check them out.',
+    to:'me@gmail.com',
+    from:'muki@gmail.com',
     isRead: true,
     isSent: false,
     isDeleted: false,
@@ -43,6 +51,8 @@ const gMails = [
     id: utilService.makeId(),
     subject: 'Wassap?',
     body: 'Pick up!',
+    to:'me@gmail.com',
+    from:'muki@gmail.com',
     isRead: false,
     isSent: false,
     isDeleted: false,
@@ -52,6 +62,8 @@ const gMails = [
     id: utilService.makeId(),
     subject: 'New Sale In Renuar!!!!',
     body: 'go to our site to be first to get our sale cloths',
+    to:'me@gmail.com',
+    from:'muki@gmail.com',
     isRead: false,
     isSent: false,
     isDeleted: false,
@@ -61,6 +73,8 @@ const gMails = [
     id: utilService.makeId(),
     subject: 'have you watched TV today?',
     body: 'check out the new show!',
+    to:'me@gmail.com',
+    from:'muki@gmail.com',
     isRead: false,
     isSent: false,
     isDeleted: false,
@@ -70,6 +84,8 @@ const gMails = [
     id: utilService.makeId(),
     subject: 'New Terms',
     body: 'Google has new security terms. please check them out.',
+    to:'me@gmail.com',
+    from:'muki@gmail.com',
     isRead: true,
     isSent: false,
     isDeleted: false,
@@ -82,7 +98,8 @@ export const emailService = {
   getById,
   post,
   remove,
-  put
+  put,
+  // getEmptyMail
 };
 
 function query() {
@@ -114,8 +131,13 @@ function put(mail){
   return storageService.put(EMAIL_KEY,mail)
 }
 
+// function getEmptyMail(){
+//   return {from:'me@gmail.com', subject:'', body:''}
+// }
+
 function _createMail() {
   return {
+    from:'me@gmail.com',
     isRead: false,
     isSent: true,
     isDeleted: false,

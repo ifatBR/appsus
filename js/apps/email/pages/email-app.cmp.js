@@ -3,6 +3,7 @@ import emailNavBar from '../cmps/email-nav-bar.cmp.js'
 import emailEdit from '../cmps/email-edit.cmp.js'
 import emailFilter from '../cmps/email-filter.cmp.js'
 import emailSearch from '../cmps/email-search.cmp.js'
+import emailSort from '../cmps/email-sort.cmp.js'
 import { eventBus } from '../../../services/event-bus.service.js';
 
 export default{
@@ -10,12 +11,12 @@ export default{
     <section class="email-app">   
         <header> this is the header</header>
 
-
+        <email-sort />
         <email-filter />
         <email-search />
         <div class="main-email-app">
-        <email-nav-bar @editMail="openEdit"></email-nav-bar>
-        <email-edit v-if="editMail" />
+        <email-nav-bar @editMail="openEdit" ></email-nav-bar>
+        <email-edit v-if="editMail" :mail="mailToCompose" />
         <router-view />
 
         </div>
@@ -23,11 +24,21 @@ export default{
     `,
     data(){
         return{
-            editMail:false
+            editMail:false,
+            mailToCompose:null
         }
     },
     methods:{
         openEdit(){
+            this.mailToCompose={
+                    to:'',
+                    subject:'',
+                    body:''
+                },
+            this.editMail=true
+        },
+        openReply(mail){
+            this.mailToCompose= mail
             this.editMail=true
         },
         closeEdit(){
@@ -36,12 +47,14 @@ export default{
     },
     created(){
         eventBus.$on('closeEdit',this.closeEdit)
+        eventBus.$on('reply',this.openReply)
     },
     components:{
         emailInbox,
         emailNavBar,
         emailEdit,
         emailFilter,
-        emailSearch
+        emailSearch,
+        emailSort
     }
 }
