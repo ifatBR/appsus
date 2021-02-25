@@ -1,5 +1,5 @@
 import noteFooter from './note-footer.cmp.js';
-// import { eventBus } from '../../../services/event-bus.service.js';
+import { eventBus } from '../../../services/event-bus.service.js';
 import noteTxt from './dynamicNotes/note-txt.cmp.js'
 import noteTodo from './dynamicNotes/note-todo.cmp.js'
 import noteImg from './dynamicNotes/note-img.cmp.js'
@@ -10,7 +10,8 @@ export default {
     <section class="note-preview flex column space-between" v-bind:style="style">  
         <div>
             <h2>{{note.title}}</h2>
-            <component :is="note.type" :info="note.info"></component>    
+            <component :is="note.type" :info="info"></component>   
+            <router-link :to="'keep/notes/'+note.id" @click.native="openNoteEdit" class="preview-link"></router-link>
         </div>
         <!-- <note-footer @noteIdToDelete="noteIdToDelete" @setNoteType="setNoteType"/> -->
     </section>
@@ -18,25 +19,27 @@ export default {
     data() {
         return {
             color: null,
+            info: this.note.info
         };
     },
     created() {
         this.color = this.note.style.bgColor;
     },
     methods: {
-        noteIdToDelete() {
-            eventBus.$emit('deleteNote', this.note.id);
+        openNoteEdit(){
+            eventBus.$emit('openNoteEdit');
         },
-        // setNoteType(type) {
-        //     console.log(type);
-        //     eventBus.$emit('setNoteType', { id: this.note.id, noteType: type });
-        // },
     },
     computed: {
         style(){
             return {'background-color':this.note.style.bgColor}
         }
     },
+    // watch:{
+    //     note(){
+    //         console.log({...this.note.info});
+    //     }
+    // },
     components: {
         noteFooter,
         noteTxt,

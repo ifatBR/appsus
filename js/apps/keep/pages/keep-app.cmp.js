@@ -12,15 +12,16 @@ export default {
             <keep-nav-bar/>
             <note-edit class="new-note" @loadNotes="loadNotes"/>
             <router-view/>
-            <note-edit v-show="isNoteEdit" class="edit-note" :class="{'is-edit':isNoteEdit}" />
-            <div class="note-edit-screen" v-show="isNoteEdit" :class="{'is-edit':isNoteEdit}"></div>
+            <note-edit v-if="isNoteEdit" :currNote="currNote" class="edit-note" :class="{'is-edit':isNoteEdit}" @saveNote="saveNote" @closeNoteEdit="closeNoteEdit"/>
+            <div class="note-edit-screen" v-show="isNoteEdit" :class="{'is-edit':isNoteEdit}" @click="closeNoteEdit"></div>
         </section>
     `,
     data() {
         return {
-            isNewNote:false,
+            // isNewNote:false,
             isNoteEdit: false,
             notes: null,
+            currNote:null
         };
     },
     created() {
@@ -29,19 +30,27 @@ export default {
         eventBus.$on('setNoteType', this.setNoteType);
         eventBus.$on('openNoteEdit', this.openNoteEdit);
     },
+    destroyed(){
+        eventBus.$off('deleteNote', this.deleteNote);
+        eventBus.$off('setNoteType', this.setNoteType);
+        eventBus.$off('openNoteEdit', this.openNoteEdit);
+    },
     methods: {
         openNoteEdit() {
             this.isNoteEdit = true;
         },
         closeNoteEdit() {
             this.isNoteEdit = false;
+            this.$router.push('/keep')
         },
         loadNotes() {
             keepService.getNotes()
             .then((notes) => {
                 this.notes = notes;
-                eventBus.$emit('renderNotes', this.notes);
-            });
+            })
+            .then(()=>{
+            eventBus.$emit('renderNotes', this.notes)
+        });
         },
         deleteNote(id) {
             keepService.deleteNote(id)
@@ -50,10 +59,31 @@ export default {
         setNoteType(params) {
             const {id,noteType, url} = params;
             console.log('mommy got type:', noteType)
-            // console.log('url:', url)
             keepService.setNoteType(id, noteType, url)
             .then(() => this.loadNotes());
         },
+        saveNote(){
+            if(this.currNote){
+                console.log('saved:',this.currNote);
+                keepService.updateNote(this.currNote).then(() =>{ 
+                    this.loadNotes()
+                    this.closeNoteEdit()
+                    })  
+                return;
+            }
+                
+            const {title, txt, bgColor} = details;
+            keepService.saveNote(this.type,{title,txt, bgColor})
+            .then(() => this.loadNotes())  
+        },
+    },
+    watch:{
+        '$route.params.noteId'(id){
+            if(!id) return;
+            keepService.getNoteById(id)
+            .then(note => this.currNote = note)
+            // .then(()=> this.openNoteEdit());
+        }
     },
     components: {
         keepNavBar,

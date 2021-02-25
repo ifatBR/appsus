@@ -1,16 +1,15 @@
-import todoPreview from './todo-preview.cmo.js'
+import todoPreview from './note-todo-preview.cmp.js'
 export default{
     props:['info'],
     template:`
     <div>   
-       <ul class="clean-list">
-           <li v-for="(task) in info.todos">
+       <ul class="clean-list todo-list">
+           <li v-for="(task) in info.todos" :key="task.id">
                 <todo-preview :task="task"/>
             </li>
-            </ul>
+        </ul>
     </div>
     `,
-
     components:{
         todoPreview
     }
