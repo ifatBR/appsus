@@ -8,9 +8,9 @@ export default {
             <option value="#BFC0D4"></option>
             <option value="#CBA2B8"></option>
         </datalist>
-        <button >Save</button>
-        <button @click="closeNoteEdit" type="button">Close</button>
-        <button class="btn-edit btn-fa btn-color"><input @change="setBgColor" type="color" v-model="color" list="colorList" /></button>
+        <button class="btn-edit save">Save</button>
+        <button @click="closeNoteEdit" type="button" class="btn-edit close">Close</button>
+        <button class="btn-edit btn-fa btn-color"><input @change="setBgColor" type="color" v-model="color" value="#BFC0D4" list="colorList" /></button>
         <div class="note-exist">
             <button @click="noteIdToDelete" type="button" class="btn-edit btn-fa btn-del"></button>
         </div>
@@ -23,7 +23,7 @@ export default {
     `,
     data() {
         return {
-            color: '#fff5f9',
+            color: '#BFC0D4',
             imgData:null
         };
     },

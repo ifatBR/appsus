@@ -62,7 +62,7 @@ function getNewTask() {
 
 function getEmptyNote(noteType = 'noteTxt', imgUrl) {
     const info = _setInfoType(noteType, imgUrl);
-    return _createNewNote(noteType, { title: '', info, bgColor: '#ffffff' }).then((note) => note);
+    return _createNewNote(noteType, { title: '', info, bgColor: '#BFC0D4' }).then((note) => note);
 }
 
 function _setInfoType(noteType, imgUrl) {

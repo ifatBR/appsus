@@ -1,12 +1,17 @@
 .note-footer .btn-edit{
-    width: 30px;
-    height: 30px;
+
     cursor:pointer;
 }
 
 .note-footer .btn-fa{
     font-family: 'font-aw-reg';
+    width: 30px;
+    height: 30px;
     /* text-align: center; */
+}
+
+.note-footer .btn-edit.save{
+    font-weight: bold;
 }
 
 .note-footer .btn-img{
@@ -64,5 +69,6 @@
 
     content: '\f031';
 }
+
 
 

@@ -17,11 +17,6 @@ export default{//delete me!!!!
             this.isCheckTask=this.task.doneAt
         }
     }
-    // methods:{
-    //     toggleCheckTask(){
-    //         console.log(this.isCheckTask);
-    //         // this.isCheckTask = ! this.isCheckTask;
-    //     },
-    // },
+
 
 }
