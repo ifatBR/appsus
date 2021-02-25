@@ -28,5 +28,9 @@
 .main-router-view{
     margin-top: 80px;
     padding: 0 80px;
-    box-shadow: 1px 1px 0px 0px black;
+}
+
+.homepage h1{
+    font-size:10em;
+    font-family:balsamic-bold;
 }
