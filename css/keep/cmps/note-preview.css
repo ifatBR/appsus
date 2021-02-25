@@ -1,9 +1,21 @@
 
 .note-preview{
     /* display:block; */
+    position:relative;
     width: 150px;
     height: 150px;
     padding:10px;
     border-radius: 5px;
     border:1px solid rgb(226, 226, 226);
+}
+
+.preview-link{
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    display:block;
+    width: 100%;
+    height: 100%;
 }

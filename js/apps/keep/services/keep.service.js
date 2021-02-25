@@ -4,7 +4,11 @@ export const keepService = {
     getNotes,
     saveNote,
     deleteNote,
-    setNoteType
+    setNoteType,
+    getNoteById,
+    updateNote,
+    getEmptyNote,
+    getNewTask
 };
 
 const KEEP_NOTES_KEY = 'keepNotes';
@@ -20,6 +24,11 @@ function getNotes() {
     });
 }
 
+function getNoteById(id){
+    return storageService.get(KEEP_NOTES_KEY, id)
+    .then(note => note)
+}
+
 function saveNote(type,note) {
     const {title,txt,bgColor} = note;
     const info = {txt};
@@ -31,6 +40,10 @@ function saveNote(type,note) {
     )
 }
 
+function updateNote(note){
+    return storageService.put(KEEP_NOTES_KEY,note)
+}   
+
 function deleteNote(id){
     return storageService.remove(KEEP_NOTES_KEY, id);
 }
@@ -39,25 +52,32 @@ function setNoteType(id, noteType, imgUrl){
     return storageService.get(KEEP_NOTES_KEY,id)
     .then(note =>{
         if(note.type === noteType) return;
-        note.type=noteType
+        note.type= noteType
         note.info = _setInfoType(noteType, imgUrl)
         storageService.put(KEEP_NOTES_KEY,note)
         })
 }
+
+
+function getNewTask(){
+    const emptyTask = { txt: '', doneAt: null, id:utilService.makeId() };
+    return Promise.resolve(emptyTask);
+
+}
+
+function getEmptyNote(type='noteTxt'){
+    return _createNewNote(type,{title:'', info:{}, bgColor:'#ffffff'})
+}
+
 function _setInfoType(noteType, imgUrl){
     if(noteType === 'noteTxt') return {txt:''};
     if (noteType === 'noteImg') return {url : imgUrl }
-    if (noteType === 'noteTodo') return{'todos' :[{ txt: '', doneAt: null }]}
-}
-
-
-
-function addTodo() {
-    return { txt: '', doneAt: null };
+    if (noteType === 'noteTodo') return{'todos' :[getNewTask()]}
 }
 
 
 function _createNewNote(type,{title, info, bgColor}) {
+
     const note = {
         type,
         id: utilService.makeId(),
@@ -75,20 +95,20 @@ function _createNewNote(type,{title, info, bgColor}) {
 
 function _createKeepNotes() {
     return [
-        // {
-        //     type: 'noteImg',
-        //     id: utilService.makeId(),
-        //     title: 'Blender I want',
-        //     isPinned: false,
-        //     label: '', // Maybe- or DELETE
-        //     info: {
-        //         url: '../../../imgs/keep/blender.jpg',
-        //         imgTitle: 'oster classic',
-        //     },
-        //     style: {
-        //         bgColor: 'blue',
-        //     },
-        // },
+        {
+            type: 'noteImg',
+            id: utilService.makeId(),
+            title: 'Blender I want',
+            isPinned: false,
+            label: '', // Maybe- or DELETE
+            info: {
+                url: '../../../imgs/keep/blender.jpg',
+                imgTitle: 'oster classic',
+            },
+            style: {
+                bgColor: 'blue',
+            },
+        },
         {
             type: 'noteTodo',
             id: utilService.makeId(),
@@ -97,9 +117,9 @@ function _createKeepNotes() {
             label: '', // Maybe- or DELETE
             info: {
                 todos: [
-                    { txt: 'buy flowers', doneAt: null },
-                    { txt: 'bake cake', doneAt: null },
-                    { txt: 'clean floor', doneAt: null },
+                    { txt: 'buy flowers', doneAt: null,id:utilService.makeId() },
+                    { txt: 'bake cake', doneAt: null,id:utilService.makeId() },
+                    { txt: 'clean floor', doneAt: null,id:utilService.makeId() },
                 ],
             },
             style: {
