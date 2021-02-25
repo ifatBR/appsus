@@ -7,7 +7,7 @@ export default {
   template: `
     <section>   
         <ul class="mail-list clean-list">
-            <li v-for="mail in mails" @click="getLink(mail.id), mailClicked(mail.id)">
+            <li v-for="mail in mails" @click="getLink(mail.id), mailClicked(mail, mail.id)">
                  <!-- <router-link :to="'/email/'+mail.id"><email-preview :mail="mail" /></router-link> -->
                  <email-preview :mail="mail" />
 
@@ -19,13 +19,17 @@ export default {
     getLink(id){
       return this.$router.push(`/email/${id}`)
     },
-    mailClicked(id) {
-      this.$emit('mailClicked', id);
+    mailClicked(mail, id) {
+      console.log(mail);
+      mail.isRead=true;
+      emailService.put(mail)
+        .then(()=>eventBus.$emit('mailClicked', id));
     },
     // deleteMail(id) {
     //   eventBus.$emit('deleteMail', id);
     // },
   },
+  
   components: {
     emailPreview,
   },
