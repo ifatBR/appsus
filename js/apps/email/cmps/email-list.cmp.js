@@ -6,7 +6,7 @@ export default {
   props: ['mails'],
   template: `
     <section>   
-        <ul class="mail-list clean-list">
+        <ul class="email-list clean-list flex column">
             <li v-for="mail in mails" @click="getLink(mail.id), mailClicked(mail, mail.id)">
                  <!-- <router-link :to="'/email/'+mail.id"><email-preview :mail="mail" /></router-link> -->
                  <email-preview :mail="mail" />

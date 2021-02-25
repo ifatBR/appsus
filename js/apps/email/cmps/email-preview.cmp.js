@@ -3,14 +3,16 @@ import { eventBus } from '../../../services/event-bus.service.js';
 export default {
   props: ['mail'],
   template: `
-    <section  class="mail-li flex" >   
-            <span class="mail-subject">{{mail.name}}</span>
+    <section  class="mail-li flex space-between" >   
+            <span class="mail-name">{{mail.name}}</span>
                <div class="mail-body flex space-between">
-                    <span class="mail-body">{{mail.subject}}</span>
-                    <span class="mail-date">{{getDate(mail.sentAt)}}</span>
+                    <span class="mail-subject">{{mail.subject}}</span>
+                    <div class="mail-options flex space-between">
+                      <span @click.stop="StarMail(mail)" class="star"  :class="starColor"><i class="fal fa-star"></i></span>
+                      <button @click.stop="deleteMail(mail.id)" class="mail-li-btn">X</button>
+                      <span class="mail-date">{{getDate(mail.sentAt)}}</span>
+                    </div>
                 </div>
-                <span @click.stop="StarMail(mail)" class="star"  :class="starColor"><i class="fal fa-star"></i></span>
-                <button @click.stop="deleteMail(mail.id)">X</button>
 
     </section>
     `,

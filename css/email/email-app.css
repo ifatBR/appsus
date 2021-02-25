@@ -1,3 +1,6 @@
+*{
+    color: rgba(0, 0, 0, 0.657);
+}
 .email-app{
     display: flex;
     flex-direction: column;
@@ -9,19 +12,69 @@
     flex-direction: row;
 }
 
-.aside-nav-bar{
+
+.email-header{
+
 }
 
-.aside-nav-bar>*{
-    width: 150px;
+.email-search,
+.email-sort,
+.email-filter
+{
+    margin: 10px 20px;
+}
+
+
+.aside-nav-bar{
+
+}
+
+.aside-nav-bar>*:not(.compose-btn){
+    width: 120px;
     background-color: rgba(147, 147, 255, 0.26);
-    padding: 20px;
-    margin: 5px;
+    padding: 15px;
+    margin: 10px;
     border-radius: 12px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.compose-btn{
+    cursor: pointer;
+    width: 120px;
+    background-color: rgba(147, 147, 255, 0.164);
+    padding: 25px;
+    margin: 25px;
+    border-radius: 12px;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: rgb(199, 110, 139) 0px 0px 2px 0px;
+}
+
+.compose-btn:hover{
+    background-color: rgba(148, 125, 161, 0.5);
+}
+
+.unread-count{
+    margin-left: 10px;
+    color: palevioletred;
 }
 
 .email-main-container{
-    background-color: rgb(255, 232, 255);
+    /* background-color: rgb(255, 232, 255); */
     width: 80vw; 
-    height: 60vh;  
 }
+
+
+.input{
+    border-radius: 12px;
+    padding: 5px; 
+    text-align: center;   
+    border: 1px solid rgba(0, 0, 0, 0.431);
+    outline: none;
+}
+
+/* .input option :hover{
+    border-radius: 12px;
+    background-color: rgba(192, 135, 245, 0.65);
+}    */

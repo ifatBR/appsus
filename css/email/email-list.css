@@ -1,21 +1,35 @@
 
+
+.email-list{
+  max-width: 1050px;
+  margin: 20px;
+}
+
 .mail-li {
   cursor: pointer;
   padding: 10px;
   box-shadow: 0px 1px 0px 0px rgb(0 0 0 / 20%);
+  max-width: 1050px;
 }
 
 .mail-li:hover {
+  position: relative;
   box-shadow: -1px 2px 0px 0px rgb(0 0 0 / 20%);
 }
 
-.mail-subject {
-  width: 200px;
+.mail-name {
+  width: 150px;
   /* background: #000; */
 }
 
 .mail-body {
-  width: 80%;
+  width: 700px;
+  /* width: 80%; */
+  /* position: relative; */
+}
+
+.mail-options > *{
+margin: 5px;
 }
 
 
@@ -29,4 +43,13 @@ color: rgba(54, 50, 50, 0.507);
 
 .star.starred::before{
   color: rgb(240, 211, 46);
+}
+
+.mail-li-btn{
+  border-radius: 5px;
+  background-color: rgba(126, 122, 126, 0.315);
+  font-weight: bold;
+  cursor: pointer;
+  outline: none;
+  border: none;
 }
