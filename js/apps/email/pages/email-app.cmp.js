@@ -9,11 +9,12 @@ import { eventBus } from '../../../services/event-bus.service.js';
 export default{
     template:`
     <section class="email-app">   
-        <header> this is the header</header>
+        <header class="email-header flex"> 
+            <email-sort />
+            <email-filter />
+            <email-search />
+        </header>
 
-        <email-sort />
-        <email-filter />
-        <email-search />
         <div class="main-email-app">
         <email-nav-bar @editMail="openEdit" ></email-nav-bar>
         <email-edit v-if="editMail" :mail="mailToCompose" />

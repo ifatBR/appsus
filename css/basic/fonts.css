@@ -26,4 +26,10 @@
 @font-face{
     src: url('../fonts/ShadowsIntoLight-Regular.ttf');
     font-family: 'shadow';
+    /* src: url('../fonts/ShipporiMincho-Regular.ttf');
+    font-family: 'shipporimincho-Regular'; */
+}
+@font-face{
+    src: url('../fonts/Quicksand-Regular.ttf');
+    font-family: 'quicksand-Regular';
 }

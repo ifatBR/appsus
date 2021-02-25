@@ -3,7 +3,7 @@ import { eventBus } from '../../../services/event-bus.service.js'
 export default{
     template:`
             <section class="email-sort" @change="setSort($event)">
-                   <select>
+                   <select class="input">
                        <option >date</option>
                        <option >subject</option>
                    </select>

@@ -6,3 +6,26 @@
     width: 400px;
     height: 400px;
 }
+
+.email-edit>*{
+    margin: 10px;
+}
+
+.email-edit>input{
+    margin: 50px;
+}
+
+.mail-details{
+    width: 100%;
+    margin-left: 50px;
+    line-height: 30px;
+}
+
+.mail-details button{
+    width: 100px;
+    cursor: pointer;
+    border-radius: 12px;
+    background-color: white;
+    outline: none;
+    margin-top: 50px;
+}

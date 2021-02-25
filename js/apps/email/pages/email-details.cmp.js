@@ -3,7 +3,7 @@ import { eventBus } from '../../../services/event-bus.service.js';
 
 export default {
   template: `
-    <section v-if="mail">   
+    <section v-if="mail" class="mail-details flex column">   
         <h1>{{mail.subject}}</h1>
         <p> {{mail.body}}</p>
         <button @click="onReply(mail)">Reply</button>
