@@ -27,6 +27,11 @@ export default {
     deleteMail(mailId) {
       emailService.remove(mailId).then(() => this.getMails());
     },
+    starMail(mail) {
+        mail.isStarred=!mail.isStarred;
+        emailService.put(mail)
+          .then(()=>eventBus.$emit('mailStarred', mail));
+    },
     setFilter(filterBy) {
       const readOrUnread = filterBy.toLowerCase();
       this.filterBy = readOrUnread;
@@ -70,6 +75,7 @@ export default {
     this.getMails();
     eventBus.$on('mailComposed', this.getMails);
     eventBus.$on('deleteMail', this.deleteMail);
+    eventBus.$on('starMail', this.starMail);
     eventBus.$on('filtered', this.setFilter);
     eventBus.$on('searched', this.setSearch);
     eventBus.$on('sorted', this.setSort);
