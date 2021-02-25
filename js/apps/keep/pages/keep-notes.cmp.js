@@ -2,7 +2,7 @@ import noteList from '../cmps/note-list.cmp.js'
 
 export default{
     template:`
-    <section>   
+    <section class="main-container">   
             <note-list/>
     </section>
     `,

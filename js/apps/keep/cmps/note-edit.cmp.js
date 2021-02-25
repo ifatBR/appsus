@@ -8,10 +8,10 @@ import editNoteTxt from './dynamicNotes/edit-note-txt.cmp.js'
 export default {
     props:['currNote'],
     template: `
-    <section class="note-edit" >
+    <section class="note-edit">
         <form @submit.prevent="saveNote" class="flex column">
-            <button @click="pinNote">📌</button>
-            <input type="text" v-model="title" placeholder="title"/>
+            <button class="btn-pin-note" @click="pinNote" type="button">📌</button>
+            <input type="text" class="note-title" v-model="title" placeholder="title"/>
             <component :is="componentType" :info="info"></component>    
             <note-footer  @saveNote="saveNote" @changeBgColor="changeBgColor" @setNoteType="setNoteType" @closeNoteEdit="closeNoteEdit" @noteIdToDelete="noteIdToDelete"/>
         </form>
@@ -32,7 +32,8 @@ export default {
     },
     methods:{
         pinNote(){
-            console.log('pinned note');
+            this.currNote.isPinned = !this.currNote.isPinned;
+            console.log(this.currNote.isPinned);
         },
         changeBgColor(color){
             this.bgColor=color;
@@ -52,7 +53,6 @@ export default {
         setNoteType(params) {
             this.noteType= params.noteType;
             this.componentType = 'edit-'+ this.noteType;
-            console.log(this.componentType);
             if(!this.$route.params.noteId) {
                 this.getNewNote(params)
                 return;
@@ -66,6 +66,7 @@ export default {
         showNoteDetails(){
             console.log('showing details');
             const {title,info,type,bgColor} = this.currNote; 
+            console.log('this.currNote',this.currNote);
             this.title = title;
             this.info=info;
             this.noteType=type;

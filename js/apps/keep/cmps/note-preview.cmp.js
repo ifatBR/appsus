@@ -7,12 +7,9 @@ import noteImg from './dynamicNotes/note-img.cmp.js'
 export default {
     props: ['note'],
     template: `
-    <section class="note-preview flex column space-between" v-bind:style="style">  
-        <div>
-            <h2>{{note.title}}</h2>
+    <section class="note-preview" v-bind:style="style">  
+            <h2 class="title">{{note.title}}</h2>
             <component :is="note.type" :info="this.note.info"></component>   
-            <router-link :to="'keep/notes/'+note.id" @click.native="openNoteEdit" class="preview-link"></router-link>
-        </div>
     </section>
     `,
     data() {

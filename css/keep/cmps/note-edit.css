@@ -1,6 +1,12 @@
 .note-edit{
     width: 300px;
     margin:auto;
+    border-radius: 10px;
+    padding:10px;
+    box-shadow:1px 1px 7px rgba(79, 20, 94, 0.4);
+    margin-bottom:30px;
+    font-size: 1em;
+    position:relative;
 }
 .note-edit.is-edit{
     position:absolute;
@@ -13,4 +19,30 @@
 .note-edit .free-txt{
     resize:none;
     width: 100%;
+    border:none;
+    outline:none;
+}
+
+.note-edit input{
+    border:none;
+    outline:none;
+    font-size: 1em;
+}
+
+.note-edit button{
+    border:none;
+    outline:none;
+    background-color: transparent;
+}
+
+.note-edit .btn-pin-note{
+    width: 25px;
+    height: 25px;
+    display:block;
+    position: absolute;
+    right:10px;
+}
+
+.note-edit .note-title{
+    margin-bottom: 20px;;
 }

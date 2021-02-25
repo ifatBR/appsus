@@ -11,7 +11,7 @@ export default {
         <section class="keep-app">
             <keep-nav-bar/>
             <note-edit v-if="currNote" :currNote="currNote" class="new-note" @loadNotes="loadNotes"  @getNewNote="getEmptyNote" @saveNote="saveNote"/>
-            <router-view/>
+            <router-view class="keep-router-view"/>
             <note-edit v-if="isNoteEdit" :currNote="currNote" class="edit-note" :class="{'is-edit':isNoteEdit}" @saveNote="saveNote" @closeNoteEdit="closeNoteEdit" @deleteNoteById="deleteNoteById"/>
             <div class="note-edit-screen" v-show="isNoteEdit" :class="{'is-edit':isNoteEdit}" @click="closeNoteEdit"></div>
         </section>
@@ -45,10 +45,11 @@ export default {
         closeNoteEdit() {
             this.isNoteEdit = false;
             if(this.$route.params.noteId) this.$router.push('/keep');
-            this.currNote = keepService.getEmptyNote();
+            keepService.getEmptyNote()
+            .then(note => this.currNote = note);
         },
         loadNotes() {
-            this.closeNoteEdit()
+            if(this.isNoteEdit)this.closeNoteEdit()
             keepService
                 .getNotes()
                 .then((notes) => {
@@ -69,7 +70,8 @@ export default {
                 keepService.saveNote(note)
                 .then(() => {
                     this.loadNotes();
-                    this.currNote = this.getEmptyNote({noteType:null, url:null});
+                    this.getEmptyNote({noteType:'noteTxt', url:null})
+                    .then(note => this.currNote = note);
                 });
         },
         getEmptyNote(params) {
@@ -81,12 +83,8 @@ export default {
             .then(note => this.currNote = note)
         },
         addNewTask(){
-            const currInfo = this.currNote.info
-            // console.log('currInfo:', currInfo)
             keepService.getNewTask()
             .then(task => {
-                // console.log('task',task);
-                console.log(this.currNote)
                 this.currNote.info.todos.push(task)
             })
         }

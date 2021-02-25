@@ -2,12 +2,11 @@ export default {
     template: `
     <section class="note-footer flex"> 
         <datalist id="colorList">
-            <option value="#ffffff"></option>
-            <option value="#6F8EFE"></option>
-            <option value="#FE6F6F"></option>
-            <option value="#FEAC3F"></option>
-            <option value="#B5FF66"></option>
-            <option value="#E183FF"></option>
+            <option value="#CDE6E7"></option>
+            <option value="#C6D7DD"></option>
+            <option value="#C1B2CF"></option>
+            <option value="#BFC0D4"></option>
+            <option value="#CBA2B8"></option>
         </datalist>
         <button >Save</button>
         <button @click="closeNoteEdit" type="button">Close</button>
@@ -24,7 +23,7 @@ export default {
     `,
     data() {
         return {
-            color: '#ffffff',
+            color: '#fff5f9',
             imgData:null
         };
     },

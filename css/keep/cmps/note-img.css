@@ -1,17 +1,24 @@
 .preview-note-img-container{
     position:relative;
-    width:  110px;
-    height:  110px;
+    /* width:  110px;
+    height:  110px; */
 }
 
 .edit-note-img-container{
     position:relative;
-    width:  110px;
-    height:  110px;
+    /* width:  110px;
+    height:  110px; */
     object-fit:contain;
     margin: auto;
 }
 
+.note-img{
+    object-fit: cover;
+    width: 100%;
+    /* height: 100%; */
+
+
+}
 
 .btn-change-img{
    opacity:0;
@@ -19,5 +26,4 @@
    cursor:pointer;
    width: 100%;
    height: 100%;
-   background-color: aqua;
 }

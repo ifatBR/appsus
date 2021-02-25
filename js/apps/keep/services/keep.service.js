@@ -32,19 +32,10 @@ function getNoteById(id) {
 }
 
 function saveNote(note) {
-    // console.log('note:', note)
     return getNoteById(note.id).then((isgotNote) => {
         if(isgotNote) return updateNote(note);
         return storageService.post(KEEP_NOTES_KEY, note);
-
     })
-    // const { title, txt, bgColor } = note;
-    // const info = { txt };
-
-    // return _createNewNote(type, { title, info, bgColor }).then((newNote) => {
-    //     console.log('new', newNote);
-    //     storageService.post(KEEP_NOTES_KEY, newNote);
-    // });
 }
 
 function updateNote(note) {
@@ -101,15 +92,14 @@ function _createKeepNotes() {
         {
             type: 'noteImg',
             id: utilService.makeId(),
-            title: 'Blender I want',
+            title: 'Blender I want-kenwood mx457',
             isPinned: false,
             label: '', // Maybe- or DELETE
             info: {
                 url: '../../../imgs/keep/blender.jpg',
-                imgTitle: 'oster classic',
             },
             style: {
-                bgColor: 'blue',
+                bgColor: '#BFC0D4',
             },
         },
         {
@@ -123,10 +113,12 @@ function _createKeepNotes() {
                     { txt: 'buy flowers', doneAt: null, id: utilService.makeId() },
                     { txt: 'bake cake', doneAt: null, id: utilService.makeId() },
                     { txt: 'clean floor', doneAt: null, id: utilService.makeId() },
+                    { txt: 'call Debora about lights', doneAt: null, id: utilService.makeId() },
+                    { txt: 'pink hearts napkins', doneAt: null, id: utilService.makeId() },
                 ],
             },
             style: {
-                bgColor: 'white',
+                bgColor: '#CBA2BB',
             },
         },
         {
@@ -136,36 +128,50 @@ function _createKeepNotes() {
             isPinned: true,
             label: '', // Maybe- or DELETE
             info: {
-                txt: "I should remember that I can do whatever I want, I'm a capable strong woman",
+                txt:'I should remember that I can do whatever I want, Im a capable strong woman',
             },
             style: {
-                bgColor: 'white',
+                bgColor: '#C1B2CF',
             },
         },
         {
             type: 'noteTxt',
             id: utilService.makeId(),
-            title: 'hey ho',
+            title: 'Ask martin',
+            isPinned: false,
+            label: '', 
+            info: {
+                txt: 'About the amazing fruits he brought yesterday to the meeting',
+            },
+            style: {
+                bgColor: '#CDE6E7',
+            },
+        },
+        {
+            type: 'noteImg',
+            id: utilService.makeId(),
+            title: 'Amazing cake!',
             isPinned: false,
             label: '', // Maybe- or DELETE
             info: {
-                txt: 'I like bannanas',
+                url: 'https://i.ytimg.com/vi/sHYjkPUl1nM/mqdefault.jpg',
             },
             style: {
-                bgColor: 'pink',
+                bgColor: '#BFC0D4',
             },
         },
         {
             type: 'noteTxt',
             id: utilService.makeId(),
-            title: 'blabla',
+            title: 'How to set up our tent',
             isPinned: false,
             label: '', // Maybe- or DELETE
             info: {
-                txt: 'Hop hop',
+                txt: `Lay a tarp down before putting up your tent. When setting up your tent, it's important to put a barrier in between the ground and the bottom of your tent to protect it from gathering moisture. A good-quality plastic or vinyl tarp should accompany any tent.[1]
+                Fold the tarp into the relative shape of the tent, but slightly smaller. You don't want any part of the tarp to hang out beyond the edge of the tent, otherwise it'll collect water underneath in case it rains. Fold up longer edges and tuck them under the tent.`,
             },
             style: {
-                bgColor: 'red',
+                bgColor: '#C6D7DD',
             },
         },
     ];
@@ -174,3 +180,4 @@ function _createKeepNotes() {
 function _save(entityType, entities) {
     localStorage.setItem(entityType, JSON.stringify(entities));
 }
+
