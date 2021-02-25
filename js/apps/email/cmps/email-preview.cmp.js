@@ -4,14 +4,14 @@ export default {
   props: ['mail'],
   template: `
     <section  class="mail-li flex space-between" >   
+      <div class="mail-options flex space-between">
+        <button @click.stop="deleteMail(mail.id)" class="mail-li-btn">X</button>
+        <span @click.stop="StarMail(mail)" class="star"  :class="starColor"><i class="fal fa-star"></i></span>
+      </div>
             <span class="mail-name">{{mail.name}}</span>
                <div class="mail-body flex space-between">
                     <span class="mail-subject">{{mail.subject}}</span>
-                    <div class="mail-options flex space-between">
-                      <span @click.stop="StarMail(mail)" class="star"  :class="starColor"><i class="fal fa-star"></i></span>
-                      <button @click.stop="deleteMail(mail.id)" class="mail-li-btn">X</button>
-                      <span class="mail-date">{{getDate(mail.sentAt)}}</span>
-                    </div>
+                    <span class="mail-date">{{getDate(mail.sentAt)}}</span>
                 </div>
 
     </section>

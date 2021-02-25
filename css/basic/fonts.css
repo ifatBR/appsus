@@ -22,3 +22,12 @@
     src: url('../fonts/keep/BalsamiqSans-BoldItalic.ttf');
     font-family: 'balsamic-bold-italic';
 }
+
+@font-face{
+    src: url('../fonts/ShipporiMincho-Regular.ttf');
+    font-family: 'shipporimincho-Regular';
+}
+@font-face{
+    src: url('../fonts/Quicksand-Regular.ttf');
+    font-family: 'quicksand-Regular';
+}
