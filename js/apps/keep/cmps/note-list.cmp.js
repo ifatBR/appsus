@@ -6,9 +6,7 @@ export default {
     <section> 
         <ul  v-if="notes" class="notes-list main-container clean-list grid justify-center">
             <li v-if="notes" v-for="(note) in notes" :key="note.id">
-            <!-- <router-link :to="'keep/notes/'+note.id" @click.native="openNoteEdit"> -->
                 <note-preview :note="note" />
-            <!-- </router-link> -->
             </li>
         </ul>   
     </section>
@@ -24,7 +22,6 @@ export default {
     methods: {
         renderNotes(notes) {
             this.notes = notes;
-
         },
     },
     components: {

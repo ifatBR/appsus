@@ -13,7 +13,6 @@ export default {
             <component :is="note.type" :info="this.note.info"></component>   
             <router-link :to="'keep/notes/'+note.id" @click.native="openNoteEdit" class="preview-link"></router-link>
         </div>
-        <!-- <note-footer @noteIdToDelete="noteIdToDelete" @setNoteType="setNoteType"/> -->
     </section>
     `,
     data() {
@@ -26,7 +25,7 @@ export default {
     },
     methods: {
         openNoteEdit(){
-            eventBus.$emit('openNoteEdit');
+            eventBus.$emit('openNoteEdit', this.note);
         },
     },
     computed: {

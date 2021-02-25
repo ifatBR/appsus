@@ -9,33 +9,26 @@ export default {
     props:['currNote'],
     template: `
     <section class="note-edit" >
-        <form @submit.prevent="saveNote(true)" class="flex column">
+        <form @submit.prevent="saveNote" class="flex column">
             <button @click="pinNote">📌</button>
             <input type="text" v-model="title" placeholder="title"/>
-            <!-- <textarea class="free-txt" rows="2" cols="50" v-model="txt" placeholder="Write something..."></textarea> -->
-            <component :is="componentType" :info="info" @addNewTask="addNewTask"></component>    
+            <component :is="componentType" :info="info"></component>    
             <note-footer  @saveNote="saveNote" @changeBgColor="changeBgColor" @setNoteType="setNoteType" @closeNoteEdit="closeNoteEdit"/>
         </form>
     </section>
     `,
     data(){
         return{
-            title:'',
             txt:'',
-            noteType:'noteTxt',
-            bgColor:'',
+            noteType:'',
+            bgColor: '',
             title:'',
-            info:'',
-            type:'',
-            bgColor:'',
+            info:{},
             componentType:'edit-note-txt'
         }
     },
     created(){
-        console.log(this.currNote);
-        if(!this.currNote) return;
         this.showNoteDetails()
-        // console.log('currNote:',this.currNote);
     },
     methods:{
         pinNote(){
@@ -44,15 +37,13 @@ export default {
         changeBgColor(color){
             this.bgColor=color;
         },
-        saveNote(isSaveNote){
+        saveNote(){
             const {title, txt, bgColor} = this;
             this.currNote.title = title;
             this.currNote.txt = txt;
-            this.currNote.bgColor = bgColor;
-
-            if(isSaveNote) this.$emit('saveNote');
+            this.currNote.style.bgColor = bgColor;
+            this.$emit('saveNote',this.currNote);
             this.title='';
-            this.txt='';
         },
         closeNoteEdit(){
             this.$emit('closeNoteEdit');
@@ -61,33 +52,27 @@ export default {
         setNoteType(params) {
             this.noteType= params.noteType;
             this.componentType = 'edit-'+ this.noteType;
+
             if(!this.$route.params.noteId) {
-                console.log('its a new note', this.componentType);
-                
-                //todo: maybe something here to show correct edit data
+                this.getNewNote(params)
                 return;
             }
             params['id'] = this.noteId;
             eventBus.$emit('setNoteType', params);
         },
+        getNewNote(params){
+            this.$emit('getNewNote',params);
+        },
         showNoteDetails(){
+            console.log('showing details');
             const {title,info,type,style:{bgColor}} = this.currNote; 
             this.title = title;
             this.info=info;
-            this.type=type;
+            this.noteType=type;
             this.bgColor = bgColor;
             this.componentType = 'edit-'+this.currNote.type;
         },
-        addNewTask(){
-            eventBus.$emit('addNewTask');
-        }
     },
-    watch:{
-        currNote(){
-            console.log('changed');
-        }
-    },
-
     components:{
         noteFooter,
         editNoteImg,
