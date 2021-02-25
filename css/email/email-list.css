@@ -17,3 +17,16 @@
 .mail-body {
   width: 80%;
 }
+
+
+.star::before{
+  font-family: 'font-aw-solid';
+  content: '\f005';
+}
+.star.not-starred::before{
+color: rgba(54, 50, 50, 0.507);
+}
+
+.star.starred::before{
+  color: rgb(240, 211, 46);
+}

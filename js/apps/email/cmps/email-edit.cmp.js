@@ -10,15 +10,15 @@ export default{
         new mail
         <form class=" flex column align-center" @submit.prevent="send"> 
         <p> To <input @reply="value='aa'" type="email" v-model="mail.from" required></p>
-        <p>Subject <input type="text" v-model="getSubject"></p>
-        <p><textarea type="text" v-model="getBody" cols="40" rows="10"></textarea></p>
+        <p>Subject <input type="text" v-model="mail.subject"></p>
+        <p><textarea type="text" v-model="mail.body" cols="40" rows="10"></textarea></p>
         <button class="clean-btn">Send</button>
         </form>
     </section>
     `,
     methods:{
         send(){
-         emailService.post(this.compose)
+         emailService.post(this.mail)
             .then((mail)=>{
             eventBus.$emit('mailComposed');
             eventBus.$emit('closeEdit');
@@ -29,19 +29,17 @@ export default{
             eventBus.$emit('closeEdit')
         },
         setMailReply(mail){
-            this.compose = mail
+            this.mail = mail
         },
         setNewMail(){
-            this.compose = emailService.getEmptyMail() 
+            this.mail = emailService.getEmptyMail() 
         }
     },
-    computed:{
-       getSubject(){
-           return (this.mail.subject) ? `Re: ${this.mail.subject}` : '';
-       },
-       getBody(){
-           return (this.mail.body) ? 
-           `\n\n\n\n\n... \n${this.mail.subject}` : '';
-       }
+    created(){
+        const subject = (this.mail.subject) ? `Re: ${this.mail.subject}` : this.mail.subject;
+        const body = (this.mail.body) ? `\n\n\n\n\n... \n${this.mail.subject}` : this.mail.body;
+        
+        this.mail.subject = subject
+        this.mail.body = body
     }
 }

@@ -4,11 +4,12 @@ export default {
   props: ['mail'],
   template: `
     <section  class="mail-li flex" >   
-            <span class="mail-subject">{{mail.subject}}</span>
+            <span class="mail-subject">{{mail.name}}</span>
                <div class="mail-body flex space-between">
-                    <span class="mail-body">{{mail.body}}</span>
+                    <span class="mail-body">{{mail.subject}}</span>
                     <span class="mail-date">{{getDate(mail.sentAt)}}</span>
                 </div>
+                <span @click.stop="StarMail(mail)" class="star"  :class="starColor"><i class="fal fa-star"></i></span>
                 <button @click.stop="deleteMail(mail.id)">X</button>
 
     </section>
@@ -16,6 +17,9 @@ export default {
   methods: {
     deleteMail(id) {
       eventBus.$emit('deleteMail', id);
+    },
+    StarMail(mail){
+      eventBus.$emit('starMail', mail);
     },
     getDate(timestamp) {
       const date = new Date(timestamp);
@@ -43,6 +47,8 @@ export default {
       }
   },
   computed: {
-      
+    starColor(){
+      return this.mail.isStarred ?  'starred' : 'not-starred'
+    }
   },
 };
