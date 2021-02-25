@@ -12,7 +12,7 @@ export default {
             <keep-nav-bar/>
             <note-edit v-if="currNote" :currNote="currNote" class="new-note" @loadNotes="loadNotes"  @getNewNote="getEmptyNote" @saveNote="saveNote"/>
             <router-view/>
-            <note-edit v-if="isNoteEdit" :currNote="currNote" class="edit-note" :class="{'is-edit':isNoteEdit}" @saveNote="saveNote" @closeNoteEdit="closeNoteEdit"/>
+            <note-edit v-if="isNoteEdit" :currNote="currNote" class="edit-note" :class="{'is-edit':isNoteEdit}" @saveNote="saveNote" @closeNoteEdit="closeNoteEdit" @deleteNoteById="deleteNoteById"/>
             <div class="note-edit-screen" v-show="isNoteEdit" :class="{'is-edit':isNoteEdit}" @click="closeNoteEdit"></div>
         </section>
     `,
@@ -48,6 +48,7 @@ export default {
             this.currNote = keepService.getEmptyNote();
         },
         loadNotes() {
+            this.closeNoteEdit()
             keepService
                 .getNotes()
                 .then((notes) => {
@@ -57,7 +58,7 @@ export default {
                     eventBus.$emit('renderNotes', this.notes);
                 });
         },
-        deleteNote(id) {
+        deleteNoteById(id) {
             keepService.deleteNote(id).then(() => this.loadNotes());
         },
         setNoteType(params) {
@@ -68,7 +69,6 @@ export default {
                 keepService.saveNote(note)
                 .then(() => {
                     this.loadNotes();
-                    this.closeNoteEdit()
                     this.currNote = this.getEmptyNote({noteType:null, url:null});
                 });
         },

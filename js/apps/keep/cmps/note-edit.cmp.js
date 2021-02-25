@@ -13,7 +13,7 @@ export default {
             <button @click="pinNote">📌</button>
             <input type="text" v-model="title" placeholder="title"/>
             <component :is="componentType" :info="info"></component>    
-            <note-footer  @saveNote="saveNote" @changeBgColor="changeBgColor" @setNoteType="setNoteType" @closeNoteEdit="closeNoteEdit"/>
+            <note-footer  @saveNote="saveNote" @changeBgColor="changeBgColor" @setNoteType="setNoteType" @closeNoteEdit="closeNoteEdit" @noteIdToDelete="noteIdToDelete"/>
         </form>
     </section>
     `,
@@ -52,7 +52,7 @@ export default {
         setNoteType(params) {
             this.noteType= params.noteType;
             this.componentType = 'edit-'+ this.noteType;
-
+            console.log(this.componentType);
             if(!this.$route.params.noteId) {
                 this.getNewNote(params)
                 return;
@@ -65,13 +65,16 @@ export default {
         },
         showNoteDetails(){
             console.log('showing details');
-            const {title,info,type,style:{bgColor}} = this.currNote; 
+            const {title,info,type,bgColor} = this.currNote; 
             this.title = title;
             this.info=info;
             this.noteType=type;
             this.bgColor = bgColor;
             this.componentType = 'edit-'+this.currNote.type;
         },
+        noteIdToDelete(){
+            this.$emit('deleteNoteById',this.currNote.id)
+        }
     },
     components:{
         noteFooter,
