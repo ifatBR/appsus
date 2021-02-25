@@ -7,7 +7,7 @@ import noteImg from './dynamicNotes/note-img.cmp.js'
 export default {
     props: ['note'],
     template: `
-    <section class="note-preview" v-bind:style="style">  
+    <section class="note-preview" v-bind:style="style" @click="openNoteEdit">  
             <h2 class="title">{{note.title}}</h2>
             <component :is="note.type" :info="this.note.info"></component>   
     </section>

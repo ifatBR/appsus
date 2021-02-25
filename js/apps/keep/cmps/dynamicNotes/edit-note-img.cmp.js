@@ -18,7 +18,7 @@ export default {
         changeImg(ev) {
             console.log('changing img');
             if (!this.$route.params.noteId) {
-            }//preview on edit
+            }
             
                 return; 
             this.setNoteImg(ev);
