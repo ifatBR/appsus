@@ -8,7 +8,7 @@ export const keepService = {
     getNoteById,
     updateNote,
     getEmptyNote,
-    getNewTask
+    getNewTask,
 };
 
 const KEEP_NOTES_KEY = 'keepNotes';
@@ -24,67 +24,70 @@ function getNotes() {
     });
 }
 
-function getNoteById(id){
-    return storageService.get(KEEP_NOTES_KEY, id)
-    .then(note => note)
+function getNoteById(id) {
+    return storageService
+        .get(KEEP_NOTES_KEY, id)
+        .then((note) => note)
+        .catch((err) => null);
 }
 
-function saveNote(type,note) {
-    const {title,txt,bgColor} = note;
-    const info = {txt};
+function saveNote(note) {
+    // console.log('note:', note)
+    return getNoteById(note.id).then((isgotNote) => {
+        if(isgotNote) return updateNote(note);
+        return storageService.post(KEEP_NOTES_KEY, note);
 
-    return _createNewNote(type,{title, info, bgColor}).then(newNote =>{
-            console.log('new',newNote);
-            storageService.post(KEEP_NOTES_KEY, newNote);
-        }     
-    )
+    })
+    // const { title, txt, bgColor } = note;
+    // const info = { txt };
+
+    // return _createNewNote(type, { title, info, bgColor }).then((newNote) => {
+    //     console.log('new', newNote);
+    //     storageService.post(KEEP_NOTES_KEY, newNote);
+    // });
 }
 
-function updateNote(note){
-    return storageService.put(KEEP_NOTES_KEY,note)
-}   
+function updateNote(note) {
+        return storageService.put(KEEP_NOTES_KEY, note);
+}
 
-function deleteNote(id){
+function deleteNote(id) {
     return storageService.remove(KEEP_NOTES_KEY, id);
 }
 
-function setNoteType(id, noteType, imgUrl){
-    return storageService.get(KEEP_NOTES_KEY,id)
-    .then(note =>{
-        if(note.type === noteType) return;
-        note.type= noteType
-        note.info = _setInfoType(noteType, imgUrl)
-        storageService.put(KEEP_NOTES_KEY,note)
-        })
+function setNoteType(id, noteType, imgUrl) {
+    return storageService.get(KEEP_NOTES_KEY, id).then((note) => {
+        if (note.type === noteType) return;
+        note.type = noteType;
+        note.info = _setInfoType(noteType, imgUrl);
+        storageService.put(KEEP_NOTES_KEY, note);
+    });
 }
 
-
-function getNewTask(){
-    const emptyTask = { txt: '', doneAt: null, id:utilService.makeId() };
+function getNewTask() {
+    const emptyTask = { txt: '', doneAt: null, id: utilService.makeId() };
     return Promise.resolve(emptyTask);
-
 }
 
-function getEmptyNote(type='noteTxt'){
-    return _createNewNote(type,{title:'', info:{}, bgColor:'#ffffff'})
+function getEmptyNote(noteType = 'noteTxt', imgUrl) {
+    const info = _setInfoType(noteType, imgUrl);
+    return _createNewNote(noteType, { title: '', info, bgColor: '#ffffff' }).then((note) => note);
 }
 
-function _setInfoType(noteType, imgUrl){
-    if(noteType === 'noteTxt') return {txt:''};
-    if (noteType === 'noteImg') return {url : imgUrl }
-    if (noteType === 'noteTodo') return{'todos' :[getNewTask()]}
+function _setInfoType(noteType, imgUrl) {
+    if (noteType === 'noteTxt') return { txt: '' };
+    if (noteType === 'noteImg') return { url: imgUrl };
+    if (noteType === 'noteTodo') return { todos: [{ txt: '', doneAt: null, id: utilService.makeId() }] };
 }
 
-
-function _createNewNote(type,{title, info, bgColor}) {
-
+function _createNewNote(noteType, { title, info, bgColor }) {
     const note = {
-        type,
+        type: noteType,
         id: utilService.makeId(),
         title,
         isPinned: false,
         label: '', // Maybe- or DELETE
-        info:info,
+        info: info,
         style: {
             bgColor,
         },
@@ -117,9 +120,9 @@ function _createKeepNotes() {
             label: '', // Maybe- or DELETE
             info: {
                 todos: [
-                    { txt: 'buy flowers', doneAt: null,id:utilService.makeId() },
-                    { txt: 'bake cake', doneAt: null,id:utilService.makeId() },
-                    { txt: 'clean floor', doneAt: null,id:utilService.makeId() },
+                    { txt: 'buy flowers', doneAt: null, id: utilService.makeId() },
+                    { txt: 'bake cake', doneAt: null, id: utilService.makeId() },
+                    { txt: 'clean floor', doneAt: null, id: utilService.makeId() },
                 ],
             },
             style: {
@@ -169,5 +172,5 @@ function _createKeepNotes() {
 }
 
 function _save(entityType, entities) {
-    localStorage.setItem(entityType, JSON.stringify(entities))
+    localStorage.setItem(entityType, JSON.stringify(entities));
 }

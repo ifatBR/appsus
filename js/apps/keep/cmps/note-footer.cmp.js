@@ -1,7 +1,6 @@
 export default {
     template: `
     <section class="note-footer flex"> 
-        <!-- <img :src="imgData">  -->
         <datalist id="colorList">
             <option value="#ffffff"></option>
             <option value="#6F8EFE"></option>
@@ -11,7 +10,6 @@ export default {
             <option value="#E183FF"></option>
         </datalist>
         <button >Save</button>
-        <!-- <button @click="saveNote(true)">Save</button> -->
         <button @click="closeNoteEdit" type="button">Close</button>
         <button class="btn-edit btn-fa btn-color"><input @change="setBgColor" type="color" v-model="color" list="colorList" /></button>
         <div class="note-exist">

@@ -6,11 +6,12 @@ export default {
 
     template: `
     <div>
-    <ul class="todo edit clean-list">
+        <ul class="todo edit clean-list">
             <li v-for="(task) in info.todos" :key="task.id">
                 <edit-todo-prev :task="task" @removeTask="removeTask"/>
             </li>
-    </ul>
+        </ul>
+        <button @click="addNewTask" type="button">+</button>
     </div>
 `,
     methods: {
@@ -18,12 +19,12 @@ export default {
             const idx = this.info.todos.findIndex((task) => task.id === id);
             this.info.todos.splice(idx, 1);
         },
+        addNewTask(){
+            // console.log('info:', this.info)
+            eventBus.$emit('addNewTask')
+        }
     },
-    created() {
-        console.log('todo edit info ', this.info);
-        // this.$emit('addNewTask');
-        eventBus.$emit('addNewTask')
-    },
+
     components: {
         editTodoPrev,
     },
