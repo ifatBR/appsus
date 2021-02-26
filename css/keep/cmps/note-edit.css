@@ -59,7 +59,7 @@
     background-color: transparent;
 }
 
-.note-edit .btn-pin-note{
+.btn-pin-note{
     width: 25px;
     height: 25px;
     display:block;
@@ -67,6 +67,15 @@
     right:10px;
     top:10px;
     cursor: pointer;
+    filter: grayscale(100%) brightness(180%);
+    background-color: transparent;
+    border:none;
+    outline: none;
+    z-index: 1;
+}
+
+.btn-pin-note.pinned{
+    filter:unset;
 }
 
 .note-edit .btn-pin-note:active{

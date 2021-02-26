@@ -4,18 +4,21 @@ import editNoteImg from './dynamicNotes/edit-note-img.cmp.js'
 import editNoteTodo from './dynamicNotes/edit-note-todo.cmp.js'
 import editNoteTxt from './dynamicNotes/edit-note-txt.cmp.js'
 import noteDelete from './note-delete.cmp.js'
+import notePin from './note-pin.cmp.js';
 
 export default {
-    props:['currNote','isShowNoteEdit'],
+    props:['currNote','isShowNoteEdit','isDeletedPage'],
     template: `
     <section class="note-edit" v-bind:style="style" @click="openAddNewNote">
         <form @submit.prevent="saveNote" class="flex column" >
-                <button v-if="isShowNoteEdit" class="btn-pin-note" @click="pinNote" type="button">📌</button>
-                <input v-if="isShowNoteEdit" type="text" class="title" v-model="title" placeholder="title"/>
-                <component :isShowNoteEdit="isShowNoteEdit" class="note-edit-component" :is="componentType" :info="info" ></component>    
-                <note-footer v-if="isShowNoteEdit" @saveNote="saveNote" @changeBgColor="changeBgColor" @setNoteType="setNoteType" @closeNoteEdit="closeNoteEdit" @deleteNote="approveDeleteNote"/>
+            <button v-if="isShowNoteEdit&&!isDeletedPage" class="btn-pin-note" :class="{pinned:currNote.isPinned}" @click="pinNote" type="button">📌</button>
+            <!-- <note-pin v-if="isShowNoteEdit&&!isDeletedPage" :note="this.currNote"/> -->
+
+            <input v-if="isShowNoteEdit" type="text" class="title" v-model="title" placeholder="title"/>
+            <component :isShowNoteEdit="isShowNoteEdit" class="note-edit-component" :is="componentType" :info="info" ></component>    
+            <note-footer v-if="isShowNoteEdit" :isDeletedPage="isDeletedPage" @saveNote="saveNote" @changeBgColor="changeBgColor" @setNoteType="setNoteType" @closeNoteEdit="closeNoteEdit" @deleteNote="approveMoveToDeleted" @deletePermanently="approveDeletePermanently" />
         </form>
-        <note-delete v-if="isShowDeleteApproval" @deleteNote="deleteNote"/>
+        <note-delete :question="question" @approve="deleteNote" />
     </section>
     `,
     data(){
@@ -26,7 +29,8 @@ export default {
             title:'',
             info:{},
             componentType:'edit-note-txt',
-            isShowDeleteApproval:false,
+            question:null
+            // isShowDeleteApproval:false,
         }
     },
     created(){
@@ -86,16 +90,29 @@ export default {
             this.bgColor = bgColor;
             this.componentType = 'edit-'+type;
         },
-        approveDeleteNote(){
-            if(this.isShowNoteEdit) this.isShowDeleteApproval=true;
-        },
-        deleteNote(isDeltedApproved){
-            this.isShowDeleteApproval=false;
-            if(isDeltedApproved) this.$emit('deleteNoteById',this.currNote.id)
-        },
         openAddNewNote(){
             this.$emit('openAddNewNote')
         },
+        approveMoveToDeleted(){
+            if(this.isShowNoteEdit) this.question='Move to deleted page?';
+        },
+
+     
+        approveDeletePermanently(){
+            this.question='Delete permanently?';
+        },
+        deleteNote(answers){
+            const {isQuestApproved, isPermanent} = answers
+            this.question=null;
+            if(!isQuestApproved) return;
+            if(isPermanent){
+                 this.$emit('deletePermanently',this.currNote.id)
+                return
+            }
+            this.$emit('deleteNoteById',this.currNote.id)
+
+
+        }
         // copyNote(){
 
         // }
@@ -104,12 +121,16 @@ export default {
         style(){
             return {'background-color':this.bgColor}
         },
+        // isDeletedPage(){
+        //     return this.$route.fullPath.includes('delete')
+        // }
     },
     components:{
         noteFooter,
         editNoteImg,
         editNoteTodo,
         editNoteTxt,
-        noteDelete
+        noteDelete,
+        notePin
     }
 }

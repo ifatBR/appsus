@@ -1,14 +1,18 @@
 export default {
+    props: ['question'],
     template: `
-    <div class="delete-approve flex align-center">
-        <h3>Really delet?</h3>
-        <button class="btn-no" @click="deleteApproved(false)">No</button>
-        <button class="btn-yes" @click="deleteApproved(true)">Yes</button>
+    <div v-if="question" class="delete-approve flex align-center">
+        <h3>{{question}}</h3>
+        <button class="btn-no" @click="isApproved(false)">No</button>
+        <button class="btn-yes" @click="isApproved(true)">Yes</button>
     </div>`,
-    methods:{
-        deleteApproved(isDeleteApproved){
-            this.$emit('deleteNote',isDeleteApproved)
-        }
-    }
-    
-}
+    methods: {
+        isApproved(isQuestApproved) {
+            if (this.$route.path.includes('deleted')) {
+                this.$emit('approve', {isQuestApproved, isPermanent:true});
+                return;
+            }
+            this.$emit('approve', {isQuestApproved, isPermanent:false});
+        },
+    },
+};

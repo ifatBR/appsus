@@ -2,8 +2,6 @@
     text-decoration: line-through;
 }
 
-
-
 .todo-list{
     list-style: circle;
     margin-left:10px;
@@ -12,3 +10,9 @@
 .todo-list input[name="checkbox"]{
     margin-inline-end: 7px;
 }
+
+.todo li.bullets{
+    margin-left:20px;
+    list-style: circle;
+}
+

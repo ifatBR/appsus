@@ -3,12 +3,15 @@ import { utilService } from '../../../services/util.service.js';
 export const keepService = {
     getNotes,
     saveNote,
-    deleteNote,
+    deleteNotePermanently,
     setNoteType,
     getNoteById,
     updateNote,
     getEmptyNote,
     getNewTask,
+    markNoteDeleted,
+    restoreNote,
+    toggleNotePin
 };
 
 const KEEP_NOTES_KEY = 'keepNotes';
@@ -42,14 +45,37 @@ function updateNote(note) {
         return storageService.put(KEEP_NOTES_KEY, note);
 }
 
-function deleteNote(id) {
+function toggleNotePin(id){
+    return getNoteById(id)
+    .then(note => {
+        note.isPinned = !note.isPinned;
+        return storageService.put(KEEP_NOTES_KEY, note);
+    })
+}
+
+function markNoteDeleted(id) {
     return getNoteById(id)
     .then(note => {
         note.isDeleted = true
         note.isPinned = false
         return storageService.put(KEEP_NOTES_KEY, note);
     })
-    // return storageService.remove(KEEP_NOTES_KEY, id);
+    
+}
+
+function restoreNote(id){
+    return getNoteById(id)
+    .then(note => {
+        note.isDeleted = false
+        return storageService.put(KEEP_NOTES_KEY, note);
+    })
+}
+
+function deleteNotePermanently(id){
+    return getNoteById(id)
+    .then(note => {
+    return storageService.remove(KEEP_NOTES_KEY, id);
+    })
 }
 
 function setNoteType(id, noteType, bgColor) {
