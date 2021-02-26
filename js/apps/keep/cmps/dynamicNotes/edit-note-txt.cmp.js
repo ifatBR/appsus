@@ -1,9 +1,16 @@
 export default {
-    props:['info'],
-    template:`
+    props: ['info'],
+    template: `
         <div class="edit-note-txt">
-            <pre>{{info.txt}}</pre>
-            <textarea class="free-txt" rows="1" v-model="info.txt" placeholder="Write something..."></textarea>
+            <pre>{{txtCopy}}</pre>
+            <textarea class="free-txt" rows="1" v-model="info.txt" placeholder="Write something...">{{txtCopy}}</textarea>
         </div>
     `,
-    }
+    computed: {
+        txtCopy() {
+            const t = this.info.txt;
+            
+            return this.info.txt;
+        },
+    },
+};

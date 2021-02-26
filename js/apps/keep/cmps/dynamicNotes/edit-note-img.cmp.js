@@ -19,7 +19,7 @@ export default {
         };
     },
     created(){
-        console.log('created img edit',this.info);
+        // console.log('created img edit',this.info);
     },
     methods: {
         changeImg(ev) {

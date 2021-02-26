@@ -46,12 +46,13 @@ function deleteNote(id) {
     return storageService.remove(KEEP_NOTES_KEY, id);
 }
 
-function setNoteType(id, noteType, imgUrl) {
+function setNoteType(id, noteType) {
     return storageService.get(KEEP_NOTES_KEY, id).then((note) => {
         if (note.type === noteType) return;
         note.type = noteType;
-        note.info = _setInfoType(noteType, imgUrl);
+        note.info = _setInfoType(noteType);
         storageService.put(KEEP_NOTES_KEY, note);
+        return note;
     });
 }
 
@@ -60,14 +61,15 @@ function getNewTask() {
     return Promise.resolve(emptyTask);
 }
 
-function getEmptyNote(noteType = 'noteTxt', imgUrl) {
-    const info = _setInfoType(noteType, imgUrl);
-    return _createNewNote(noteType, { title: '', info, bgColor: '#fdfdfd' }).then((note) => note);
+function getEmptyNote(noteType = 'noteTxt', bgColor) {
+    console.log('noteType service:', noteType)
+    const info = _setInfoType(noteType);
+    return _createNewNote(noteType, { title: '', info, bgColor }).then((note) => note)
 }
 
-function _setInfoType(noteType, imgUrl) {
+function _setInfoType(noteType) {
     if (noteType === 'noteTxt') return { txt: '' };
-    if (noteType === 'noteImg') return { url: imgUrl };
+    if (noteType === 'noteImg') return { url: '' };
     if (noteType === 'noteTodo') return { todos: [{ txt: '', doneAt: null, id: utilService.makeId() }] };
 }
 
@@ -121,7 +123,8 @@ function _createKeepNotes() {
             },
             style: {
                 bgColor: '#6ebfb9',
- 
+                // bgColor: '#CBA2BB',
+
             },
         },
         {
@@ -134,7 +137,8 @@ function _createKeepNotes() {
                 txt:'I should remember that I can do whatever I want, Im a capable strong woman',
             },
             style: {
-                bgColor: '#C1B2CF',
+                bgColor: '#bee1e5',
+                // bgColor: '#C1B2CF',
             },
         },
         {
@@ -147,7 +151,8 @@ function _createKeepNotes() {
                 txt: 'About the amazing fruits he brought yesterday to the meeting',
             },
             style: {
-                bgColor: '#CDE6E7',
+                // bgColor: '#CDE6E7',
+                bgColor: '#f2c643',
             },
         },
         {
@@ -157,10 +162,11 @@ function _createKeepNotes() {
             isPinned: false,
             label: '', // Maybe- or DELETE
             info: {
-                url: 'https://i.ytimg.com/vi/sHYjkPUl1nM/mqdefault.jpg',
+                url: '../../../imgs/keep/cake.jpg',
             },
             style: {
-                bgColor: '#BFC0D4',
+                // bgColor: '#BFC0D4',
+                bgColor: '#ebeae6',
             },
         },
         {
@@ -174,6 +180,7 @@ function _createKeepNotes() {
                 Fold the tarp into the relative shape of the tent, but slightly smaller. You don't want any part of the tarp to hang out beyond the edge of the tent, otherwise it'll collect water underneath in case it rains. Fold up longer edges and tuck them under the tent.`,
             },
             style: {
+                bgColor: '#bee1e5',
                 bgColor: '#C6D7DD',
             },
         },
