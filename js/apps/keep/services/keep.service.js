@@ -99,8 +99,10 @@ function _createKeepNotes() {
                 url: '../../../imgs/keep/blender.jpg',
             },
             style: {
-                bgColor: '#BFC0D4',
+                bgColor: '#fee7df',
+                // bgColor: '#BFC0D4',
             },
+   
         },
         {
             type: 'noteTodo',
@@ -118,7 +120,8 @@ function _createKeepNotes() {
                 ],
             },
             style: {
-                bgColor: '#CBA2BB',
+                bgColor: '#6ebfb9',
+ 
             },
         },
         {
