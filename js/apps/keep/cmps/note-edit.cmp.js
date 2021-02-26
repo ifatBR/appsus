@@ -1,9 +1,9 @@
 import { keepService } from '../services/keep.service.js';
 import noteFooter from './note-footer.cmp.js'
-import { eventBus } from '../../../services/event-bus.service.js';
 import editNoteImg from './dynamicNotes/edit-note-img.cmp.js'
 import editNoteTodo from './dynamicNotes/edit-note-todo.cmp.js'
 import editNoteTxt from './dynamicNotes/edit-note-txt.cmp.js'
+import noteDelete from './note-delete.cmp.js'
 
 export default {
     props:['currNote','isShowNoteEdit'],
@@ -13,21 +13,24 @@ export default {
                 <button v-if="isShowNoteEdit" class="btn-pin-note" @click="pinNote" type="button">📌</button>
                 <input v-if="isShowNoteEdit" type="text" class="title" v-model="title" placeholder="title"/>
                 <component :isShowNoteEdit="isShowNoteEdit" class="note-edit-component" :is="componentType" :info="info" ></component>    
-            <note-footer v-if="isShowNoteEdit" @saveNote="saveNote" @changeBgColor="changeBgColor" @setNoteType="setNoteType" @closeNoteEdit="closeNoteEdit" @noteIdToDelete="noteIdToDelete"/>
+                <note-footer v-if="isShowNoteEdit" @saveNote="saveNote" @changeBgColor="changeBgColor" @setNoteType="setNoteType" @closeNoteEdit="closeNoteEdit" @deleteNote="approveDeleteNote"/>
         </form>
+        <note-delete v-if="isShowDeleteApproval" @deleteNote="deleteNote"/>
     </section>
     `,
     data(){
         return{
-            // tempNote:{},
+            tempNote:{},
             noteType:'',
-            bgColor: '',
+            bgColor: '#fcfcfc',
             title:'',
             info:{},
             componentType:'edit-note-txt',
+            isShowDeleteApproval:false,
         }
     },
     created(){
+        if(!this.isShowNoteEdit) return;
         this.showNoteDetails()
     },
     methods:{
@@ -39,9 +42,9 @@ export default {
             this.bgColor=color;
         },
         saveNote(){
-            const {title, bgColor} = this;
+            const {title, bgColor, info} = this;
             this.currNote.title = title;
-            this.currNote.info = this.info;
+            this.currNote.info = info;
             this.currNote.style.bgColor = bgColor;
             this.$emit('saveNote',this.currNote);
             this.title='';
@@ -52,36 +55,24 @@ export default {
             this.$emit('closeNoteEdit');
         },
         
-        // setNoteType(params) {
-        //     console.log('selected note type:',this.noteType);
-        //     this.noteType= params.noteType;
-        //     this.componentType = 'edit-'+ this.noteType;
-        //     if(!this.$route.params.noteId) {
-        //         this.getEmptyNote(params)
-        //         return
-        //     }
-        //     params['id'] = this.noteId
-        //     this.getEmptyNote(params)
-        //     ;
-        // },
-        setNoteType(params) {
-            // console.log('selected note type:',this.noteType);
-            this.noteType= params.noteType;
+        setNoteType(noteType) {
+            
+            if(this.noteType === noteType) return;
             this.componentType = 'edit-'+ this.noteType;
             if(!this.$route.params.noteId) {
-                this.getEmptyNote(params)
+                this.getEmptyNote(noteType)
                 return;
             }
-            params['id'] = this.$route.params.noteId;
-            this.$emit('setNoteType', params);
+            const id = this.$route.params.noteId;
+            this.$emit('setNoteType', {noteType,id, bgColor:this.bgColor});
         },
-        getEmptyNote(params){
-            this.$emit('getEmptyNote',params);
+        getEmptyNote(noteType){
+            console.log(noteType);
+
+            this.$emit('getEmptyNote',({noteType,bgColor:this.bgColor}));
         },
         showNoteDetails(){
-            if(!this.isShowNoteEdit) return;
-            const {title,info,type,style:{bgColor}} = this.currNote; 
-            // console.log('currNote in edit',this.currNote);
+            const {title,info,type,style:{bgColor}} = this.currNote;
             if(type==='noteTodo'){
                 const todos = info.todos.map(todo => {
                     const {txt,doneAt,id} = todo
@@ -95,25 +86,30 @@ export default {
             this.bgColor = bgColor;
             this.componentType = 'edit-'+type;
         },
-        noteIdToDelete(){
-            this.$emit('deleteNoteById',this.currNote.id)
+        approveDeleteNote(){
+            if(this.isShowNoteEdit) this.isShowDeleteApproval=true;
+        },
+        deleteNote(isDeltedApproved){
+            this.isShowDeleteApproval=false;
+            if(isDeltedApproved) this.$emit('deleteNoteById',this.currNote.id)
         },
         openAddNewNote(){
             this.$emit('openAddNewNote')
-        }
+        },
+        // copyNote(){
+
+        // }
     },
     computed: {
         style(){
             return {'background-color':this.bgColor}
         },
-        infoCopy(){
-            return {...this.info}
-        }
     },
     components:{
         noteFooter,
         editNoteImg,
         editNoteTodo,
-        editNoteTxt
+        editNoteTxt,
+        noteDelete
     }
 }

@@ -9,6 +9,6 @@
     margin-left:10px;
 }
 
-input[name="checkbox"]{
+.todo-list input[name="checkbox"]{
     margin-inline-end: 7px;
 }

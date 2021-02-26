@@ -2,12 +2,6 @@ export default {
     template: `
     <section class="note-footer flex space-between"> 
         <datalist id="colorList">
-            <!-- <option value="#CDE6E7"></option>
-            <option value="#C6D7DD"></option>
-            <option value="#C1B2CF"></option>
-            <option value="#BFC0D4"></option>
-            <option value="#CBA2B8"></option>
-             -->
             <option value="#fee7df"></option>
             <option value="#6ebfb9"></option>
             <option value="#bee1e5"></option>
@@ -20,7 +14,7 @@ export default {
         </div>
         <button class="btn-edit btn-fa btn-color"><input @change="setBgColor" type="color" v-model="color" value="#BFC0D4" list="colorList" /></button>
         <div class="note-exist">
-            <button @click="noteIdToDelete" type="button" class="btn-edit btn-fa btn-del"></button>
+            <button v-if="isExistingNote" @click="deleteNote" type="button" class="btn-edit btn-fa btn-del"></button>
         </div>
         <div class="note-types">
             <button @click="setNoteType('noteTxt')" type="button" class="btn-edit btn-fa btn-txt"></button>
@@ -38,14 +32,21 @@ export default {
         closeNoteEdit(){
             this.$emit('closeNoteEdit');
         },
-        noteIdToDelete() {
-            this.$emit('noteIdToDelete');
+        deleteNote() {
+            this.$emit('deleteNote');
         },
         setBgColor() {
             this.$emit('changeBgColor', this.color);
         },
-        setNoteType(noteType, url=null) {
-            this.$emit('setNoteType', {noteType,url});
+        setNoteType(noteType) {
+            console.log('tp',noteType);
+
+            this.$emit('setNoteType', noteType);
         },
     },
+    computed:{
+        isExistingNote(){
+            return this.$route.params.noteId;
+        }
+    }
 };

@@ -5,11 +5,13 @@ import keepReminder from './keep-reminder.cmp.js';
 import noteEdit from '../cmps/note-edit.cmp.js';
 import { keepService } from '../services/keep.service.js';
 import { eventBus } from '../../../services/event-bus.service.js';
+import keepSearch from '../cmps/keep-search.cmp.js'
 
 export default {
     template: `
         <section class="keep-app">
-            <!-- <keep-nav-bar/> -->
+            <keep-nav-bar @click.native="loadNotes"/>
+            <keep-search ></keep-search>
             <note-edit v-if="currNote" :currNote="currNote" class="edit new-note" :isShowNoteEdit="isAddNewNote" @openAddNewNote="openAddNewNote" @closeNoteEdit="closeNoteEdit" @loadNotes="loadNotes"  @getEmptyNote="getEmptyNote" @saveNote="saveNote"/>
             <router-view class="keep-router-view"/>
             <note-edit v-if="currNote&&isNoteEdit" :currNote="currNote" class="edit edit-note" :isShowNoteEdit=true :class="{'is-edit':isNoteEdit}"  @closeNoteEdit="closeNoteEdit" @deleteNoteById="deleteNoteById"  @setNoteType="setNoteType" @saveNote="saveNote"/>
@@ -59,7 +61,7 @@ export default {
             this.getEmptyNote({ noteType: 'noteTxt', url: null });
         },
         loadNotes() {
-            if (this.isNoteEdit) this.closeNoteEdit();
+            // if (this.isNoteEdit) this.closeNoteEdit();
             keepService
                 .getNotes()
                 .then((notes) => {
@@ -70,48 +72,60 @@ export default {
                 });
         },
         deleteNoteById(id) {
-            keepService.deleteNote(id).then(() => this.loadNotes());
+            this.closeNoteEdit();
+            // this.loadNotes();
+            keepService.deleteNote(id).then(() =>{ this.loadNotes()});
         },
 
         saveNote(note) {
             keepService.saveNote(note).then(() => {
+                this.closeNoteEdit();
                 this.loadNotes();
-                // this.getEmptyNote({ noteType: 'noteTxt', url: null }).then((note) => (this.currNote = note));
             });
         },
         setNoteType(params) {
-            // console.log('params:', params)
-            const { id, noteType } = params;
+            const { id, noteType, bgColor } = params;
             keepService
-                .setNoteType(id, noteType)
+                .setNoteType(id, noteType, bgColor)
                 .then((note) => {
                     this.currNote = null;
-                    // console.log('isAddNewNote:', this.isAddNewNote)
                     return note;
                 })
                 .then((note) => (this.currNote = note));
         },
 
         getEmptyNote(params) {
-            const { noteType, url } = params;
-            if (this.currNote.noteType === noteType) return;
+            if (this.currNote.noteType === params.noteType) return;
             this.currNote = null;
-            const bgColor = '#dfdfdf';
-            return keepService.getEmptyNote(noteType, bgColor).then((note) => (this.currNote = note));
+            return keepService.getEmptyNote(params.noteType, params.bgColor).then((note) => (this.currNote = note));
         },
         addNewTask() {
             keepService.getNewTask().then(emptyTask => {
                 console.log('emptyTask:', emptyTask)
                 eventBus.$emit('newTaskForAdding',emptyTask)
-                // this.currNote.info.todos.push(task);
             });
         },
+        // setFilter(filterBy){
+        //     this.filterBy = filterBy;
+        //     console.log(this.filterBy.txt);
+        // }
+        
     },
+    // computed:{
+    //     notesToShow(){
+    //         const ns = this.notes.filter(note => {
+    //            return note.title.includes(filterBy.txt)
+    //         || note.info.txt.includes(filterBy.txt) || null;
+    //     })
+    //     console.log(ns);
+    //     }
+    // },
     components: {
         keepNavBar,
         keepNotes,
         keepDeleted,
         keepReminder,
         noteEdit,
+        keepSearch
     },
 };
