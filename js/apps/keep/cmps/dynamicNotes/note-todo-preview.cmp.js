@@ -12,8 +12,6 @@ export default{//delete me!!!!
     },
     watch:{
         task(){
-            console.log(this.task);
-            console.log(this.task.doneAt);
             this.isCheckTask=this.task.doneAt
         }
     }

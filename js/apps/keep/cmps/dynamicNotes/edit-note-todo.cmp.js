@@ -13,15 +13,20 @@ export default {
         </ul>
         <button @click="addNewTask" type="button">+</button>
     </div>
-`,
+    `,
+    created(){
+        eventBus.$on('newTaskForAdding', this.addTaskToInfo)
+    },
     methods: {
         removeTask(id) {
             const idx = this.info.todos.findIndex((task) => task.id === id);
             this.info.todos.splice(idx, 1);
         },
         addNewTask(){
-            // console.log('info:', this.info)
             eventBus.$emit('addNewTask')
+        },
+        addTaskToInfo(emptyTask){
+            this.info.todos.push(emptyTask)
         }
     },
 

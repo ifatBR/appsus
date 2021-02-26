@@ -83,10 +83,13 @@ export default {
             const {title,info,type,style:{bgColor}} = this.currNote; 
             // console.log('currNote in edit',this.currNote);
             if(type==='noteTodo'){
-                this.info = {todos:[...info.todos]}
-                console.log(this.info);
-            }
-            this.info={...info};
+                const todos = info.todos.map(todo => {
+                    const {txt,doneAt,id} = todo
+                    return {txt,doneAt,id};
+                })
+                this.info= {todos};
+            }else this.info={...info};
+            
             this.title = title;
             this.noteType=type;
             this.bgColor = bgColor;

@@ -100,8 +100,10 @@ export default {
             return keepService.getEmptyNote(noteType, bgColor).then((note) => (this.currNote = note));
         },
         addNewTask() {
-            keepService.getNewTask().then((task) => {
-                this.currNote.info.todos.push(task);
+            keepService.getNewTask().then(emptyTask => {
+                console.log('emptyTask:', emptyTask)
+                eventBus.$emit('newTaskForAdding',emptyTask)
+                // this.currNote.info.todos.push(task);
             });
         },
     },
