@@ -4,14 +4,31 @@
 @import "cmps/note-todo.css";
 @import "cmps/note-img.css";
 
+.keep-app{
+    background-color: #fefefe;
+    margin-bottom: 30px;;
+}
 
+.keep-app .edit{
+    z-index:2;
+}
 .note-edit-screen.is-edit{
-    position:absolute;
+    position:fixed;
     top:0;
     left:0;
     bottom:0;
     right:0;
-    background-color: rgba(0, 0, 0, 0.151);
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index:1;
+}
+
+.note-new-screen.is-add-new{
+    position:fixed;
+    top:0;
+    left:0;
+    bottom:0;
+    right:0;
+    /* background-color: rgba(0, 0, 0, 0.151); */
     z-index:1;
 }
 

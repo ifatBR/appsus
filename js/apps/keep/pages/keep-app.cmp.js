@@ -10,10 +10,11 @@ export default {
     template: `
         <section class="keep-app">
             <!-- <keep-nav-bar/> -->
-            <note-edit v-if="currNote" :currNote="currNote" class="new-note" @loadNotes="loadNotes"  @getNewNote="getEmptyNote" @saveNote="saveNote"/>
+            <note-edit v-if="currNote" :currNote="currNote" class="edit new-note" :isShowNoteEdit="isAddNewNote" @openAddNewNote="openAddNewNote" @closeNoteEdit="closeNoteEdit" @loadNotes="loadNotes"  @getNewNote="getEmptyNote" @saveNote="saveNote"/>
             <router-view class="keep-router-view"/>
-            <note-edit v-if="isNoteEdit" :currNote="currNote" class="edit-note" :class="{'is-edit':isNoteEdit}" @saveNote="saveNote" @closeNoteEdit="closeNoteEdit" @deleteNoteById="deleteNoteById"/>
+            <note-edit v-if="isNoteEdit" :currNote="currNote" class="edit edit-note" :isShowNoteEdit=true :class="{'is-edit':isNoteEdit}" @saveNote="saveNote" @closeNoteEdit="closeNoteEdit" @deleteNoteById="deleteNoteById"/>
             <div class="note-edit-screen" v-show="isNoteEdit" :class="{'is-edit':isNoteEdit}" @click="closeNoteEdit"></div>
+            <div class="note-new-screen" v-show="isAddNewNote" :class="{'is-add-new':isAddNewNote}" @click="closeAddNewNote"></div>
         </section>
     `,
     data() {
@@ -21,6 +22,7 @@ export default {
             isNoteEdit: false,
             notes: null,
             currNote: null,
+            isAddNewNote:false
         };
     },
     created() {
@@ -43,10 +45,18 @@ export default {
             this.currNote = note;
         },
         closeNoteEdit() {
+            this.isAddNewNote=false;
             this.isNoteEdit = false;
             if(this.$route.params.noteId) this.$router.push('/keep');
             keepService.getEmptyNote()
             .then(note => this.currNote = note);
+        },
+        openAddNewNote(){
+            this.isAddNewNote = true;
+        },
+        closeAddNewNote(){
+            this.isAddNewNote=false;
+            this.getEmptyNote({noteType:'noteTxt', url:null});
         },
         loadNotes() {
             if(this.isNoteEdit)this.closeNoteEdit()
@@ -87,7 +97,7 @@ export default {
             .then(task => {
                 this.currNote.info.todos.push(task)
             })
-        }
+        },
     },
     components: {
         keepNavBar,

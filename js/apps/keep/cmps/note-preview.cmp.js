@@ -10,13 +10,10 @@ export default {
     <section class="note-preview" v-bind:style="style" @click="openNoteEdit">  
             <h2 class="title">{{note.title}}</h2>
             <component :is="note.type" :info="this.note.info"></component>   
+            <router-link class="preview-link absolute-full" :to="'/keep/notes/'+this.note.id"></router-link> 
+
     </section>
     `,
-    data() {
-        return {
-            color: null,
-        };
-    },
     created() {
         this.color = this.note.style.bgColor;
     },

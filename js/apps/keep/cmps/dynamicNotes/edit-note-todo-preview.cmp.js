@@ -3,9 +3,9 @@ import { eventBus } from '../../../../services/event-bus.service.js';
 export default{
     props:['task'],
     template:`
-    <div class="flex">
+    <div class="flex align-center">
         <button type="button" @click="removeTask">X</button>
-        <input type="checkbox" @input="toggleCheckTask" v-model="isCheckTask"/>
+        <input name="checkbox" type="checkbox" @input="toggleCheckTask" v-model="isCheckTask"/>
         <input type="text" v-model="task.txt" :class="{'checked':isCheckTask}"/>
     </div>
     `,

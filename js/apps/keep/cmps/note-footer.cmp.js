@@ -9,7 +9,7 @@ export default {
             <option value="#CBA2B8"></option>
         </datalist>
         <div>
-            <button @click="closeNoteEdit" type="button" class="btn-edit close">Close</button>
+            <button @click.stop="closeNoteEdit" type="button" class="btn-edit close">Close</button>
             <button class="btn-edit save">Save</button>
         </div>
         <button class="btn-edit btn-fa btn-color"><input @change="setBgColor" type="color" v-model="color" value="#BFC0D4" list="colorList" /></button>
@@ -18,7 +18,7 @@ export default {
         </div>
         <div class="note-types">
             <button @click="setNoteType('noteTxt')" type="button" class="btn-edit btn-fa btn-txt"></button>
-            <button class="btn-edit btn-fa btn-img"><input type="file" class="file-input absolute-full" name="image" @change="setNoteImg" /></button>
+            <button class="btn-edit btn-fa btn-img" @click="setNoteType('noteImg')"></button>
             <button @click="setNoteType('noteTodo')" type="button" class="btn-edit btn-fa btn-todo"></button>
         </div>
     </section>
@@ -26,7 +26,6 @@ export default {
     data() {
         return {
             color: '#BFC0D4',
-            imgData:null
         };
     },
     methods: {
@@ -42,17 +41,5 @@ export default {
         setNoteType(noteType, url=null) {
             this.$emit('setNoteType', {noteType,url});
         },
-        setNoteImg(ev) {
-            var reader = new FileReader();
-            reader.onload = (event) => {
-                this.imgData = event.target.result;
-            }
-            reader.readAsDataURL(ev.target.files[0])     
-        },
     },
-    watch:{
-        imgData(){  
-            this.setNoteType('noteImg',this.imgData)
-        }
-    }
 };

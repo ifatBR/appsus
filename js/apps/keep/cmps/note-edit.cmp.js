@@ -6,14 +6,14 @@ import editNoteTodo from './dynamicNotes/edit-note-todo.cmp.js'
 import editNoteTxt from './dynamicNotes/edit-note-txt.cmp.js'
 
 export default {
-    props:['currNote'],
+    props:['currNote','isShowNoteEdit'],
     template: `
-    <section class="note-edit">
-        <form @submit.prevent="saveNote" class="flex column">
-            <button class="btn-pin-note" @click="pinNote" type="button">📌</button>
-            <input type="text" class="title" v-model="title" placeholder="title"/>
-            <component :is="componentType" :info="info"></component>    
-            <note-footer  @saveNote="saveNote" @changeBgColor="changeBgColor" @setNoteType="setNoteType" @closeNoteEdit="closeNoteEdit" @noteIdToDelete="noteIdToDelete"/>
+    <section class="note-edit" v-bind:style="style" @click="openAddNewNote">
+        <form @submit.prevent="saveNote" class="flex column" >
+                <button v-if="isShowNoteEdit" class="btn-pin-note" @click="pinNote" type="button">📌</button>
+                <input v-if="isShowNoteEdit" type="text" class="title" v-model="title" placeholder="title"/>
+                <component class="note-edit-component" :is="componentType" :info="info" ></component>    
+            <note-footer  v-if="isShowNoteEdit" @saveNote="saveNote" @changeBgColor="changeBgColor" @setNoteType="setNoteType" @closeNoteEdit="closeNoteEdit" @noteIdToDelete="noteIdToDelete"/>
         </form>
     </section>
     `,
@@ -24,7 +24,7 @@ export default {
             bgColor: '',
             title:'',
             info:{},
-            componentType:'edit-note-txt'
+            componentType:'edit-note-txt',
         }
     },
     created(){
@@ -64,9 +64,8 @@ export default {
             this.$emit('getNewNote',params);
         },
         showNoteDetails(){
-            console.log('showing details');
-            const {title,info,type,bgColor} = this.currNote; 
-            console.log('this.currNote',this.currNote);
+            const {title,info,type,style:{bgColor},style} = this.currNote; 
+            console.log('currNote in edit',this.currNote);
             this.title = title;
             this.info=info;
             this.noteType=type;
@@ -75,7 +74,15 @@ export default {
         },
         noteIdToDelete(){
             this.$emit('deleteNoteById',this.currNote.id)
+        },
+        openAddNewNote(){
+            this.$emit('openAddNewNote')
         }
+    },
+    computed: {
+        style(){
+            return {'background-color':this.bgColor}
+        },
     },
     components:{
         noteFooter,

@@ -2,13 +2,20 @@ export default {
     props: ['info'],
     template: `
         <div class="flex edit-note-img-container">
-            <img :src="info.url" class="edit-note-img"/>
-            <input type="file" class="btn-change-img absolute-full" name="image" @change="setNoteImg" />     
+            <img v-if="info.url" :src="info.url" class="edit-note-img" alt="The link is broken"/>
+            <!-- <input type="file" class="btn-change-img absolute-full" name="image" @change="setNoteImg" />      -->
+            <form v-if="!info.url" class="image-upload-container flex align-center" @submit.prevent>
+                <input type="text" name="image-url" @change="setImageUrl" v-model="imgUrl" placeholder="type url"/> 
+                <h3>or</h3> 
+                <button type="button" class="btn-upload-image">upload-image<input type="file" class="file-input" name="image" @change="setNoteImg" placeholder="upload image"/></button>
+            <!-- <input type="file" class="btn-change-img absolute-full" name="image" @change="setNoteImg" />      -->
+            </form>
         </div>
     `,
     data() {
         return {
             imgData: null,
+            imgUrl:null
         };
     },
     created(){
@@ -20,7 +27,7 @@ export default {
             if (!this.$route.params.noteId) {
             }
             
-                return; 
+            return; 
             this.setNoteImg(ev);
         },
         setNoteImg(ev) {
@@ -31,6 +38,10 @@ export default {
             };
             reader.readAsDataURL(ev.target.files[0]);
         },
+        setImageUrl(){
+            console.log('url :)');
+            this.info.url = this.imgUrl;
+        }
     },
 
     watch: {

@@ -2,11 +2,13 @@
     text-decoration: line-through;
 }
 
-.todo{
-    background-color: #fff;
-}
+
 
 .todo-list{
     list-style: circle;
     margin-left:10px;
+}
+
+input[name="checkbox"]{
+    margin-inline-end: 7px;
 }

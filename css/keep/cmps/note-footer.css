@@ -1,12 +1,12 @@
 .note-footer .btn-edit{
-
+    border-radius: 2em;
     cursor:pointer;
+    height: 30px;
 }
 
 .note-footer .btn-fa{
     font-family: 'font-aw-reg';
     width: 30px;
-    height: 30px;
     /* text-align: center; */
 }
 
@@ -14,28 +14,33 @@
     justify-self: flex-end;
 }
 .note-footer .btn-edit:hover{
-    color:grey;
+    background-color: rgb(235, 235, 235);
 }
 
 .note-footer .btn-edit:active{
-    background-color: rgb(235, 235, 235);
+    color:grey;
 }
 
 .note-footer .btn-edit.save{
     font-weight: bold;
+}
+.note-footer .btn-edit.close,
+.note-footer .btn-edit.save{
+    padding: 5px 10px;
 }
 
 .note-footer .btn-img{
     position:relative;
 }
 
-.note-footer .file-input,
+
+/* .note-footer .file-input,
 ::-webkit-file-upload-button{
     opacity: 0;
     width: 100%;
     height: 100%;
     cursor:pointer;
-}
+} */
 
 .note-footer .btn-color {
     font-family: 'font-aw-solid';

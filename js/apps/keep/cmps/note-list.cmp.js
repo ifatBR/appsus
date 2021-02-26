@@ -8,7 +8,7 @@ export default {
             <li v-if="notes" v-for="(note) in notes" :key="note.id" style="display:block;">
                 <note-preview :note="note" />
             </li>
-        </ul>   
+        </ul>  
     </section>
     `,
     data() {
