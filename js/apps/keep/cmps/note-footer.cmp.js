@@ -2,11 +2,17 @@ export default {
     template: `
     <section class="note-footer flex space-between"> 
         <datalist id="colorList">
-            <option value="#CDE6E7"></option>
+            <!-- <option value="#CDE6E7"></option>
             <option value="#C6D7DD"></option>
             <option value="#C1B2CF"></option>
             <option value="#BFC0D4"></option>
             <option value="#CBA2B8"></option>
+             -->
+            <option value="#fee7df"></option>
+            <option value="#6ebfb9"></option>
+            <option value="#bee1e5"></option>
+            <option value="#f2c643"></option>
+            <option value="#ebeae6"></option>
         </datalist>
         <div>
             <button @click.stop="closeNoteEdit" type="button" class="btn-edit close">Close</button>
