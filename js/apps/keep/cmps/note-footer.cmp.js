@@ -24,7 +24,7 @@ export default {
         </div>
         <div class="note-types">
             <button @click="setNoteType('noteTxt')" type="button" class="btn-edit btn-fa btn-txt"></button>
-            <button class="btn-edit btn-fa btn-img" @click="setNoteType('noteImg')"></button>
+            <button class="btn-edit btn-fa btn-img" type="button" @click="setNoteType('noteImg')"></button>
             <button @click="setNoteType('noteTodo')" type="button" class="btn-edit btn-fa btn-todo"></button>
         </div>
     </section>

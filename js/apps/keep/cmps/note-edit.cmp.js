@@ -12,14 +12,14 @@ export default {
         <form @submit.prevent="saveNote" class="flex column" >
                 <button v-if="isShowNoteEdit" class="btn-pin-note" @click="pinNote" type="button">📌</button>
                 <input v-if="isShowNoteEdit" type="text" class="title" v-model="title" placeholder="title"/>
-                <component class="note-edit-component" :is="componentType" :info="info" ></component>    
-            <note-footer  v-if="isShowNoteEdit" @saveNote="saveNote" @changeBgColor="changeBgColor" @setNoteType="setNoteType" @closeNoteEdit="closeNoteEdit" @noteIdToDelete="noteIdToDelete"/>
+                <component :isShowNoteEdit="isShowNoteEdit" class="note-edit-component" :is="componentType" :info="info" ></component>    
+            <note-footer v-if="isShowNoteEdit" @saveNote="saveNote" @changeBgColor="changeBgColor" @setNoteType="setNoteType" @closeNoteEdit="closeNoteEdit" @noteIdToDelete="noteIdToDelete"/>
         </form>
     </section>
     `,
     data(){
         return{
-            txt:'',
+            // tempNote:{},
             noteType:'',
             bgColor: '',
             title:'',
@@ -39,38 +39,55 @@ export default {
             this.bgColor=color;
         },
         saveNote(){
-            const {title, txt, bgColor} = this;
+            const {title, bgColor} = this;
             this.currNote.title = title;
-            this.currNote.txt = txt;
+            this.currNote.info = this.info;
             this.currNote.style.bgColor = bgColor;
             this.$emit('saveNote',this.currNote);
             this.title='';
+            this.info = {};
+            this.bgColor='';
         },
         closeNoteEdit(){
             this.$emit('closeNoteEdit');
         },
         
+        // setNoteType(params) {
+        //     console.log('selected note type:',this.noteType);
+        //     this.noteType= params.noteType;
+        //     this.componentType = 'edit-'+ this.noteType;
+        //     if(!this.$route.params.noteId) {
+        //         this.getEmptyNote(params)
+        //         return
+        //     }
+        //     params['id'] = this.noteId
+        //     this.getEmptyNote(params)
+        //     ;
+        // },
         setNoteType(params) {
+            // console.log('selected note type:',this.noteType);
             this.noteType= params.noteType;
             this.componentType = 'edit-'+ this.noteType;
             if(!this.$route.params.noteId) {
-                this.getNewNote(params)
+                this.getEmptyNote(params)
                 return;
             }
-            params['id'] = this.noteId;
-            eventBus.$emit('setNoteType', params);
+            params['id'] = this.$route.params.noteId;
+            this.$emit('setNoteType', params);
         },
-        getNewNote(params){
-            this.$emit('getNewNote',params);
+        getEmptyNote(params){
+            this.$emit('getEmptyNote',params);
         },
         showNoteDetails(){
-            const {title,info,type,style:{bgColor},style} = this.currNote; 
+            if(!this.isShowNoteEdit) return;
+            // this.tempNote ={...this.currNote}
+            const {title,info,type,style:{bgColor}} = this.currNote; 
             console.log('currNote in edit',this.currNote);
             this.title = title;
             this.info=info;
             this.noteType=type;
             this.bgColor = bgColor;
-            this.componentType = 'edit-'+this.currNote.type;
+            this.componentType = 'edit-'+type;
         },
         noteIdToDelete(){
             this.$emit('deleteNoteById',this.currNote.id)
@@ -83,6 +100,9 @@ export default {
         style(){
             return {'background-color':this.bgColor}
         },
+        infoCopy(){
+            return {...this.info}
+        }
     },
     components:{
         noteFooter,
