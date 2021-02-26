@@ -11,7 +11,7 @@ export default{
     `,
     data(){
         return{
-            isCheckTask:this.task.doneAt
+            isCheckTask:this.task.doneAt,
         }
     },
     methods:{

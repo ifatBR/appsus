@@ -3,7 +3,7 @@ export default {
     template: `
         <div class="flex edit-note-img-container">
             <img v-if="info.url" :src="info.url" class="edit-note-img" alt="The link is broken"/>
-            <!-- <input type="file" class="btn-change-img absolute-full" name="image" @change="setNoteImg" />      -->
+            <input type="file" class="btn-change-img absolute-full" name="image" @change="setNoteImg" />     
             <form v-if="!info.url" class="image-upload-container flex align-center" @submit.prevent>
                 <input type="text" name="image-url" @change="setImageUrl" v-model="imgUrl" placeholder="type url"/> 
                 <h3>or</h3> 

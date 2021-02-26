@@ -80,11 +80,14 @@ export default {
         },
         showNoteDetails(){
             if(!this.isShowNoteEdit) return;
-            // this.tempNote ={...this.currNote}
             const {title,info,type,style:{bgColor}} = this.currNote; 
-            console.log('currNote in edit',this.currNote);
+            // console.log('currNote in edit',this.currNote);
+            if(type==='noteTodo'){
+                this.info = {todos:[...info.todos]}
+                console.log(this.info);
+            }
+            this.info={...info};
             this.title = title;
-            this.info=info;
             this.noteType=type;
             this.bgColor = bgColor;
             this.componentType = 'edit-'+type;
