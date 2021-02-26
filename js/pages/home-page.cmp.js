@@ -5,6 +5,9 @@ export default{
 
     <div class="flex space-between">
         <div class="headline">
+        <h1>fun.</h1>
+        <h1>notes.</h1>
+        <h1>mails.</h1>
             <h2>Where efficiency and style come together</h2>
         </div>
         <img src="../../imgs/hero1.jpg" class="logo">
