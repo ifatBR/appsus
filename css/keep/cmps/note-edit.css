@@ -59,7 +59,7 @@
     background-color: transparent;
 }
 
-.note-edit .btn-pin-note{
+.btn-pin-note{
     width: 25px;
     height: 25px;
     display:block;
@@ -67,6 +67,15 @@
     right:10px;
     top:10px;
     cursor: pointer;
+    filter: grayscale(100%) brightness(180%);
+    background-color: transparent;
+    border:none;
+    outline: none;
+    z-index: 1;
+}
+
+.btn-pin-note.pinned{
+    filter:unset;
 }
 
 .note-edit .btn-pin-note:active{
@@ -105,3 +114,36 @@
     visibility:hidden; 
 }
 
+.delete-approve{
+    z-index: 2;
+    position:absolute;
+    bottom:70px;
+    right:10px;
+    background-color: black;
+    color:rgb(219, 219, 219);
+    padding:10px 20px;
+    border-radius: 3px;
+}
+
+.delete-approve>*:not(:last-child){
+    margin-inline-end: 20px;
+}
+
+.delete-approve button{
+    color:orange;
+    padding:0;
+    cursor: pointer;
+    font-size:0.9em;
+    font-weight: bold;
+}
+
+
+.delete-approve .btn-no{
+    font-size: 0.7em;
+    color:rgb(219, 219, 219);
+    
+    font-weight: normal;
+}
+.delete-approve button:hover{
+    color:white;
+}

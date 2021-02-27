@@ -3,12 +3,22 @@
 }
 
 
-.note-img,
-.edit-note-img{
+.note-img
+{
     object-fit: cover;
     width: 100%;
 }
 
+.edit-note-img{
+    max-height:50vh;
+}
+
+.img-container {
+    position:relative;
+    padding:0 20px;
+    margin:auto;
+
+}
 .btn-change-img{
    opacity:0;
    outline:none;
@@ -16,7 +26,6 @@
    width: 100%;
    height: 100%;
 }
-
 
 .image-upload-container >*:not(:last-child){
     margin-inline-end: 20px;
@@ -53,12 +62,12 @@
 }
 
 .edit-note-img-container .file-input,
-.edit-note-img-container ::-webkit-file-upload-button{
+.edit-note-img-container .btn-upload-image ::-webkit-file-upload-button{
     opacity: 0;
     width: 100%;
     height: 100%;
     position:absolute;
+    cursor:pointer;
     left:0;
     top:0;
-    cursor:pointer;
 }

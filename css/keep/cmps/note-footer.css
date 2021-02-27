@@ -1,3 +1,4 @@
+.note-footer .btn-del,
 .note-footer .btn-edit{
     border-radius: 2em;
     cursor:pointer;
@@ -13,10 +14,13 @@
 .note-types{
     justify-self: flex-end;
 }
+
+.note-footer .btn-del:hover,
 .note-footer .btn-edit:hover{
     background-color: rgb(235, 235, 235);
 }
 
+.note-footer .btn-del:active,
 .note-footer .btn-edit:active{
     color:grey;
 }
@@ -24,6 +28,7 @@
 .note-footer .btn-edit.save{
     font-weight: bold;
 }
+.note-footer .btn-del,
 .note-footer .btn-edit.close,
 .note-footer .btn-edit.save{
     padding: 5px 10px;
@@ -32,15 +37,6 @@
 .note-footer .btn-img{
     position:relative;
 }
-
-
-/* .note-footer .file-input,
-::-webkit-file-upload-button{
-    opacity: 0;
-    width: 100%;
-    height: 100%;
-    cursor:pointer;
-} */
 
 .note-footer .btn-color {
     font-family: 'font-aw-solid';
@@ -70,7 +66,7 @@
     display:none;
 }
 
-.note-footer .btn-del::before{
+.note-footer .btn-delete::before{
     content: '\f2ed';
 }
 .note-footer .btn-img::before{
@@ -85,6 +81,4 @@
 
     content: '\f031';
 }
-
-
 

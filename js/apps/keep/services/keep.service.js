@@ -3,12 +3,15 @@ import { utilService } from '../../../services/util.service.js';
 export const keepService = {
     getNotes,
     saveNote,
-    deleteNote,
+    deleteNotePermanently,
     setNoteType,
     getNoteById,
     updateNote,
     getEmptyNote,
     getNewTask,
+    markNoteDeleted,
+    restoreNote,
+    toggleNotePin
 };
 
 const KEEP_NOTES_KEY = 'keepNotes';
@@ -42,14 +45,44 @@ function updateNote(note) {
         return storageService.put(KEEP_NOTES_KEY, note);
 }
 
-function deleteNote(id) {
-    return storageService.remove(KEEP_NOTES_KEY, id);
+function toggleNotePin(id){
+    return getNoteById(id)
+    .then(note => {
+        note.isPinned = !note.isPinned;
+        return storageService.put(KEEP_NOTES_KEY, note);
+    })
 }
 
-function setNoteType(id, noteType) {
+function markNoteDeleted(id) {
+    return getNoteById(id)
+    .then(note => {
+        note.isDeleted = true
+        note.isPinned = false
+        return storageService.put(KEEP_NOTES_KEY, note);
+    })
+    
+}
+
+function restoreNote(id){
+    return getNoteById(id)
+    .then(note => {
+        note.isDeleted = false
+        return storageService.put(KEEP_NOTES_KEY, note);
+    })
+}
+
+function deleteNotePermanently(id){
+    return getNoteById(id)
+    .then(note => {
+    return storageService.remove(KEEP_NOTES_KEY, id);
+    })
+}
+
+function setNoteType(id, noteType, bgColor) {
     return storageService.get(KEEP_NOTES_KEY, id).then((note) => {
         if (note.type === noteType) return;
         note.type = noteType;
+        note.style.bgColor = bgColor;
         note.info = _setInfoType(noteType);
         storageService.put(KEEP_NOTES_KEY, note);
         return note;
@@ -61,10 +94,9 @@ function getNewTask() {
     return Promise.resolve(emptyTask);
 }
 
-function getEmptyNote(noteType = 'noteTxt', bgColor) {
-    console.log('noteType service:', noteType)
+function getEmptyNote(noteType = 'noteTxt', bgColor='#fcfcfc') {
     const info = _setInfoType(noteType);
-    return _createNewNote(noteType, { title: '', info, bgColor }).then((note) => note)
+    return _createNewNote(noteType, info, bgColor ).then((note) => note)
 }
 
 function _setInfoType(noteType) {
@@ -73,17 +105,18 @@ function _setInfoType(noteType) {
     if (noteType === 'noteTodo') return { todos: [{ txt: '', doneAt: null, id: utilService.makeId() }] };
 }
 
-function _createNewNote(noteType, { title, info, bgColor }) {
+function _createNewNote(noteType, info, bgColor) {
     const note = {
         type: noteType,
         id: utilService.makeId(),
-        title,
+        title : '',
         isPinned: false,
         label: '', // Maybe- or DELETE
         info: info,
         style: {
             bgColor,
         },
+        isDeleted:false,
     };
 
     return Promise.resolve(note);
@@ -95,16 +128,15 @@ function _createKeepNotes() {
             type: 'noteImg',
             id: utilService.makeId(),
             title: 'Blender I want-kenwood mx457',
-            isPinned: false,
+            isPinned: true,
             label: '', // Maybe- or DELETE
             info: {
                 url: '../../../imgs/keep/blender.jpg',
             },
             style: {
                 bgColor: '#fee7df',
-                // bgColor: '#BFC0D4',
             },
-   
+            isDeleted:true,
         },
         {
             type: 'noteTodo',
@@ -123,9 +155,9 @@ function _createKeepNotes() {
             },
             style: {
                 bgColor: '#6ebfb9',
-                // bgColor: '#CBA2BB',
-
             },
+            isDeleted:false,
+
         },
         {
             type: 'noteTxt',
@@ -138,8 +170,9 @@ function _createKeepNotes() {
             },
             style: {
                 bgColor: '#bee1e5',
-                // bgColor: '#C1B2CF',
             },
+            isDeleted:false,
+
         },
         {
             type: 'noteTxt',
@@ -151,23 +184,25 @@ function _createKeepNotes() {
                 txt: 'About the amazing fruits he brought yesterday to the meeting',
             },
             style: {
-                // bgColor: '#CDE6E7',
                 bgColor: '#f2c643',
             },
+            isDeleted:false,
+
         },
         {
             type: 'noteImg',
             id: utilService.makeId(),
             title: 'Amazing cake!',
-            isPinned: false,
+            isPinned: true,
             label: '', // Maybe- or DELETE
             info: {
                 url: '../../../imgs/keep/cake.jpg',
             },
             style: {
-                // bgColor: '#BFC0D4',
                 bgColor: '#ebeae6',
             },
+            isDeleted:false,
+
         },
         {
             type: 'noteTxt',
@@ -181,8 +216,9 @@ function _createKeepNotes() {
             },
             style: {
                 bgColor: '#bee1e5',
-                bgColor: '#C6D7DD',
             },
+            isDeleted:false,
+
         },
     ];
 }

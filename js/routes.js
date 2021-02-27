@@ -65,7 +65,7 @@ const routes = [
         component: keepApp,
         children:[
             {
-                path:'/',
+                path:'notes',
                 component: keepNotes,
             },
             {
@@ -78,6 +78,10 @@ const routes = [
             },
             {
                 path:'deleted',
+                component: keepDeleted,
+            },
+            {
+                path:'deleted/:noteId?',
                 component: keepDeleted,
             },
         ]
