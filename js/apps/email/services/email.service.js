@@ -14,7 +14,7 @@ const gMails = [
     isSent: false,
     isDeleted: false,
     sentAt: 1614381065992,
-    isStarred:false
+    isStarred:true
   },
   {
     id: utilService.makeId(),
@@ -41,7 +41,7 @@ const gMails = [
     isSent: false,
     isDeleted: false,
     sentAt: 1614381055992,
-    isStarred:false
+    isStarred:true
 
   },
   {
@@ -111,7 +111,7 @@ const gMails = [
     isSent: false,
     isDeleted: false,
     sentAt: 1590189152000,    
-    isStarred:false
+    isStarred:true
 
     
   },  {
@@ -135,11 +135,11 @@ const gMails = [
     to:'me@gmail.com',
     name:'Dropbox',
     from:'no-reply@dropboxmail.com',
-    isRead: false,
+    isRead: true,
     isSent: false,
     isDeleted: false,
     sentAt: 1614381055992,
-    isStarred:false
+    isStarred:true
 
   },
   {
@@ -195,7 +195,7 @@ const gMails = [
     isSent: false,
     isDeleted: false,
     sentAt: 1599174752000,
-    isStarred:false
+    isStarred:true
 
   },
   {
@@ -209,7 +209,7 @@ const gMails = [
     isSent: false,
     isDeleted: false,
     sentAt: 1552593930594,
-    isStarred:false
+    isStarred:true
 
   },
   {
@@ -224,6 +224,34 @@ const gMails = [
     isDeleted: false,
     sentAt: 1598569952000,
     isStarred:false
+
+  },
+  {
+    id: utilService.makeId(),
+    subject: 'hiiii',
+    body: 'how are yow?',
+    to:'me@gmail.com',
+    name:'Noy',
+    from:'me@gmail.com',
+    isRead: true,
+    isSent: true,
+    isDeleted: false,
+    sentAt: 1598569952000,
+    isStarred:false
+
+  },
+  {
+    id: utilService.makeId(),
+    subject: 'Dear Maya',
+    body: 'Hello, Im writing to you to say that I had real fun and looking forward to our next project together!',
+    to:'me@gmail.com',
+    name:'Noy',
+    from:'me@gmail.com',
+    isRead: false,
+    isSent: true,
+    isDeleted: false,
+    sentAt: 1598569952000,
+    isStarred:true
 
   },
 ];
@@ -266,9 +294,6 @@ function put(mail){
   return storageService.put(EMAIL_KEY,mail)
 }
 
-// function getEmptyMail(){
-//   return {from:'me@gmail.com', subject:'', body:''}
-// }
 
 function _createMail() {
   return {

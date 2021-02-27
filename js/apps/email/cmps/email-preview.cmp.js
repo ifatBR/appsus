@@ -10,7 +10,7 @@ export default {
       </div>
       <div class="name-tag" :class="getBgc">{{getTag}}</div>
       <span class="mail-name">{{mail.name}}</span>
-      <button class="mail-send"  @click.stop="setUrlQuery(mail)">send</button>
+      <span  @click.stop="setUrlQuery(mail)"><img class="mail-send" src="/imgs/note.png"></span>
 
                <div class="mail-body flex space-between">
                     <span class="mail-subject">{{mail.subject}}</span>

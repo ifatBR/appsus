@@ -35,6 +35,9 @@
   width: 100%;
   /* width: 1000px; */
 }
+.mail-send{
+  width: 25px;
+}
 
 .name-tag{
   padding: 5px 10px;
@@ -104,6 +107,11 @@ color: rgba(54, 50, 50, 0.507);
 .email-title-name{
   margin-left: 45px;
 }
+
+.email-title-send{
+  margin-left: 100px;
+}
+
 .email-title-subject {
   margin-left: 107px;
 }
