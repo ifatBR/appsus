@@ -17,7 +17,7 @@
     height: 60px;
     background-color: #fff;
     padding: 0 40px;
-    z-index: 1;
+    z-index: 5;
 }
 
 .shadow {
@@ -28,10 +28,20 @@
     height: 100%;
 }
 
+.hero{
+    height: 86vh;
+}
+
 .app-icon{
     opacity:50%;
     height:35px;
     margin-inline-end:40px;
+}
+
+.main-nav-bar-lnk{
+    display: flex;
+    align-items: center;
+
 }
 
 .main-nav-bar a{
@@ -51,10 +61,6 @@
 
 }
 
-.burger-nav-bar:before{
-    font-family: 'font-aw-solid';
-    content:'\f0c9';
-}
 
 .main-router-view{
     margin-top: 80px;
@@ -75,10 +81,10 @@
     margin: 60px auto;
     width:500px;
 }
-
+/* 
 .main-container .homepage{
     width:1060px;
-}
+} */
 
 .homepage img{
     float: right;
@@ -96,4 +102,121 @@
     padding-bottom:5px;
     color:#65676d;
     margin-bottom:20px;
+}
+
+.burger-nav-bar{
+    background-color: transparent;
+    border:none;
+    outline:none;
+    color:#7d7f83;
+    display:none;
+    font-size:1.15em;
+    cursor:pointer;
+}
+
+.burger-nav-bar:before{
+    font-family: 'font-aw-solid';
+    content:'\f0c9';
+}
+
+.burger-nav-bar:hover{
+    color:#559d99;
+}
+.burger-nav-bar:active{
+    color:#92949bd2;
+}
+
+
+@media (max-width:1080px){
+    .main-container{
+        width:860px;
+    }
+    .homepage h2{
+        font-size:2.8em;
+        margin-inline-end: unset;
+        padding:0 15px;
+
+    }
+    
+    .homepage  h1{
+        font-size:1.7em;
+    }
+    
+}
+
+
+@media (max-width:640px){
+
+    .burger-nav-bar{
+        display:block;
+    }
+
+
+    .main-nav-bar a:not(:last-child){
+        margin-inline-end: 0;
+    }
+
+    .main-nav-bar-lnk{
+        flex-direction: column;
+        position:fixed;
+        top:0px;
+        right: 0px;
+        visibility: hidden;
+        align-items: center;
+        width:150px;
+        background-color: rgb(248, 248, 248);
+        box-shadow: 2px -3px 3px 3px rgb(0 0 0 / 10%);
+        z-index: 6;
+    }
+
+    .main-nav-bar-lnk > *{
+        padding: 20px 0;
+        border-bottom: 1px solid rgba(226, 226, 226, 1);
+        width: 90%;
+        text-align: center;
+
+    }
+
+    .main-header h1{
+        font-size:1.7em;
+    }
+    .nav-bar-screen{
+        /* visibility: hidden; */
+        position:fixed;
+        top:0;
+        left:0;
+        bottom:0;
+        right:0;
+        z-index:1;
+        background-color: rgba(0, 0, 0, 0.6);
+
+    }
+
+    .show{
+        visibility: visible;
+    }
+
+
+    .homepage .upper-part{
+        flex-direction:column;
+        padding: 0 20px;
+    }
+    .homepage .headline{
+        width: 100%;
+        text-align: center;
+        margin:20px 0;
+    }
+
+    .homepage h2{
+        font-size:2em;
+        margin-inline-end: unset;
+        padding:0 15px;
+
+    }
+    
+    .homepage  h1{
+        font-size:1.3em;
+    }
+    
+    
 }
