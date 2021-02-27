@@ -39,6 +39,10 @@
     justify-content: space-evenly;
 }
 
+.grid {
+    display: grid;
+}
+
 /* FLEX-GROW */
 .flex-1{
     flex-grow:1;

@@ -13,6 +13,11 @@ import emailDetails from './apps/email/pages/email-details.cmp.js'
 import keepApp from './apps/keep/pages/keep-app.cmp.js'
 import keepNotes from './apps/keep/pages/keep-notes.cmp.js'
 import keepDeleted from './apps/keep/pages/keep-deleted.cmp.js'
+import bookApp from './apps/books/pages/book-app.cmp.js'
+import bookAdd from './apps/books/pages/book-add.cmp.js'
+import bookDetails from './apps/books/pages/book-details.cmp.js'
+import reviewAdd from './apps/books/pages/review-add.cmp.js'
+
 
 
 const routes = [
@@ -80,36 +85,28 @@ const routes = [
             },
         ]
     },
-//     // {
-//     //     path:'/book',
-//     //     component: bookApp,
-//     //     children:[
-//     //         {
-//     //             path:'/',
-//     //             component: books,
-//     //         },
-//     //         {
-//     //             path:'/books',
-//     //             component: books,
-//     //         },
-//     //         {
-//     //             path: '/about',
-//     //             component: about,
-//     //         },
-//     //         {
-//     //             path: '/book/addBooks',
-//     //             component: bookAdd
-//     //         },
-//     //         {
-//     //             path: '/book/:bookId',
-//     //             component: bookDetails,
-//     //         },
-//     //         {
-//     //             path: '/book/:bookId/:bookTitle/review',
-//     //             component: reviewAdd,
-//     //         },
-//     //     ]
-//     // },
+    {
+        path:'/books',
+        component: bookApp,
+        children:[
+            {
+                path:'/',
+                component: bookApp,
+            },
+            {
+                path: 'addBooks',
+                component: bookAdd,
+            },
+            {
+                path: ':bookId',
+                component: bookDetails,
+            },
+            {
+                path: ':bookId/:bookTitle/review',
+                component: reviewAdd,
+            },
+        ]
+    },
 ]
 
 export const myRouter = new VueRouter({routes});

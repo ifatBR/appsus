@@ -6,6 +6,7 @@ export default{
             <router-link to="/" @click.native="closeNavBar">Home</router-link>
             <router-link to="/email" @click.native="closeNavBar">Email</router-link>
             <router-link to="/keep/notes" @click.native="closeNavBar">Keep</router-link>
+            <router-link to="/books" @click.native="closeNavBar">Books</router-link>
             <router-link to="/about" @click.native="closeNavBar">About</router-link>
         </div>
         <button @click="openNavBar" class="burger-nav-bar"></button>

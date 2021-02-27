@@ -5,6 +5,7 @@
 @import url('keep/keep-app.css');
 @import url('email/email-main.css');
 @import url('about/about.css');
+@import url('books/books-app.css');
 
 .main-container {
     max-width: 1060px;
@@ -19,6 +20,17 @@
     background-color: #fff;
     padding: 0 40px;
     z-index: 5;
+}
+
+
+.user-msg {
+    position: absolute;
+    padding: 10px;
+    top:200px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index:1;
+    border:1px solid grey;
 }
 
 .shadow {
