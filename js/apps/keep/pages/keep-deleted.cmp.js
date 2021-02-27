@@ -2,7 +2,7 @@ import noteList from '../cmps/note-list.cmp.js'
 
 export default{
     template:`
-    <section class="main-container">   
+    <section class="">   
             <note-list :isShowDeleted="true" :isShowPinned="false"/>
     </section>
     `,

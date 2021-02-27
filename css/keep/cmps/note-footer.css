@@ -25,6 +25,7 @@
     color:grey;
 }
 
+.note-footer .btn-del.restore,
 .note-footer .btn-edit.save{
     font-weight: bold;
 }

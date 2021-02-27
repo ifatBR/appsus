@@ -5,10 +5,10 @@ export default {
     props:['isShowPinned', 'isShowDeleted'],
     template: `
     <section> 
-        <ul v-if="notes" class="notes-list clean-list">
+        <ul v-if="notes" class="notes-list">
             <li v-if="notes" v-for="(note) in notesToShow" :key="note.id" style="display:block;">
-                <note-preview :note="note" />
-            </li>
+                    <note-preview :note="note" />
+                </li>
         </ul>  
     </section>
     `,

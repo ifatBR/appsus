@@ -9,10 +9,10 @@ import notePin from './note-pin.cmp.js';
 export default {
     props:['currNote','isShowNoteEdit','isDeletedPage'],
     template: `
-    <section class="note-edit" v-bind:style="style" @click="openAddNewNote">
+    <!-- <transition  name="bounce" :class="{show-note-edit:isShowNoteEdit}"> -->
+    <section  class="note-edit"  v-bind:style="style" @click="openAddNewNote">
         <form @submit.prevent="saveNote" class="flex column" >
-            <button v-if="isShowNoteEdit&&!isDeletedPage" class="btn-pin-note" :class="{pinned:currNote.isPinned}" @click="pinNote" type="button">📌</button>
-            <!-- <note-pin v-if="isShowNoteEdit&&!isDeletedPage" :note="this.currNote"/> -->
+            <note-pin v-if="isShowNoteEdit&&!isDeletedPage" :note="this.currNote"/>
 
             <input v-if="isShowNoteEdit" type="text" class="title" v-model="title" placeholder="title"/>
             <component :isShowNoteEdit="isShowNoteEdit" class="note-edit-component" :is="componentType" :info="info" ></component>    
@@ -20,6 +20,7 @@ export default {
         </form>
         <note-delete :question="question" @approve="deleteNote" />
     </section>
+    <!-- </transition> -->
     `,
     data(){
         return{
@@ -30,18 +31,13 @@ export default {
             info:{},
             componentType:'edit-note-txt',
             question:null
-            // isShowDeleteApproval:false,
         }
     },
     created(){
-        if(!this.isShowNoteEdit) return;
-        this.showNoteDetails()
+        // if(!this.isShowNoteEdit) return;
+        // this.showNoteDetails()
     },
     methods:{
-        pinNote(){
-            this.currNote.isPinned = !this.currNote.isPinned;
-            console.log(this.currNote.isPinned);
-        },
         changeBgColor(color){
             this.bgColor=color;
         },
@@ -124,6 +120,12 @@ export default {
         // isDeletedPage(){
         //     return this.$route.fullPath.includes('delete')
         // }
+    },
+    watch:{
+        currNote(){
+            if(!this.isShowNoteEdit) return;
+            this.showNoteDetails()
+        }
     },
     components:{
         noteFooter,

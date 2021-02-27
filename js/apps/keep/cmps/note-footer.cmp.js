@@ -27,7 +27,7 @@ export default {
         <div class="flex space-between" v-if="isDeletedPage">
             <button @click.stop="closeNoteEdit" type="button" class="btn-del close">Close</button>
             <button @click.stop="restoreNote" type="button" class="btn-del restore">Restore note</button>
-            <button @click.stop="deletePermanently" type="button" class="btn-del del-permanent">Delete permanently</button>
+            <button @click.stop="deletePermanently" type="button" class="btn-del del-permanent">Delete</button>
         </div>
     </section>
     `,

@@ -7,9 +7,7 @@ export default {
     `,
     methods:{
         pinNote(){
-            eventBus.$emit('toggleNotePin', this.note.id)
-            // this.currNote.isPinned = !this.currNote.isPinned;
-            
+            eventBus.$emit('toggleNotePin', this.note.id)            
         },
     },
     computed:{

@@ -3,46 +3,63 @@
 @import "cmps/note-footer.css";
 @import "cmps/note-todo.css";
 @import "cmps/note-img.css";
+@import "cmps/keep-nav-bar.css";
 
 .keep-app{
     background-color: #fefefe;
     margin-bottom: 30px;;
+    margin-top:80px;
+    margin-left:80px;
+    margin-right:80px;
+
 }
 
 .keep-app .edit{
     z-index:2;
 }
+
+.note-new-screen.is-add-new,
 .note-edit-screen.is-edit{
     position:fixed;
     top:0;
     left:0;
     bottom:0;
     right:0;
-    background-color: rgba(0, 0, 0, 0.6);
     z-index:1;
 }
 
-.note-new-screen.is-add-new{
-    position:fixed;
-    top:0;
-    left:0;
-    bottom:0;
-    right:0;
-    z-index:1;
+.note-edit-screen.is-edit{ 
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.keep-header{
+    display: flex;
+    justify-content:flex-end;
+    align-items: center;
+    margin-bottom: 40px;
+
 }
 
 .keep-search{
     display:block;
-    margin:auto;
-    margin-bottom: 20px;;
 }
 
 .keep-search input{
-    margin-left: 40px;
-    border-radius: 10px;;
-    border:1px solid rgb(194, 194, 194);
+    /* margin-left: 40px; */
+    border-radius: 12px;;
+    border: 1px solid rgba(0, 0, 0, 0.431);
     outline: none;
-    font-size: 1em;
-    padding:5px 15px;
+    /* font-size: 1em; */
+    padding:5px 10px ;
+}
+
+
+
+
+.keep-search,
+.keep-sort,
+.keep-filter
+{
+    margin: 10px 20px;
 }
 

@@ -10,13 +10,19 @@ import keepSearch from '../cmps/keep-search.cmp.js';
 export default {
     template: `
         <section class="keep-app">
-            <keep-nav-bar @click.native="loadNotes"/>
-            <keep-search ></keep-search>
-            <note-edit v-if="currNote&&!isDeletedPage" :isDeletedPage="isDeletedPage" :currNote="currNote" class="edit new-note" :isShowNoteEdit="isAddNewNote" @openAddNewNote="openAddNewNote" @closeNoteEdit="closeNoteEdit" @loadNotes="loadNotes"  @getEmptyNote="getEmptyNote" @saveNote="saveNote"/>
-            <router-view class="keep-router-view"/>
-            <note-edit v-if="currNote&&isNoteEdit" :isDeletedPage="isDeletedPage" :currNote="currNote" class="edit edit-note" :isShowNoteEdit=true :class="{'is-edit':isNoteEdit}"  @closeNoteEdit="closeNoteEdit" @deleteNoteById="deleteNoteById"  @deletePermanently="deletePermanently" @setNoteType="setNoteType" @saveNote="saveNote"/>
-            <div class="note-edit-screen" v-show="isNoteEdit" :class="{'is-edit':isNoteEdit}" @click="closeNoteEdit"></div>
-            <div class="note-new-screen" v-show="isAddNewNote" :class="{'is-add-new':isAddNewNote}" @click="closeAddNewNote"></div>
+            <div class="keep-header flex">
+                <keep-search ></keep-search>
+            </div>
+            <div class="flex justify-center">
+                <keep-nav-bar @click.native="loadNotes"/>
+                <div>
+                    <note-edit v-if="currNote&&!isDeletedPage" :isDeletedPage="isDeletedPage" :currNote="currNote" class="edit new-note" :isShowNoteEdit="isAddNewNote" @openAddNewNote="openAddNewNote" @closeNoteEdit="closeNoteEdit" @loadNotes="loadNotes"  @getEmptyNote="getEmptyNote" @saveNote="saveNote"/>
+                    <router-view class="keep-router-view"/>
+                    <note-edit v-show="currNote&&isNoteEdit" :isDeletedPage="isDeletedPage" :currNote="currNote" class="edit edit-note" :isShowNoteEdit=true :class="{'is-edit':isNoteEdit}"  @closeNoteEdit="closeNoteEdit" @deleteNoteById="deleteNoteById"  @deletePermanently="deletePermanently" @setNoteType="setNoteType" @saveNote="saveNote"/>
+                </div>
+            </div>
+        <div class="note-edit-screen" v-show="isNoteEdit" :class="{'is-edit':isNoteEdit}" @click="closeNoteEdit"></div>
+        <div class="note-new-screen" v-show="isAddNewNote" :class="{'is-add-new':isAddNewNote}" @click="closeAddNewNote"></div>
         </section>
     `,
     data() {
@@ -125,7 +131,9 @@ export default {
             });
         },
         toggleNotePin(id) {
-            // this.currNote.isPinned = !this.currNote.isPinned;
+            this.currNote.isPinned = !this.currNote.isPinned;     
+            if(this.$route.params.noteId) return;
+                  
             keepService.toggleNotePin(id).then(() => {
                 this.loadNotes();
             });
