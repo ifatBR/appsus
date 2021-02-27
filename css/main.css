@@ -30,7 +30,7 @@
 }
 
 .hero {
-    /* height: 86vh; */
+    height: 90vh;
 }
 
 .app-icon {
@@ -127,12 +127,15 @@
         width: 840px;
     }
     .homepage h2 {
-        font-size: 2.6em;
+        font-size: 2.5em;
         margin-inline-end: 20px;
     }
 
     .homepage h1 {
         font-size: 1.4em;
+    }
+    .hero{
+        height: 75vh;
     }
 }
 
@@ -143,9 +146,12 @@
     .main-container {
         width: 660px;
     }
+    .headline{
+        margin-inline-end: 20px;;
+    }
     .homepage h2 {
-        font-size: 1.9em;
-        margin-inline-end: 20px;
+        font-size: 1.7em;
+        
     }
 
     .homepage h1 {
@@ -156,10 +162,13 @@
         font-size: 1.7em;
     }
     .hero {
-        /* height: 70vh; */
+        height: 60vh;
     }
 
     @media (max-width: 680px) {
+        .main-container {
+            width: 450px;
+        }
         .burger-nav-bar {
             display: block;
         }
@@ -206,11 +215,12 @@
         .homepage .upper-part {
             flex-direction: column;
             padding: 0 20px;
+            width: 100%;
         }
         .homepage .headline {
             width: 100%;
             text-align: center;
-            margin: 60px 0;
+            margin: 20px 0;
         }
 
         .homepage h2 {
@@ -222,5 +232,13 @@
         .homepage h1 {
             font-size: 1.6em;
         }
+        .hero{
+            height: unset;
+            width: 100%;
+        }
     }
+}
+
+@media (max-width: 320px){
+
 }

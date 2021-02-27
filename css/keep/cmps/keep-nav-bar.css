@@ -4,7 +4,7 @@
     
 }
 
-.keep-nav-bar a {
+.keep-nav-bar-lnk a {
     width: 100px;
     padding-bottom: 10px;
     margin: 10px 20px;
@@ -12,31 +12,62 @@
     text-decoration: none;
 }
 
-.keep-nav-bar  a > *{
+.keep-nav-bar-lnk a > *{
     /* display: inline-block; */
     padding:5px 10px;
     border-radius: 10px;
     color: #6dbeb8;
     
 }
-.keep-nav-bar  h3{
+.keep-nav-bar-lnk h3{
     text-align: center;
     font-family:'quicksand-regular';
     font-weight: normal;
 }
 
 
-.keep-nav-bar  a.marked>*{
+.keep-nav-bar-lnk  a.marked>*{
     /* background-color: #f0eeee; */
     border:1px solid #f9a960;
 }
 
-.keep-nav-bar a >* span{
+.keep-nav-bar-lnk a >* span{
     color:#dc9593
 }
 
-.keep-nav-bar a >*:hover{
+.keep-nav-bar-lnk a >*:hover{
     background-color: #fdf2f2;
     color:#b8b7b7;
-    
+}
+
+.burger-keep-nav-bar{
+    color: #559d99;
+    background-color: transparent;
+    border: none;
+    outline: none;;
+    display: none;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+.burger-keep-nav-bar:before {
+    font-family: 'font-aw-solid';
+    content: '\f0c9';
+}
+
+
+.burger-keep-nav-bar:active {
+    color: #92949bd2;
+}
+
+
+
+@media (max-width: 680px) {
+    .burger-keep-nav-bar {
+        display: block;
+    }
+
+    .keep-nav-bar-lnk{
+        visibility:hidden;
+    }
 }

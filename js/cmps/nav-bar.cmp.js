@@ -3,13 +3,13 @@ export default{
     <nav class="main-nav-bar flex align-center">
         <img class="app-icon" :src="icon">
         <div class="main-nav-bar-lnk" :class="show">   
-            <router-link to="/" @click.native="toggleNavBar">Home</router-link>
-            <router-link to="/email" @click.native="toggleNavBar">Email</router-link>
-            <router-link to="/keep/notes" @click.native="toggleNavBar">Keep</router-link>
-            <router-link to="/about" @click.native="toggleNavBar">About</router-link>
+            <router-link to="/" @click.native="closeNavBar">Home</router-link>
+            <router-link to="/email" @click.native="closeNavBar">Email</router-link>
+            <router-link to="/keep/notes" @click.native="closeNavBar">Keep</router-link>
+            <router-link to="/about" @click.native="closeNavBar">About</router-link>
         </div>
-        <button @click="toggleNavBar" class="burger-nav-bar"></button>
-        <div class="nav-bar-screen" v-show="isShow" @click="toggleNavBar"></div>
+        <button @click="openNavBar" class="burger-nav-bar"></button>
+        <div class="nav-bar-screen" v-show="isShow" @click="closeNavBar"></div>
 
     </nav>
     `,
@@ -19,8 +19,11 @@ export default{
         }
     },
     methods:{
-        toggleNavBar(){
-            this.isShow =!this.isShow;
+        openNavBar(){
+            this.isShow =true;
+        },
+        closeNavBar(){
+            this.isShow =false;
         }
     },
     computed:{
