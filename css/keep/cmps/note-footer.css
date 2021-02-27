@@ -59,6 +59,10 @@
     opacity:0;
 }
 
+.note-footer .btn-email::before {
+    content: '\f0e0';
+}
+
 .note-footer .btn-color::before {
     content: '\f53f';
 }

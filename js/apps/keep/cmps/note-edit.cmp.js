@@ -15,7 +15,7 @@ export default {
             <note-pin v-if="isShowNoteEdit&&!isDeletedPage" :note="this.currNote"/>
             <input v-if="isShowNoteEdit" type="text" class="title" v-model="title" placeholder="title"/>
             <component v-if="isShowNoteEdit" :isShowNoteEdit="isShowNoteEdit" class="note-edit-component" :is="componentType" :info="info" ></component>    
-            <note-footer v-if="isShowNoteEdit" :isDeletedPage="isDeletedPage" @saveNote="saveNote" @changeBgColor="changeBgColor" @setNoteType="setNoteType" @closeNoteEdit="closeNoteEdit" @deleteNote="approveMoveToDeleted" @deletePermanently="approveDeletePermanently" />
+            <note-footer v-if="isShowNoteEdit" :isDeletedPage="isDeletedPage" @saveNote="saveNote" @changeBgColor="changeBgColor" @setNoteType="setNoteType" @closeNoteEdit="closeNoteEdit" @deleteNote="approveMoveToDeleted" @deletePermanently="approveDeletePermanently"/>
         </form>
         <note-delete :question="question" @approve="deleteNote" />
     </section>
@@ -104,8 +104,6 @@ export default {
                 return
             }
             this.$emit('deleteNoteById',this.currNote.id)
-
-
         }
         // copyNote(){
 
