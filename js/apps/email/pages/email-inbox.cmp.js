@@ -19,7 +19,7 @@ export default {
   },
   methods: {
     getMails() {
-      emailService.query().then((mails) => (this.mails = mails)).then(()=>this.setSort('date'))
+      emailService.query().then((mails) => (this.mails = mails)).then(()=>this.filterBy=null).then(()=>this.setSort('date'))
     },
     openMail(id) {
       emailService.getById(id).then((currMail) => console.log(currMail));
@@ -45,7 +45,7 @@ export default {
   },
   computed: {
     mailsToShow() {
-      if (!this.filterBy && !this.searchBy && !this.sortBy) return this.mails;
+      if (!this.filterBy && !this.searchBy && !this.sortBy || this.filterBy === 'all') return this.mails;
       if (this.filterBy) {
         const val = this.filterBy === 'read' ? true : false;
         const mailsToShow = this.mails.filter((mail) => mail.isRead === val);

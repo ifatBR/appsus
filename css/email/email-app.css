@@ -1,18 +1,31 @@
 .email-app *{
-    color: rgba(0, 0, 0, 0.657);
+/* background-color: aqua; */
+/* width: 100%; */
+
 }
 .email-app{
     display: flex;
     flex-direction: column;
+    color: rgba(0, 0, 0, 0.657);
+    font-weight: bold;
 }
 
 .main-email-app{
-    display: flex;
-    flex-direction: row;
+    justify-content: center;
 }
 
 
+.email-main-container{
+    width: 70vw; 
+    margin-top: 20px;
+}
+
+
+
+
 .email-header{
+    width: 90.5vw; 
+    display: flex;
     justify-content:flex-end;
     align-items: center;
 }
@@ -26,46 +39,46 @@
 
 
 .aside-nav-bar{
-    border: rgba(218, 186, 255, 0.198) 1px solid;;
+    font-weight: normal;
+    margin-right: 30px;
 }
 
 .aside-nav-bar>*:not(.compose-btn){
     width: 100px;
     padding: 10px;
     margin: 10px 20px;
-    border-bottom: rgba(218, 186, 255, 0.198) 1px solid;;
+    border-bottom: #6dbeb8 1px solid;;
     text-decoration: none;
 }
 
 .aside-nav-bar>*:not(.compose-btn):hover{
-    background-color: rgba(147, 147, 255, 0.164);
-
+    /* background-color: #dc9593; */
+    
+}
+.aside-nav-bar>*{
+color: #6dbeb8;
 }
 
 .compose-btn{
     cursor: pointer;
     width: 120px;
-    color: rgb(65, 59, 59);
+    color: #f9a960;
     /* background-color: rgba(94, 94, 246, 0.103); */
     background-color: rgba(255, 255, 255, 0.178);
     padding: 10px;
     margin: 10px;
     border-radius: 12px;
     text-decoration: none;
-    box-shadow: rgba(129, 18, 255, 0.424) 0px 0px 2px 0px;
+    box-shadow: #f9a960 0px 0px 2px 0px;
 }
 
 .compose-btn:hover{
-    background-color: rgba(129, 18, 255, 0.267)
+    background-color: rgba(0, 0, 0, 0.034);
 }
 
 .unread-count{
     margin-left: 10px;
-    color: palevioletred;
-}
-
-.email-main-container{
-    width: 80vw; 
+    color: #dc9593;
 }
 
 

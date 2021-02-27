@@ -6,14 +6,15 @@ export default{
     props:['mail'],
     template:`
     <section class="email-edit" >   
-        <button class="clean-btn" @click="closeEdit">X</button>
-        new mail
-        <form class=" flex column align-center" @submit.prevent="send"> 
-        <p> To <input @reply="value='aa'" type="email" v-model="mail.from" required></p>
-        <p>Subject <input type="text" v-model="mail.subject"></p>
-        <p><textarea type="text" v-model="mail.body" cols="40" rows="10"></textarea></p>
-        <button class="clean-btn">Send</button>
+        <div class="email-edit-title flex space-between"><h2>New Message</h2><button class="close-edit-btn clean-btn" @click="closeEdit">X</button></div>
+        <div class="email-edit-main">
+        <form class=" flex column center" @submit.prevent="send"> 
+        <p class="compose-to"><span> To </span> <input type="email" v-model="mail.from" required></p>
+        <p class="compose-subject"><span>Subject </span><input type="text" v-model="mail.subject"></p>
+        <p><textarea class="compose-body" type="text" v-model="mail.body" cols="50" rows="16"></textarea></p>
+        <button class="compose-send clean-btn">Send</button>
         </form>
+    </div>
     </section>
     `,
     methods:{

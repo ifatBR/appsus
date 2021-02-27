@@ -4,6 +4,7 @@ export default{
     template:`
             <section class="email-filter" @change="setFilter($event)">
                    <select class="input"> 
+                       <option >All</option>
                        <option >Read</option>
                        <option >Unread</option>
                    </select>

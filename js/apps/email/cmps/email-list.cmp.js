@@ -5,9 +5,17 @@ import { eventBus } from '../../../services/event-bus.service.js';
 export default {
   props: ['mails'],
   template: `
-    <section>   
-        <ul class="email-list clean-list flex column">
-            <li v-for="mail in mails" @click="getLink(mail.id), mailClicked(mail, mail.id)">
+    <section class="email-list">   
+      <ul class="clean-list flex column">
+        <li class="email-title flex">
+          <span class="email-title-del">Del</span>
+          <span class="email-title-star">Star</span>
+          <span class="email-title-tag">Tag</span>
+          <span class="email-title-name">Name</span>
+          <span class="email-title-subject">Subject</span>
+          <span class="email-title-date">Date</span>
+        </li>
+        <li v-for="mail in mails" @click="getLink(mail.id), mailClicked(mail, mail.id)" :class="{ 'mail-read' : mail.isRead}">
                  <!-- <router-link :to="'/email/'+mail.id"><email-preview :mail="mail" /></router-link> -->
                  <email-preview :mail="mail" />
 
@@ -25,6 +33,12 @@ export default {
       emailService.put(mail)
         .then(()=>eventBus.$emit('mailClicked', id));
     },
+    // computed:{
+      // isRead(){
+      //   console.log(this.mail);
+      //   if (this.mail.isRead) return 'mail-read'
+      // }
+    // }
     // deleteMail(id) {
     //   eventBus.$emit('deleteMail', id);
     // },

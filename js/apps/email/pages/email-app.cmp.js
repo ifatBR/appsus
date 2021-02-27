@@ -15,7 +15,7 @@ export default{
             <email-search />
         </header>
 
-        <div class="main-email-app">
+        <div class="main-email-app flex">
         <email-nav-bar @editMail="openEdit" ></email-nav-bar>
         <email-edit v-if="editMail" :mail="mailToCompose" />
         <router-view />

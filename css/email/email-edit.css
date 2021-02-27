@@ -1,31 +1,89 @@
-.email-edit{
-    background-color: rgb(204, 177, 255);
-    position: fixed;
-    bottom: 0;
-    right: 50px;
-    width: 400px;
-    height: 400px;
+.email-edit {
+  background-color: rgb(255, 255, 255);
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  box-shadow: -1px 1px 5px 6px rgb(0 0 0 / 33%);
+  position: fixed;
+  bottom: 0;
+  right: 50px;
+  width: 400px;
+  height: 400px;
+  z-index: 1;
 }
 
-.email-edit>*{
-    margin: 10px;
+.email-edit-main{
+    padding: 0px 10px;
+    
 }
 
-.email-edit>input{
-    margin: 50px;
+.email-edit-title{
+    align-items: center;
+    background-color: #65676d;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    padding: 6px 10px;
+    color: white;
 }
 
-.mail-details{
-    width: 100%;
-    margin-left: 50px;
-    line-height: 30px;
+.close-edit-btn{
+    background-color: inherit;
+    color: white;
 }
 
-.mail-details button{
-    width: 100px;
-    cursor: pointer;
-    border-radius: 12px;
-    background-color: white;
+.mail-details {
+  width: 100%;
+  margin-left: 50px;
+  line-height: 30px;
+}
+
+.mail-details button {
+  width: 100px;
+  cursor: pointer;
+  border-radius: 12px;
+  background-color: white;
+  outline: none;
+  margin-top: 50px;
+}
+
+.compose-to,
+.compose-subject {
+  display: flex;
+  width: 100%;
+  background-color: white;
+  padding: 5px;
+  box-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.212);
+}
+
+.compose-to{
+margin-bottom: 1px;
+}
+.compose-to > input,
+.compose-subject > input {
+  width: 100%;
+  border: none;
+  outline: none;
+}
+
+.compose-to > span,
+.compose-subject > span {
+  margin-right: 10px;
+  font-weight: normal;
+}
+.compose-body{
+    border: none;
     outline: none;
-    margin-top: 50px;
+    margin-top: 10px;
+}
+
+.compose-send {
+  padding: 5px 10px;
+  border-radius: 4px;
+  background-color: #6dbeb8;
+  color: white;
+  letter-spacing: 1px;
+  margin-top: 10px;
+}
+
+.compose-send:hover {
+    box-shadow: inset 0px 1px 9px 0px white;
 }

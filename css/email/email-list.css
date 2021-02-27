@@ -1,15 +1,18 @@
 
 
-.email-list{
-  max-width: 1180px;
-  margin: 20px;
+.mail-li > *:not(:first-child){
+  /* background-color: aqua; */
+  margin-left: 50px;
 }
 
 .mail-li {
+  display: flex;
+  align-items: center;
   cursor: pointer;
   padding: 10px;
   box-shadow: 0px 1px 0px 0px rgb(0 0 0 / 20%);
-  max-width: 1180px;
+  /* font-weight: bold; */
+  /* background-color: black; */
 }
 
 .mail-li:hover {
@@ -17,12 +20,43 @@
   box-shadow: 1px 2px 1px 0px rgb(0 0 0 / 20%);
 }
 
+.mail-read{
+  background-color: rgba(0, 0, 0, 0.055);
+  /* font-weight: 500; */
+  font-weight: normal;
+}
+
+
 .mail-name {
   width: 150px;
 }
 
 .mail-body {
-  width: 700px;
+  width: 100%;
+  /* width: 1000px; */
+}
+
+.name-tag{
+  padding: 5px 10px;
+  display: flex;
+  width: 30px;
+  align-items: center;
+  justify-content: center;
+  /* background-color: aqua; */
+  border-radius: 50%;
+  color: white;
+}
+
+.orange{
+  background-color: #f9a960;
+}
+
+.blue{
+  background-color: #6dbeb8;
+}
+
+.pink{
+  background-color: #dc9593;
 }
 
 .mail-options > *{
@@ -33,13 +67,14 @@ margin: 5px;
 .star::before{
   font-family: 'font-aw-solid';
   content: '\f005';
+  margin-left: 10px;
 }
 .star.not-starred::before{
 color: rgba(54, 50, 50, 0.507);
 }
 
 .star.starred::before{
-  color: rgb(240, 211, 46);
+  color: #f2c643;
 }
 
 .mail-li-btn{
@@ -49,4 +84,29 @@ color: rgba(54, 50, 50, 0.507);
   cursor: pointer;
   outline: none;
   border: none;
+}
+
+.email-title{
+  padding: 7px 0px;
+  box-shadow:0px 0px 3px 0px rgb(0 0 0 / 33%) ;
+  margin-bottom: 5px;
+}
+
+.email-title-del{
+  margin-left: 10px;
+}
+.email-title-star {
+  margin-left: 20px;
+}
+.email-title-tag{
+  margin-left: 45px;
+}
+.email-title-name{
+  margin-left: 45px;
+}
+.email-title-subject {
+  margin-left: 107px;
+}
+.email-title-date {
+  margin-left: 605px;
 }
