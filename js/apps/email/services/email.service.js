@@ -294,9 +294,6 @@ function put(mail){
   return storageService.put(EMAIL_KEY,mail)
 }
 
-// function getEmptyMail(){
-//   return {from:'me@gmail.com', subject:'', body:''}
-// }
 
 function _createMail() {
   return {
