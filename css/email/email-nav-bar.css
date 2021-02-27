@@ -1,0 +1,44 @@
+
+.compose-btn{
+    cursor: pointer;
+    width: 120px;
+    color: #f9a960;
+    /* background-color: rgba(94, 94, 246, 0.103); */
+    background-color: rgba(255, 255, 255, 0.178);
+    padding: 10px;
+    margin: 10px;
+    border-radius: 12px;
+    text-decoration: none;
+    box-shadow: #f9a960 0px 0px 2px 0px;
+}
+
+.compose-btn:hover{
+    background-color: rgba(0, 0, 0, 0.034);
+}
+
+.aside-nav-bar{
+    font-weight: normal;
+    margin-right: 30px;
+}
+
+.aside-nav-bar>*:not(.compose-btn){
+    width: 100px;
+    padding: 8px;
+    margin: 10px 20px;
+    border-bottom: #6dbeb8 1px solid;;
+    text-decoration: none;
+}
+
+.aside-nav-bar>*:not(.compose-btn):hover{
+    /* background-color: #dc9593; */
+    
+}
+.aside-nav-bar>*{
+color: #6dbeb8;
+}
+
+
+.aside-nav-bar .marked {
+    background-color: rgba(0, 0, 0, 0.034);
+    border-radius: 20px;
+}
