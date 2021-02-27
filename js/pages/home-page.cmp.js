@@ -8,7 +8,7 @@ export default{
                 <h1>E-mails , notes & books</h1>
                 <h2>Where style and efficiency  come together</h2>
             </div>
-            <img src="../../imgs/hero1.jpg" class="logo">
+            <img src="imgs/hero1.jpg" class="logo">
         </div> 
             <div class="lower-part"> 
             </div>
