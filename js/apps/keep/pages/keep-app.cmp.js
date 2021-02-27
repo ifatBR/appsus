@@ -156,7 +156,8 @@ export default {
         },
         createNoteByQuery(query){
             keepService.createNoteByQuery(query)
-            .then(() => {
+            .then(query => {
+                this.$router.push({ path: '/keep/notes', query: {} });
                 this.loadNotes()
             })
         }

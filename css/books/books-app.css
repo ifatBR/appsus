@@ -1,0 +1,482 @@
+/* @font-face {
+    src: url(../fonts/AkayaKanadaka-Regular.ttf);
+    font-family: akaya;
+}
+
+@font-face {
+    src: url(../fonts/Quicksand-Regular.ttf);
+    font-family: quicksand;
+}
+
+@font-face {
+    src: url(../fonts/Quicksand-Bold.ttf);
+    font-family: 'quicksand-bold';
+}
+
+@font-face {
+    src: url(../fonts/Quicksand-Light.ttf);
+    font-family: 'quicksand-light';
+} */
+/* 
+* {
+    box-sizing: border-box;
+} */
+/* body {
+    margin: 0;
+    background-color: rgba(230, 230, 230, 0.603);
+    background-image: url(../img/background3.jpg);
+    background-blend-mode:saturation;
+    background-size: cover;
+    background-attachment: fixed;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    margin-block-start: 0;
+    margin-block-end: 0;
+    font-size: 1em;
+    font-family: quicksand, sans-serif;
+} */
+
+/* button,
+a,
+router-link {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+label {
+    font-size: 1.15em;
+    font-family: quicksand-bold, sans-serif;
+    color: rgb(71, 71, 71);
+}
+
+input {
+    font-size: 1em;
+    border-radius: 5px;
+    border: none;
+    padding: 5px;
+} */
+
+/* .main-header {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 0px 50px 0px 5px;
+    margin-bottom: 20px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+.main-container {
+    width: 1060px;
+    margin: 0 auto;
+} */
+
+/* COMPONENETS */
+/* 
+.home-page-container .nav-bar {
+    position: absolute;
+    right: 40px;
+    top: 20px;
+} */
+
+/* .main-header .logo {
+    margin: 20px 0 30px 20px;
+    font-size: 3em;
+    color: rgb(255, 177, 60);
+    font-family: Akaya, cursive;
+} */
+/* 
+.nav-bar > * {
+    color: rgb(252, 247, 232);
+    text-decoration: none;
+    font-family: quicksand-light, sans-serif;
+    font-size: 1.15em;
+} */
+/* 
+.nav-bar > *:not(:last-child) {
+    margin-inline-end: 20px;
+} */
+
+/* .main-header.home-page-header {
+    background-color: transparent;
+    margin-top: 20px;
+    margin-left: 30px;
+    font-weight: bold;
+} */
+
+/* .home-page-container {
+    background-image: url(../img/background1.jpg);
+    background-size: cover;
+    height: 100vh;
+    width: 100%;
+} */
+
+/* .home-page-container .headlines {
+    position: absolute;
+    top: 70px;
+    right: 20%;
+}
+
+.home-page-container .headlines > * {
+    font-family: Akaya, cursive;
+    text-shadow: 3px 3px 7px rgba(0, 0, 0, 0.3);
+}
+
+.home-page-container h1 {
+    font-size: 8em;
+    color: rgb(255, 251, 240);
+    margin-inline-end: 30px;
+}
+
+.home-page-container h2 {
+    font-weight: 300;
+    font-size: 3.5em;
+    color: rgb(255, 251, 240);
+    margin-inline-start: 220px;
+} */
+
+.book-container{
+    /* padding-top:150px; */
+}
+
+.book-container .books {
+    margin-top: 150px;
+}
+
+.filter-container {
+    margin-bottom: 20px;
+}
+
+.price-filter-container > *:not(:last-child) {
+    margin-inline-end: 20px;
+}
+
+.book-add-container{
+    margin:auto;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.book-list {
+    grid-template-columns: repeat(auto-fill, 200px);
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.book-list > * {
+    width: 200px;
+    background-color: rgb(255, 255, 255);
+    padding: 20px 10px;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 0 0 7px rgba(0, 0, 0, 0.2);
+}
+
+.book-preview {
+    height: 100%;
+}
+
+.book-preview h2 {
+    font-size: 1.25em;
+    color: rgb(255, 177, 60);
+    color: rgb(71, 71, 71);
+    font-weight: bold;
+    text-transform: capitalize;
+    font-family: 'quicksand-bold';
+    margin-bottom: 20px;
+    height: 2.5em;
+}
+
+.book-preview img {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.book-preview h3 {
+    color: rgb(146, 145, 145);
+    font-family: 'quicksand-light';
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgb(206, 206, 206);
+}
+
+.book-preview .details {
+    font-family: 'quicksand-bold';
+    background-color: transparent;
+    border: none;
+    outline: none;
+    padding-top: 20px;
+    color: rgb(71, 71, 71);
+    font-size: 0.9em;
+}
+
+.book-details {
+    background-color: white;
+    padding: 30px;
+    padding-top: 150px;
+    border-radius: 10px;
+    height: 95vh;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.281);
+    position:relative;
+}
+
+.book-details .paging-container{
+    position: absolute;
+    top:120px;
+    right:20px;
+}
+
+.book-details .paging-container .prev{
+    margin-inline-end: 20px;;
+}
+
+.book-details .info {
+    position: relative;
+    width: 40%;
+}
+
+.book-details .lnk-review{
+    font-family: 'quicksand-bold';
+    color: rgb(110, 110, 110);
+    margin-top:40px;
+    display:inline-block;
+    font-size: 1.05em;
+    border:1px solid rgb(110, 110, 110);
+    border-radius: 5px;
+    padding:5px 10px;
+    position:absolute;
+    right: 40px;
+    bottom:30px;
+}
+
+.book-details .back {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    position: absolute;
+    left: 30px;
+    bottom: 20px;
+    font-size: 1.15em;
+    color: grey;
+    font-family: 'quicksand';
+}
+
+.book-details h2 {
+    font-size: 1.25em;
+    margin-bottom: 1.25em;
+}
+
+.book-details img {
+    margin-right: 50px;
+    height: 300px;
+}
+
+.book-details .sale {
+    height: 150px;
+    position: absolute;
+    left: -250px;
+    bottom: 30px;
+}
+
+.book-details h3 {
+    color: rgb(241, 151, 14);
+    margin-bottom: 0.3em;
+    font-size: 1.05em;
+}
+.book-details h3,
+.book-details p {
+    display: inline-block;
+    text-transform: capitalize;
+    margin-inline-end: 20px;
+}
+
+.book-details span {
+    font-weight: bold;
+}
+
+.book-details p {
+    margin-bottom: 1.05em;
+}
+
+.add-review{
+    margin:auto;
+    margin-top:150px;
+    height:500px;
+}
+
+.add-review h2{
+    color:rgb(241, 151, 14);
+    text-shadow: 0 0 3px rgba(59, 59, 59, 0.096);
+    margin-bottom:20px;
+    font-size:1.75em;
+    text-transform: capitalize;
+    font-family:'quicksand-bold', sans-serif;
+}
+
+.user-info{
+    margin-right: 60px;
+    width:30%;
+}
+
+.user-review{
+    flex-grow:2;
+}
+
+.add-review label{
+    margin-bottom: 7px;
+    display:block;
+    color:rgb(112, 112, 112);
+
+}
+
+.add-review input:not(:last-child){
+    margin-bottom:20px;
+}
+
+.rate-container{
+    width: 80px;
+    color:rgb(59, 59, 59);
+
+}
+
+.rate-container button{
+    background-color: transparent;
+    border:none;
+    outline:none;
+    font-size: 1.25em;
+    font-weight: bold;
+    color:rgb(59, 59, 59);
+
+}
+
+.button-container button{
+    border-radius: 10px;
+    outline: none;
+    border:none;
+}
+.button-container .submit{
+    color:rgb(241, 151, 14);
+    background-color: rgba(0, 0, 0, 0.6);
+    font-weight:bold;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.07);
+    padding:10px 20px;
+    font-size:1em;
+
+}
+
+.button-container .close{
+    font-size:0.9em;
+
+    background-color: transparent;
+}
+
+.button-container button:not(:last-child){
+    margin-inline-end: 20px;
+}
+
+.about-container{
+    margin:auto;
+    margin-top:150px;
+    width: 40%;
+    white-space:pre-line;
+}
+
+.about-container h2{
+    font-size: 1.25em;;
+}
+
+.about-container p{
+    margin-bottom: 50px;
+}
+
+.about-container img{
+    width: 30%;
+    filter: grayscale(100%);
+
+}
+
+.book-add{
+    margin-top: 150px;
+}
+
+.google-books-container{
+    width: 300px;
+    margin:auto;
+}
+
+.google-books-filtered{
+    text-align: left;
+}
+
+.google-books-filtered button{
+    font-size: 1.15em;
+    background-color: transparent;
+    border:1px solid black;
+    outline: none;
+    margin-inline-end: 10px;
+}
+
+
+/* USER - MSG */
+
+.success{
+    background-color: rgb(30, 207, 30);
+}
+
+.error{
+    background-color: red;
+}
+/* HELPERS */
+/* .flex {
+    display: flex;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+
+/* .column {
+    flex-direction: column;
+} */
+/* ALIGNMET/CONTENT */
+/* .justify-center {
+    justify-content: center;
+}
+.align-center {
+    align-items: center;
+}
+.space-between {
+    justify-content: space-between;
+}
+.space-evenly {
+    justify-content: space-evenly;
+} */
+/* FLEX-GROW */
+/* .flex-1 {
+    flex-grow: 1;
+}
+
+.grid {
+    display: grid;
+}
+*/
+.cheap {
+    color: green;
+}
+
+.expensive {
+    color: red;
+} 
+/* LIST */
+/* .clean-list {
+    list-style: none;
+    margin-top: 0;
+    padding: 0;
+} */

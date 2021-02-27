@@ -126,8 +126,7 @@ function createNoteByQuery(query){
     .then(note =>{ 
         if(query.title) note.title =query.title
         if(query.txt) note.info.txt = query.txt
-        saveNote(note);
-        return note;
+        return saveNote(note)       
     })
 }
 

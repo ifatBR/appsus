@@ -13,6 +13,11 @@ import emailDetails from './apps/email/pages/email-details.cmp.js'
 import keepApp from './apps/keep/pages/keep-app.cmp.js'
 import keepNotes from './apps/keep/pages/keep-notes.cmp.js'
 import keepDeleted from './apps/keep/pages/keep-deleted.cmp.js'
+import bookApp from './apps/books/pages/book-app.cmp.js'
+import bookAdd from './apps/books/pages/book-add.cmp.js'
+import bookDetails from './apps/books/pages/book-details.cmp.js'
+import reviewAdd from './apps/books/pages/review-add.cmp.js'
+
 
 
 const routes = [
@@ -24,92 +29,86 @@ const routes = [
         path:'/about',
         component: about
     },
+    // {
+    //     path:'/email',
+    //     component: emailApp,
+    //     children:[
+    //         {
+    //             path:'/',
+    //             component: emailInbox,
+    //         },
+    //         {
+    //             path:'inbox',
+    //             component: emailInbox,
+    //         },
+    //         {
+    //             path:'starred',
+    //             component: emailStarred,
+    //         },
+    //         {
+    //             path:'sent',
+    //             component: emailSent,
+    //         },
+    //         {
+    //             path:'draft',
+    //             component: emailDraft,
+    //         },
+    //         {
+    //             path:'trash',
+    //             component: emailTrash,
+    //         },
+    //         {
+    //             path:':emailId',
+    //             component: emailDetails,
+    //         },
+    //     ]
+    // },
+    // {
+    //     path:'/keep',
+    //     component: keepApp,
+    //     children:[
+    //         {
+    //             path:'notes',
+    //             component: keepNotes,
+    //         },
+    //         {
+    //             path:'notes/:noteId?',
+    //             component: keepNotes,
+    //         },
+    //         {
+    //             path:'deleted',
+    //             component: keepDeleted,
+    //         },
+    //         {
+    //             path:'deleted/:noteId?',
+    //             component: keepDeleted,
+    //         },
+    //     ]
+    // },
     {
-        path:'/email',
-        component: emailApp,
+        path:'/books',
+        component: bookApp,
         children:[
             {
                 path:'/',
-                component: emailInbox,
+                component: bookApp,
             },
             {
-                path:'inbox',
-                component: emailInbox,
-            },
-            {
-                path:'starred',
-                component: emailStarred,
-            },
-            {
-                path:'sent',
-                component: emailSent,
-            },
-            {
-                path:'draft',
-                component: emailDraft,
-            },
-            {
-                path:'trash',
-                component: emailTrash,
-            },
-            {
-                path:':emailId',
-                component: emailDetails,
+                path: 'addBooks',
+                component: bookAdd
             },
         ]
+
+            // {
+            //     path: ':bookId',
+            //     component: bookDetails,
+            // },
+            // {
+            //     path: ':bookId/:bookTitle/review',
+            //     component: reviewAdd,
+            // },
+        // ]
     },
-    {
-        path:'/keep',
-        component: keepApp,
-        children:[
-            {
-                path:'notes',
-                component: keepNotes,
-            },
-            {
-                path:'notes/:noteId?',
-                component: keepNotes,
-            },
-            {
-                path:'deleted',
-                component: keepDeleted,
-            },
-            {
-                path:'deleted/:noteId?',
-                component: keepDeleted,
-            },
-        ]
-    },
-//     // {
-//     //     path:'/book',
-//     //     component: bookApp,
-//     //     children:[
-//     //         {
-//     //             path:'/',
-//     //             component: books,
-//     //         },
-//     //         {
-//     //             path:'/books',
-//     //             component: books,
-//     //         },
-//     //         {
-//     //             path: '/about',
-//     //             component: about,
-//     //         },
-//     //         {
-//     //             path: '/book/addBooks',
-//     //             component: bookAdd
-//     //         },
-//     //         {
-//     //             path: '/book/:bookId',
-//     //             component: bookDetails,
-//     //         },
-//     //         {
-//     //             path: '/book/:bookId/:bookTitle/review',
-//     //             component: reviewAdd,
-//     //         },
-//     //     ]
-//     // },
 ]
 
 export const myRouter = new VueRouter({routes});

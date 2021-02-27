@@ -38,3 +38,13 @@
     src: url('../fonts/Quicksand-Regular.ttf');
     font-family: 'quicksand-Regular';
 }
+
+@font-face {
+    src: url(../fonts/Quicksand-Bold.ttf);
+    font-family: 'quicksand-bold';
+}
+
+@font-face {
+    src: url(../fonts/Quicksand-Light.ttf);
+    font-family: 'quicksand-light';
+}

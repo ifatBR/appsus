@@ -47,7 +47,7 @@ export default {
 
     methods: {
     setUrlQuery() {
-        this.$router.push({ path: '/keep/notes', query: { title: 'very important', txt: 'dont forget to take the dog' } });
+        this.$router.push({ path: '/keep/notes', query: { title: 'very unimportant', txt: 'dont forget to take the dog' } });
     },
 },
 };
