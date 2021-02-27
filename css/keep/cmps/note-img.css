@@ -17,7 +17,7 @@
 .img-container {
     position:relative;
     padding:0 20px;
-    margin:auto;
+    /* margin:auto; */
 
 }
 .btn-change-img{
@@ -28,14 +28,19 @@
    height: 100%;
 }
 
+.image-upload-container{
+    margin:auto;
+}
+
+
 .image-upload-container >*:not(:last-child){
-    margin-inline-end: 20px;
+    margin-inline-end: 40px;
 }
 
 .edit-note-img-container [name="image-url"]{
     display: inline-block;
     /* background-color: tomato; */
-    width:100px;
+    width:70px;
     max-width: 250px;
 }
 

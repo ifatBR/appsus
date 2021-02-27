@@ -4,6 +4,7 @@
     column-fill: balance;
 
     padding: 5px;
+    clear:both;
     /* direction: rtl; */
     /* max-width: 1000px; */
     /* display:grid;
@@ -27,7 +28,7 @@
 }
 
 .note-preview {
-    width: 200px;
+    /* width: 200px; */
     break-inside: avoid-column;
 
     position: relative;
@@ -40,18 +41,17 @@
 
 .note-preview .title {
     margin-bottom: 15px;
-    font-family: 'balsamic-bold-italic';
-    color: rgb(68, 68, 68);
+
 }
 
 .note-preview ul {
     padding-left: 5px;
 }
-
+.note-preview .title,
 .note-preview p,
 .note-preview li {
     font-family: 'balsamic';
-    color: rgb(68, 68, 68);
+    color: rgb(85, 84, 84);
 }
 
 .note-preview p:first-letter,
