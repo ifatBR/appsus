@@ -28,7 +28,7 @@ export default{
     },
     computed:{
         icon(){
-            let filePath = '../../../imgs/';
+            let filePath = 'imgs/';
             const routerPath = this.$route.path;
             if(routerPath.includes('email')) return filePath+'email.png'
             if(routerPath.includes('note')) return filePath+'note.png'
