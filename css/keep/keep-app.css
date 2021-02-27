@@ -33,6 +33,7 @@
 }
 
 .keep-header{
+    width: 100%;
     display: flex;
     justify-content:flex-end;
     align-items: center;
@@ -54,12 +55,8 @@
 }
 
 
-
-
-.keep-search,
-.keep-sort,
-.keep-filter
-{
+.keep-search{
     margin: 10px 20px;
+    margin-inline-end: 40px;
 }
 

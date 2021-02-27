@@ -9,8 +9,7 @@ import notePin from './note-pin.cmp.js';
 export default {
     props:['currNote','isShowNoteEdit','isDeletedPage'],
     template: `
-    <!-- <transition  name="bounce" :class="{show-note-edit:isShowNoteEdit}"> -->
-    <section  class="note-edit"  v-bind:style="style" @click="openAddNewNote">
+    <section class="note-edit" v-bind:style="style" @click="openAddNewNote">
         <form @submit.prevent="saveNote" class="flex column" >
             <note-pin v-if="isShowNoteEdit&&!isDeletedPage" :note="this.currNote"/>
 
@@ -20,7 +19,6 @@ export default {
         </form>
         <note-delete :question="question" @approve="deleteNote" />
     </section>
-    <!-- </transition> -->
     `,
     data(){
         return{
@@ -34,8 +32,8 @@ export default {
         }
     },
     created(){
-        // if(!this.isShowNoteEdit) return;
-        // this.showNoteDetails()
+        if(!this.isShowNoteEdit) return;
+        this.showNoteDetails()
     },
     methods:{
         changeBgColor(color){
@@ -120,12 +118,6 @@ export default {
         // isDeletedPage(){
         //     return this.$route.fullPath.includes('delete')
         // }
-    },
-    watch:{
-        currNote(){
-            if(!this.isShowNoteEdit) return;
-            this.showNoteDetails()
-        }
     },
     components:{
         noteFooter,

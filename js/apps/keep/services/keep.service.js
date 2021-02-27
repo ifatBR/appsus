@@ -78,13 +78,13 @@ function deleteNotePermanently(id){
     })
 }
 
+
 function setNoteType(id, noteType, bgColor) {
     return storageService.get(KEEP_NOTES_KEY, id).then((note) => {
         if (note.type === noteType) return;
         note.type = noteType;
         note.style.bgColor = bgColor;
         note.info = _setInfoType(noteType);
-        storageService.put(KEEP_NOTES_KEY, note);
         return note;
     });
 }
@@ -228,7 +228,7 @@ function _createKeepNotes() {
         {
             type: 'noteTodo',
             id: utilService.makeId(),
-            title: 'bleach hair!',
+            title: 'bleach hair',
             isPinned: false,
             label: '', // Maybe- or DELETE
             info: {

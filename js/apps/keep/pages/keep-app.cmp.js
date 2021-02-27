@@ -18,7 +18,7 @@ export default {
                 <div>
                     <note-edit v-if="currNote&&!isDeletedPage" :isDeletedPage="isDeletedPage" :currNote="currNote" class="edit new-note" :isShowNoteEdit="isAddNewNote" @openAddNewNote="openAddNewNote" @closeNoteEdit="closeNoteEdit" @loadNotes="loadNotes"  @getEmptyNote="getEmptyNote" @saveNote="saveNote"/>
                     <router-view class="keep-router-view"/>
-                    <note-edit v-show="currNote&&isNoteEdit" :isDeletedPage="isDeletedPage" :currNote="currNote" class="edit edit-note" :isShowNoteEdit=true :class="{'is-edit':isNoteEdit}"  @closeNoteEdit="closeNoteEdit" @deleteNoteById="deleteNoteById"  @deletePermanently="deletePermanently" @setNoteType="setNoteType" @saveNote="saveNote"/>
+                    <note-edit v-if="currNote&&isNoteEdit" :isDeletedPage="isDeletedPage" :currNote="currNote" class="edit edit-note" :isShowNoteEdit=true :class="{'is-edit':isNoteEdit}"  @closeNoteEdit="closeNoteEdit" @deleteNoteById="deleteNoteById"  @deletePermanently="deletePermanently" @setNoteType="setNoteType" @saveNote="saveNote"/>
                 </div>
             </div>
         <div class="note-edit-screen" v-show="isNoteEdit" :class="{'is-edit':isNoteEdit}" @click="closeNoteEdit"></div>
@@ -118,6 +118,16 @@ export default {
                 })
                 .then((note) => (this.currNote = note));
         },
+        // setNoteType(params) {
+        //     const { id, noteType, bgColor } = params;
+        //     keepService
+        //         .setNoteType(id, noteType, bgColor)
+        //         .then((note) => {
+        //             this.currNote = null;
+        //             return note;
+        //         })
+        //         .then((note) => (this.currNote = note));
+        // },
 
         getEmptyNote(params) {
             if (this.currNote.noteType === params.noteType) return;

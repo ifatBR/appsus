@@ -1,10 +1,9 @@
 .note-edit{
     width: 450px;
     margin:auto;
-    border-radius: 10px;
+    border-radius: 5px;
     padding:20px 25px;
     box-shadow:1px 1px 3px rgb(0 0 0 / 40%);
-    /* box-shadow:0px 0px 3px 0px rgb(0 0 0 / 33%); */
     margin-bottom:30px;
     font-size: 1em;
     position:relative;
