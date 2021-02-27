@@ -5,7 +5,7 @@ export default {
   template: `
     <section  class="mail-li flex space-between" >   
       <div class="mail-options flex space-between">
-        <button @click.stop="deleteMail(mail.id)" class="mail-li-btn">X</button>
+        <button @click.stop="deleteMail(mail)" class="mail-li-btn">X</button>
         <span @click.stop="StarMail(mail)" class="star" :class="starColor"><i class="fal fa-star"></i></span>
       </div>
       <div class="name-tag" :class="getBgc">{{getTag}}</div>
@@ -20,8 +20,8 @@ export default {
     </section>
     `,
   methods: {
-    deleteMail(id) {
-      eventBus.$emit('deleteMail', id);
+    deleteMail(mail) {
+      eventBus.$emit('deleteMail', mail);
     },
     StarMail(mail) {
       eventBus.$emit('starMail', mail);
