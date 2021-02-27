@@ -29,62 +29,62 @@ const routes = [
         path:'/about',
         component: about
     },
-    // {
-    //     path:'/email',
-    //     component: emailApp,
-    //     children:[
-    //         {
-    //             path:'/',
-    //             component: emailInbox,
-    //         },
-    //         {
-    //             path:'inbox',
-    //             component: emailInbox,
-    //         },
-    //         {
-    //             path:'starred',
-    //             component: emailStarred,
-    //         },
-    //         {
-    //             path:'sent',
-    //             component: emailSent,
-    //         },
-    //         {
-    //             path:'draft',
-    //             component: emailDraft,
-    //         },
-    //         {
-    //             path:'trash',
-    //             component: emailTrash,
-    //         },
-    //         {
-    //             path:':emailId',
-    //             component: emailDetails,
-    //         },
-    //     ]
-    // },
-    // {
-    //     path:'/keep',
-    //     component: keepApp,
-    //     children:[
-    //         {
-    //             path:'notes',
-    //             component: keepNotes,
-    //         },
-    //         {
-    //             path:'notes/:noteId?',
-    //             component: keepNotes,
-    //         },
-    //         {
-    //             path:'deleted',
-    //             component: keepDeleted,
-    //         },
-    //         {
-    //             path:'deleted/:noteId?',
-    //             component: keepDeleted,
-    //         },
-    //     ]
-    // },
+    {
+        path:'/email',
+        component: emailApp,
+        children:[
+            {
+                path:'/',
+                component: emailInbox,
+            },
+            {
+                path:'inbox',
+                component: emailInbox,
+            },
+            {
+                path:'starred',
+                component: emailStarred,
+            },
+            {
+                path:'sent',
+                component: emailSent,
+            },
+            {
+                path:'draft',
+                component: emailDraft,
+            },
+            {
+                path:'trash',
+                component: emailTrash,
+            },
+            {
+                path:':emailId',
+                component: emailDetails,
+            },
+        ]
+    },
+    {
+        path:'/keep',
+        component: keepApp,
+        children:[
+            {
+                path:'notes',
+                component: keepNotes,
+            },
+            {
+                path:'notes/:noteId?',
+                component: keepNotes,
+            },
+            {
+                path:'deleted',
+                component: keepDeleted,
+            },
+            {
+                path:'deleted/:noteId?',
+                component: keepDeleted,
+            },
+        ]
+    },
     {
         path:'/books',
         component: bookApp,
@@ -95,19 +95,17 @@ const routes = [
             },
             {
                 path: 'addBooks',
-                component: bookAdd
+                component: bookAdd,
+            },
+            {
+                path: ':bookId',
+                component: bookDetails,
+            },
+            {
+                path: ':bookId/:bookTitle/review',
+                component: reviewAdd,
             },
         ]
-
-            // {
-            //     path: ':bookId',
-            //     component: bookDetails,
-            // },
-            // {
-            //     path: ':bookId/:bookTitle/review',
-            //     component: reviewAdd,
-            // },
-        // ]
     },
 ]
 

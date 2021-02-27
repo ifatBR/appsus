@@ -7,7 +7,7 @@ export default {
             <img :src="book.thumbnail"/>
             <h3>{{formattedPrice}}</h3>
         </div>
-        <router-link class="details" :to="'books/book/'+book.id">More details</router-link>
+        <router-link class="details" :to="'books/'+book.id">More details</router-link>
     </section>
     `,
     computed:{
