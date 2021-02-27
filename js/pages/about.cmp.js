@@ -27,11 +27,12 @@ export default {
                 <img class="about-me-img" src="imgs/about/me-noy.jpg">
                 <h3>Noy Hason</h3>
                 <p>
-                    I'm a junior Fullstack developer, trying my way in the computers world!
+                    A junior Fullstack developer, trying my way in the computers world!
                     Until recently I was a Math-teacher in High-School but at the start of my second year of teaching I realised something was missing and it was the challenge I like to confront so match!
-                    In the computers-world I challenge myself everyday by hard-working and high-thinking and enjoy every second of coding!
+                    In the computers-world I challenge myself everyday by hard-working & high-thinking and enjoy every second of coding!
                 </p>
                 <ul class="social-links clean-list flex">
+                <i class="fab fa-facebook"></i>
                     <li><a class="fa fa-facebook" target="_blank" href="https://www.facebook.com/noy.hason"></a></li>
                     <li><a class="fa fa-linkedin" target="_blank" href="https://www.linkedin.com/in/noy-hason-a3a97a202/"></a></li>
                 </ul>
