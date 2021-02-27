@@ -2,15 +2,16 @@ export default {
     props: ['info'],
     template: `
         <div class="flex edit-note-img-container">
-            <div class="img-container">
-                <img v-if="info.url" :src="info.url" class="edit-note-img" alt="The link is broken"/>
-                <input type="file" class="btn-change-img absolute-full" name="image" @change="setNoteImg" />     
-            </div>
-            <form v-if="!info.url" class="image-upload-container flex align-center" @submit.prevent>
+        <form v-if="!info.url" class="image-upload-container flex align-center" @submit.prevent>
                 <input type="text" name="image-url" @change="setImageUrl" v-model="imgUrl" placeholder="type url"/> 
                 <h3>or</h3> 
                 <button type="button" class="btn-upload-image">upload-image<input type="file" class="file-input" name="image" @change="setNoteImg" placeholder="upload image"/></button>
             </form>
+            <div class="img-container">
+                <img v-if="info.url" :src="info.url" class="edit-note-img" alt="The link is broken"/>
+                <input type="file" class="btn-change-img absolute-full" name="image" @change="setNoteImg" />     
+            </div>
+
         </div>
     `,
     data() {
