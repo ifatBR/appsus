@@ -9,6 +9,11 @@
 }
 
 @font-face{
+    src: url('../fonts/fa-brands-400.ttf');
+    font-family: 'font-aw-brands';
+}
+
+@font-face{
     src: url('../fonts/keep/BalsamiqSans-Bold.ttf');
     font-family: 'balsamic-bold';
 }
