@@ -6,6 +6,7 @@ export default{
         <router-link  class="logo flex align-center" to="/">
             <h1>Appsus</h1>
         </router-link>
+        
         <nav-bar/>
     </header>
     `,
