@@ -43,28 +43,31 @@
     margin-bottom: 25px;
 }
 
-  .fa {
-    /* padding: 10px 15px; */
+  .social-link {
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 30px;
     width: 50px;
     height: 50px;
-    text-align: center;
     text-decoration: none;
     margin-left: 30px;
     background: #6dbeb8;
     color: white;
     border-radius: 50%;
-  }
-  .fa:hover {
-    background: rgba(0, 0, 0, 0.157);
-  }
+}
 
-  .fab.fa-facebook::after{
+
+.social-link:hover {
+    background: rgba(0, 0, 0, 0.157);
+}
+
+.fab.fa-facebook::before{
     font-family: 'font-aw-brands';
-        color: azure;
-      content: '\f09a';
-      /* color: aquamarine; */
+    content: '\f39e';
+}
+
+.fab.fa-linkedin::before{
+    font-family: 'font-aw-brands';
+      content: '\f0e1';
   }

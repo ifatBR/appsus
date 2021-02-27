@@ -19,8 +19,8 @@ export default {
                 expresses my passion for this art.
                 </p>
                 <ul class="social-links clean-list flex">
-                    <li><a class="fa fa-facebook" target="_blank" href="https://www.facebook.com/ifat.braslavi/"></a></li>
-                    <li><a class="fa fa-linkedin" target="_blank" href="http://linkedin.com/in/ifat-braslavi-232aab79"></a></li>
+                    <li><a class="social-link" target="_blank" href="https://www.facebook.com/ifat.braslavi/"><i class="fab fa-facebook"></i></a></li>
+                    <li><a class="social-link" target="_blank" href="http://linkedin.com/in/ifat-braslavi-232aab79"><i class="fab fa-linkedin"></i></a></li>
                 </ul>
              </article>
             <article class="about-me about-Noy">
@@ -31,10 +31,11 @@ export default {
                     Until recently I was a Math-teacher in High-School but at the start of my second year of teaching I realised something was missing and it was the challenge I like to confront so match!
                     In the computers-world I challenge myself everyday by hard-working & high-thinking and enjoy every second of coding!
                 </p>
+                
                 <ul class="social-links clean-list flex">
-                <i class="fab fa-facebook"></i>
-                    <li><a class="fa fa-facebook" target="_blank" href="https://www.facebook.com/noy.hason"></a></li>
-                    <li><a class="fa fa-linkedin" target="_blank" href="https://www.linkedin.com/in/noy-hason-a3a97a202/"></a></li>
+                
+                    <li><a class="social-link" target="_blank" href="https://www.facebook.com/noy.hason"><i class="fab fa-facebook"></i></a></li>
+                    <li><a class="social-link" target="_blank" href="https://www.linkedin.com/in/noy-hason-a3a97a202/"><i class="fab fa-linkedin"></i></a></li>
                 </ul>
             </article>
         
