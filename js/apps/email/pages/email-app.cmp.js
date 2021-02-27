@@ -9,16 +9,18 @@ import { eventBus } from '../../../services/event-bus.service.js';
 export default{
     template:`
     <section class="email-app">   
+        <button class="burger-btn clean-btn" @click="toggleNavBar" ></button>
         <header class="email-header flex"> 
             <email-sort />
             <email-filter />
             <email-search />
         </header>
-
+        
         <div class="main-email-app flex">
-        <email-nav-bar @editMail="openEdit" ></email-nav-bar>
-        <email-edit v-if="editMail" :mail="mailToCompose" />
-        <router-view />
+            <div class="main-screen" v-show="isNavBarOpen" @click="closeNavBar"></div>
+            <email-nav-bar class="aside-nav-bar" @editMail="openEdit" :class="{'nav-bar-is-open':!isNavBarOpen, 'nav-bar-is-close':isNavBarOpen}"  @closeNavBar="closeNavBar"></email-nav-bar>
+            <email-edit v-if="editMail" :mail="mailToCompose" />
+            <router-view />
 
         </div>
     </section>
@@ -26,7 +28,8 @@ export default{
     data(){
         return{
             editMail:false,
-            mailToCompose:null
+            mailToCompose:null,
+            isNavBarOpen:false,
         }
     },
     methods:{
@@ -44,11 +47,27 @@ export default{
         },
         closeEdit(){
             this.editMail=false
+        },
+        toggleNavBar(){
+            this.isNavBarOpen = !this.isNavBarOpen
+        },
+        closeNavBar(){
+            this.isNavBarOpen=false
+        },
+        createMailByQuery(query){
+            
+        }
+    },
+    computed:{
+        isShow(){
+            return{isNavBarOpen:(!this.isNavBarOpen)}
         }
     },
     created(){
         eventBus.$on('closeEdit',this.closeEdit)
         eventBus.$on('reply',this.openReply)
+        console.log(this.$route);
+        if(this.$route.query.title || this.$route.query.txt) this.createMailByQuery(this.$route.query);
     },
     components:{
         emailInbox,

@@ -13,7 +13,7 @@ export default {
           <span class="email-title-tag">Tag</span>
           <span class="email-title-name">Name</span>
           <span class="email-title-subject">Subject</span>
-          <span class="email-title-date">Date</span>
+          <!-- <span class="email-title-date">Date</span> -->
         </li>
         <li v-for="mail in mails" @click="getLink(mail.id), mailClicked(mail, mail.id)" :class="{ 'mail-read' : mail.isRead}">
                  <!-- <router-link :to="'/email/'+mail.id"><email-preview :mail="mail" /></router-link> -->

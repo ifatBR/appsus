@@ -31,9 +31,13 @@
 }
 
 .mail-details {
-  width: 100%;
+  width: 65vw;
   margin-left: 50px;
   line-height: 30px;
+  background-color: rgba(0, 0, 0, 0.102);
+  padding: 20px;
+  margin: 10px 40px;
+  border-radius: 12px;
 }
 
 .mail-details button {
@@ -86,4 +90,11 @@ margin-bottom: 1px;
 
 .compose-send:hover {
     box-shadow: inset 0px 1px 9px 0px white;
+}
+
+@media screen and (max-width: 680px) {
+}
+@media screen and (max-width: 860px) {
+}
+@media screen and (max-width: 1080px) {
 }
