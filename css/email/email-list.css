@@ -63,7 +63,7 @@
 margin: 5px;
 }
 
-=
+
 .star::before{
   font-family: 'font-aw-solid';
   content: '\f005';

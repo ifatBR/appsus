@@ -55,7 +55,14 @@ export default{
             this.isNavBarOpen=false
         },
         createMailByQuery(query){
-            
+            console.log(query);
+            this.mailToCompose = {
+                to: '',
+                subject: query.title,
+                body: query.txt,
+            }
+            console.log(this.mailToCompose );
+            this.editMail = true
         }
     },
     computed:{

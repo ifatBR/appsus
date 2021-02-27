@@ -12,6 +12,7 @@ export default {
           <span class="email-title-star">Star</span>
           <span class="email-title-tag">Tag</span>
           <span class="email-title-name">Name</span>
+          <span class="email-title-send">Send</span>
           <span class="email-title-subject">Subject</span>
           <!-- <span class="email-title-date">Date</span> -->
         </li>
@@ -33,6 +34,7 @@ export default {
       emailService.put(mail)
         .then(()=>eventBus.$emit('mailClicked', id));
     },
+
     // computed:{
       // isRead(){
       //   console.log(this.mail);
