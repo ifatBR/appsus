@@ -1,7 +1,6 @@
 import keepNavBar from '../cmps/keep-nav-bar.cmp.js';
 import keepNotes from './keep-notes.cmp.js';
 import keepDeleted from './keep-deleted.cmp.js';
-import keepReminder from './keep-reminder.cmp.js';
 import noteEdit from '../cmps/note-edit.cmp.js';
 import { keepService } from '../services/keep.service.js';
 import { eventBus } from '../../../services/event-bus.service.js';
@@ -34,6 +33,8 @@ export default {
         };
     },
     created() {
+        if(this.$route.query.title || this.$route.query.txt ) this.createNoteByQuery(this.$route.query);
+ 
         this.loadNotes();
         keepService.getEmptyNote().then((note) => (this.currNote = note));
         eventBus.$on('deleteNote', this.deleteNote);
@@ -42,6 +43,8 @@ export default {
         eventBus.$on('addNewTask', this.addNewTask);
         eventBus.$on('deletePermanently', this.deletePermanently);
         eventBus.$on('toggleNotePin', this.toggleNotePin);
+        eventBus.$on('sendNoteByEmail', this.sendNoteByEmail)
+
     },
     destroyed() {
         eventBus.$off('deleteNote', this.deleteNote);
@@ -50,6 +53,8 @@ export default {
         eventBus.$off('addNewTask', this.addNewTask);
         eventBus.$off('deletePermanently', this.deletePermanently);
         eventBus.$off('toggleNotePin', this.toggleNotePin);
+        eventBus.$off('sendNoteByEmail', this.sendNoteByEmail)
+
     },
     methods: {
         openNoteEdit(note) {
@@ -118,16 +123,6 @@ export default {
                 })
                 .then((note) => (this.currNote = note));
         },
-        // setNoteType(params) {
-        //     const { id, noteType, bgColor } = params;
-        //     keepService
-        //         .setNoteType(id, noteType, bgColor)
-        //         .then((note) => {
-        //             this.currNote = null;
-        //             return note;
-        //         })
-        //         .then((note) => (this.currNote = note));
-        // },
 
         getEmptyNote(params) {
             if (this.currNote.noteType === params.noteType) return;
@@ -148,6 +143,23 @@ export default {
                 this.loadNotes();
             });
         },
+        sendNoteByEmail(){
+            keepService.getNoteAsQuery(this.currNote.id).then(query => {
+                this.closeNoteEdit();
+                if(!query) {
+                    eventBus.$emit('show-msg', 'Can\'t send images')
+                    return
+                };//send msg
+                this.$router.push({path:'/keep/notes',query})
+                console.log('query:', query)
+            })
+        },
+        createNoteByQuery(query){
+            keepService.createNoteByQuery(query)
+            .then(() => {
+                this.loadNotes()
+            })
+        }
     },
     computed: {
         isDeletedPage() {
@@ -164,7 +176,6 @@ export default {
         keepNavBar,
         keepNotes,
         keepDeleted,
-        keepReminder,
         noteEdit,
         keepSearch,
     },

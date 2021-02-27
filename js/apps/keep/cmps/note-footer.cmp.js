@@ -17,6 +17,7 @@ export default {
                 <button class="btn-edit save">Save</button>
             </div>
             <button  class="btn-edit btn-fa btn-color"><input @change="setBgColor" type="color" v-model="color" value="#BFC0D4" list="colorList" /></button>
+            <button  v-if="isNoteEditing" class="btn-edit btn-fa btn-email" @click="sendNoteByEmail" type="button"></button>
             <button v-if="isNoteEditing" @click="deleteNote" type="button" class="btn-edit btn-fa btn-delete"></button>
             <div  class="note-types">
                 <button @click="setNoteType('noteTxt')" type="button" class="btn-edit btn-fa btn-txt"></button>
@@ -55,6 +56,9 @@ export default {
         },
         deletePermanently(){
             this.$emit('deletePermanently',this.$route.params.noteId);
+        },
+        sendNoteByEmail(){
+            eventBus.$emit('sendNoteByEmail', this.$route.params.noteId)
         }
     },
     computed:{

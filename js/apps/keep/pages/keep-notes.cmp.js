@@ -7,6 +7,7 @@ export default{
             <note-list :isShowDeleted="false" :isShowPinned="false"/>
     </section>
     `,
+
     components:{
         noteList,
     },

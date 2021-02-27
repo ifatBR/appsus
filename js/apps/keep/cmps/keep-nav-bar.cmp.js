@@ -32,7 +32,6 @@ export default {
     },
     computed: {
         isNotes() {
-            console.log(this.$route.path.includes('notes'));
             return this.$route.path.includes('notes');
         },
         show(){
