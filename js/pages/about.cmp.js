@@ -40,14 +40,6 @@ export default {
             </article>
         
         </div>
-            <button @click="setUrlQuery">url query</button>
-
     </div>
     `,
-
-    methods: {
-    setUrlQuery() {
-        this.$router.push({ path: '/email', query: { title: 'very important', txt: 'dont forget to take the dog' } });
-    },
-},
 };

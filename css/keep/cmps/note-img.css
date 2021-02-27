@@ -17,8 +17,7 @@
 .img-container {
     position:relative;
     padding:0 20px;
-    /* margin:auto; */
-
+    margin:auto;
 }
 .btn-change-img{
    opacity:0;
@@ -29,7 +28,8 @@
 }
 
 .image-upload-container{
-    margin:auto;
+    margin-left:30%;
+
 }
 
 

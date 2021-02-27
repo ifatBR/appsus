@@ -145,19 +145,17 @@ export default {
         },
         sendNoteByEmail(){
             keepService.getNoteAsQuery(this.currNote.id).then(query => {
-                this.closeNoteEdit();
                 if(!query) {
                     eventBus.$emit('show-msg', 'Can\'t send images')
                     return
-                };//send msg
-                this.$router.push({path:'/keep/notes',query})
-                console.log('query:', query)
+                };
+                this.$router.push({path: '/email/',query:query})
             })
         },
         createNoteByQuery(query){
             keepService.createNoteByQuery(query)
             .then(query => {
-                this.$router.push({ path: '/keep/notes', query: {} });
+                this.$router.push({ path: '/keep/notes', query: {}});
                 this.loadNotes()
             })
         }
