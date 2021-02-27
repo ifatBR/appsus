@@ -10,11 +10,11 @@ export default {
     props:['currNote','isShowNoteEdit','isDeletedPage'],
     template: `
     <section class="note-edit" v-bind:style="style" @click="openAddNewNote">
+        <h2 v-if="!isShowNoteEdit" class="add-note-headline">Add a note. . .</h2>
         <form @submit.prevent="saveNote" class="flex column" >
             <note-pin v-if="isShowNoteEdit&&!isDeletedPage" :note="this.currNote"/>
-
             <input v-if="isShowNoteEdit" type="text" class="title" v-model="title" placeholder="title"/>
-            <component :isShowNoteEdit="isShowNoteEdit" class="note-edit-component" :is="componentType" :info="info" ></component>    
+            <component v-if="isShowNoteEdit" :isShowNoteEdit="isShowNoteEdit" class="note-edit-component" :is="componentType" :info="info" ></component>    
             <note-footer v-if="isShowNoteEdit" :isDeletedPage="isDeletedPage" @saveNote="saveNote" @changeBgColor="changeBgColor" @setNoteType="setNoteType" @closeNoteEdit="closeNoteEdit" @deleteNote="approveMoveToDeleted" @deletePermanently="approveDeletePermanently" />
         </form>
         <note-delete :question="question" @approve="deleteNote" />

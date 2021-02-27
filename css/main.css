@@ -28,6 +28,11 @@
     height: 100%;
 }
 
+.app-icon{
+    opacity:50%;
+    height:35px;
+    margin-inline-end:40px;
+}
 
 .main-nav-bar a{
     font-family: 'quicksand-Regular', sans-serif;

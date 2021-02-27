@@ -1,28 +1,43 @@
 .note-edit{
-    width: 450px;
+    width: 100%;
     margin:auto;
     border-radius: 5px;
     padding:20px 25px;
-    box-shadow:1px 1px 3px rgb(0 0 0 / 40%);
+    box-shadow:1px 1px 3px rgb(0 0 0 / 30%);
     margin-bottom:30px;
     font-size: 1em;
     position:relative;
     max-height:90vh;
-    overflow:auto;
 }
 
 
 .note-edit.is-edit{
+    border:unset;
+    overflow:auto;
+    height:unset;
     position:fixed;
     top:110px;
     left:50%;
     transform: translateX(-50%);
-    z-index: 2;
     width:500px;
     font-size:1.15em;
     max-height:70vh;
 }
 
+.note-edit.new-note{
+    z-index:2;
+}
+
+.note-edit.edit-note{
+    z-index:5;
+}
+
+
+.note-edit .add-note-headline{
+    /* color: #71a19e; */
+    color: #808080;
+    
+}
 .note-edit-component{
     margin-bottom: 15px
 }
@@ -44,6 +59,7 @@
     color:rgb(88, 88, 88);
     background-color: transparent;
 }
+
 
 
 .note-edit input{
@@ -94,6 +110,7 @@
 
 }
 
+
 .note-edit .free-txt{
     resize:none;
     width: 100%;
@@ -106,6 +123,7 @@
     left: 0;
 }
 
+
 .note-edit .edit-note-txt pre{
     min-height:1em;
     display: block;;
@@ -114,6 +132,7 @@
     word-wrap: break-word;
     visibility:hidden; 
 }
+
 
 .delete-approve{
     z-index: 2;

@@ -5,8 +5,8 @@
 }
 
 .keep-nav-bar a {
-    width: 130px;
-    padding: 10px;
+    width: 100px;
+    padding-bottom: 10px;
     margin: 10px 20px;
     border-bottom: #6dbeb8 1px solid;;
     text-decoration: none;
@@ -15,18 +15,20 @@
 .keep-nav-bar  a > *{
     /* display: inline-block; */
     padding:5px 10px;
-    border-radius: 2em;
+    border-radius: 10px;
     color: #6dbeb8;
-
+    
 }
 .keep-nav-bar  h3{
+    text-align: center;
     font-family:'quicksand-regular';
     font-weight: normal;
 }
 
 
 .keep-nav-bar  a.marked>*{
-    background-color: #f0eeee;
+    /* background-color: #f0eeee; */
+    border:1px solid #f9a960;
 }
 
 .keep-nav-bar a >* span{

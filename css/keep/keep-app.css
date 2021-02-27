@@ -11,12 +11,14 @@
     margin-top:80px;
     margin-left:80px;
     margin-right:80px;
+    width: 80vw;;
+    margin:auto;
+}
+
+.keep-router-view{
 
 }
 
-.keep-app .edit{
-    z-index:2;
-}
 
 .note-new-screen.is-add-new,
 .note-edit-screen.is-edit{
@@ -28,7 +30,8 @@
     z-index:1;
 }
 
-.note-edit-screen.is-edit{ 
+.note-edit-screen.is-edit{   
+    z-index:2;
     background-color: rgba(0, 0, 0, 0.6);
 }
 
@@ -37,7 +40,7 @@
     display: flex;
     justify-content:flex-end;
     align-items: center;
-    margin-bottom: 40px;
+    margin-bottom: 10px;
 
 }
 
@@ -46,17 +49,15 @@
 }
 
 .keep-search input{
-    /* margin-left: 40px; */
+
     border-radius: 12px;;
     border: 1px solid rgba(0, 0, 0, 0.431);
     outline: none;
-    /* font-size: 1em; */
     padding:5px 10px ;
 }
 
 
 .keep-search{
     margin: 10px 20px;
-    margin-inline-end: 40px;
 }
 

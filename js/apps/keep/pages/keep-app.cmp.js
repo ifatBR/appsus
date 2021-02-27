@@ -13,10 +13,10 @@ export default {
             <div class="keep-header flex">
                 <keep-search ></keep-search>
             </div>
-            <div class="flex justify-center">
+            <div class="flex ">
                 <keep-nav-bar @click.native="loadNotes"/>
-                <div>
-                    <note-edit v-if="currNote&&!isDeletedPage" :isDeletedPage="isDeletedPage" :currNote="currNote" class="edit new-note" :isShowNoteEdit="isAddNewNote" @openAddNewNote="openAddNewNote" @closeNoteEdit="closeNoteEdit" @loadNotes="loadNotes"  @getEmptyNote="getEmptyNote" @saveNote="saveNote"/>
+                <div class="keep-pages-container">
+                    <note-edit  v-if="currNote&&!isDeletedPage" :isDeletedPage="isDeletedPage" :currNote="currNote" class="edit new-note" :isShowNoteEdit="isAddNewNote" @openAddNewNote="openAddNewNote" @closeNoteEdit="closeNoteEdit" @loadNotes="loadNotes"  @getEmptyNote="getEmptyNote" @saveNote="saveNote"/>
                     <router-view class="keep-router-view"/>
                     <note-edit v-if="currNote&&isNoteEdit" :isDeletedPage="isDeletedPage" :currNote="currNote" class="edit edit-note" :isShowNoteEdit=true :class="{'is-edit':isNoteEdit}"  @closeNoteEdit="closeNoteEdit" @deleteNoteById="deleteNoteById"  @deletePermanently="deletePermanently" @setNoteType="setNoteType" @saveNote="saveNote"/>
                 </div>
