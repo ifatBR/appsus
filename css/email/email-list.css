@@ -22,6 +22,7 @@
 
 .mail-read{
   background-color: rgba(0, 0, 0, 0.055);
+  /* background-color: rgba(255, 255, 255, 0.178); */
   /* font-weight: 500; */
   font-weight: normal;
 }

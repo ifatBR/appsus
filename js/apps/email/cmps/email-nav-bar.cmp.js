@@ -7,15 +7,16 @@ export default{
 
        <button @click="$emit('editMail')" class="compose-btn clean-btn">COMPOSE</button>
 
-        <router-link to="/email/inbox">Inbox<span class="unread-count">({{unreadCount}})</span></router-link>
-        <router-link to="/email/starred">Starred</router-link>
-        <router-link to="/email/sent">Sent</router-link>
-        <router-link to="/email/trash">Trash</router-link>
+        <router-link to="/email/inbox" :class="{marked: getPath==='inbox'}">Inbox<span class="unread-count">({{unreadCount}})</span></router-link>
+        <router-link to="/email/starred" :class="{marked: getPath==='starred'}">Starred</router-link>
+        <router-link to="/email/sent" :class="{marked: getPath==='sent'}">Sent</router-link>
+        <router-link to="/email/trash" :class="{marked: getPath==='trash'}">Trash</router-link>
     </nav>
     `,
     data(){
         return{
-            unreadCount:null
+            unreadCount:null,
+            path: null
         }
     },
     methods:{
@@ -26,6 +27,14 @@ export default{
                 })
                 .then(unreadMails=>this.unreadCount= unreadMails.length)
         }
+    },
+    computed:{
+        getPath(){
+            if (this.$route.path.includes('inbox') ) return 'inbox'
+            if (this.$route.path.includes('starred') ) return 'starred'
+            if (this.$route.path.includes('sent') ) return 'sent'
+            if (this.$route.path.includes('trash') ) return 'trash'
+        },
     },
     created(){
         this.getCount()

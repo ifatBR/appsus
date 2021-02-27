@@ -36,7 +36,7 @@
 {
     margin: 10px 20px;
 }
-
+/* 
 
 .aside-nav-bar{
     font-weight: normal;
@@ -54,16 +54,17 @@
 .aside-nav-bar>*:not(.compose-btn):hover{
     /* background-color: #dc9593; */
     
-}
+/* } */
+/*
 .aside-nav-bar>*{
 color: #6dbeb8;
-}
+} */
 
-.compose-btn{
+/* .compose-btn{
     cursor: pointer;
     width: 120px;
     color: #f9a960;
-    /* background-color: rgba(94, 94, 246, 0.103); */
+    /* background-color: rgba(94, 94, 246, 0.103); 
     background-color: rgba(255, 255, 255, 0.178);
     padding: 10px;
     margin: 10px;
@@ -74,7 +75,7 @@ color: #6dbeb8;
 
 .compose-btn:hover{
     background-color: rgba(0, 0, 0, 0.034);
-}
+} */
 
 .unread-count{
     margin-left: 10px;
