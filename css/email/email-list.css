@@ -22,7 +22,6 @@
 
 .mail-read{
   background-color: rgba(0, 0, 0, 0.055);
-  /* background-color: rgba(255, 255, 255, 0.178); */
   /* font-weight: 500; */
   font-weight: normal;
 }
@@ -111,3 +110,36 @@ color: rgba(54, 50, 50, 0.507);
 .email-title-date {
   margin-left: 605px;
 }
+
+
+  /* LARGE */
+  @media screen and (max-width: 1080px) {
+      
+
+  }
+
+  /* MEDIUM */
+@media screen and (max-width: 860px) {
+}
+  
+  /* MOBILE */
+@media screen and (max-width: 680px) {
+
+
+  .mail-li {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 10px;
+    box-shadow: 0px 1px 0px 0px rgb(0 0 0 / 20%);
+    /* font-weight: bold; */
+    /* background-color: black; */
+  }
+
+  .mail-subject{
+    width: 40%;
+    text-overflow: ellipsis;
+  }
+
+  }
+  

@@ -6,10 +6,11 @@ export default {
     <section  class="mail-li flex space-between" >   
       <div class="mail-options flex space-between">
         <button @click.stop="deleteMail(mail.id)" class="mail-li-btn">X</button>
-        <span @click.stop="StarMail(mail)" class="star"  :class="starColor"><i class="fal fa-star"></i></span>
+        <span @click.stop="StarMail(mail)" class="star" :class="starColor"><i class="fal fa-star"></i></span>
       </div>
       <div class="name-tag" :class="getBgc">{{getTag}}</div>
       <span class="mail-name">{{mail.name}}</span>
+      <button class="mail-send"  @click.stop="setUrlQuery(mail)">send</button>
 
                <div class="mail-body flex space-between">
                     <span class="mail-subject">{{mail.subject}}</span>
@@ -62,6 +63,9 @@ export default {
           return 'Dec';
       }
     },
+    setUrlQuery(mail){
+      this.$router.push({ path: '/keep/notes', query: { title: mail.subject, txt: mail.body } });
+    }
   },
   computed: {
     starColor() {

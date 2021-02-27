@@ -37,6 +37,7 @@ export default{
         }
     },
     created(){
+        console.log(this.mail);
         const subject = (this.mail.subject) ? `Re: ${this.mail.subject}` : this.mail.subject;
         const body = (this.mail.body) ? `\n\n\n\n\n... \n${this.mail.subject}` : this.mail.body;
         
