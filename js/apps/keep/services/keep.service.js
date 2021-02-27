@@ -160,7 +160,7 @@ function _createKeepNotes() {
             title: 'Blender I want-kenwood mx457',
             isPinned: true,
             info: {
-                url: '../../../imgs/keep/blender.jpg',
+                url: 'imgs/keep/blender.jpg',
             },
             style: {
                 bgColor: '#fee7df',
@@ -290,7 +290,7 @@ function _createKeepNotes() {
             title: 'Amazing cake!',
             isPinned: true,
             info: {
-                url: '../../../imgs/keep/cake.jpg',
+                url: 'imgs/keep/cake.jpg',
             },
             style: {
                 bgColor: '#ebeae6',
