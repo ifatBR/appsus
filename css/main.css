@@ -135,7 +135,7 @@
 }
 
 .user-msg{
-    position: absolute;
+    position: fixed;
     bottom:50px;
     right:20px;
     padding:10px;
