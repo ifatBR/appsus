@@ -2,7 +2,7 @@ import { booksService } from '../services/books.service.js';
 import googleBooks from '../cmps/google-books.cmp.js';
 export default {
     template: `
-    <section class="book-add-container">
+    <section v-if="googleBooks" class="book-add-container">
         <div class="book-add">
 
             <label for="">Search book</label>  

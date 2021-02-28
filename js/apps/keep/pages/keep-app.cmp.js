@@ -92,6 +92,8 @@ export default {
             this.closeNoteEdit();
             keepService.markNoteDeleted(id).then(() => {
                 this.loadNotes();
+                eventBus.$emit('show-msg', {txt:'Moved to Deleted page'})
+
             });
         },
         restoreNote(id) {
@@ -99,18 +101,24 @@ export default {
             this.closeNoteEdit();
             keepService.restoreNote(id).then(() => {
                 this.loadNotes();
+                eventBus.$emit('show-msg', {txt:'Move to Notes page'})
+
             });
         },
         deletePermanently(id) {
             this.closeNoteEdit();
             keepService.deleteNotePermanently(id).then(() => {
                 this.loadNotes();
+                eventBus.$emit('show-msg', {txt:'Note wad deleted'})
+
             });
         },
         saveNote(note) {
             keepService.saveNote(note).then(() => {
                 this.closeNoteEdit();
                 this.loadNotes();
+                eventBus.$emit('show-msg', {txt:'Note saved'})
+
             });
         },
         setNoteType(params) {
@@ -146,10 +154,11 @@ export default {
         sendNoteByEmail(){
             keepService.getNoteAsQuery(this.currNote.id).then(query => {
                 if(!query) {
-                    eventBus.$emit('show-msg', 'Can\'t send images')
+                    eventBus.$emit('show-msg', {txt:'Can\'t send images'})
                     return
                 };
                 this.$router.push({path: '/email/',query:query})
+                
             })
         },
         createNoteByQuery(query){
@@ -157,6 +166,8 @@ export default {
             .then(query => {
                 this.$router.push({ path: '/keep/notes', query: {}});
                 this.loadNotes()
+                eventBus.$emit('show-msg', {txt:'New note added'})
+
             })
         }
     },

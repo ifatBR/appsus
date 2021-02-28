@@ -23,7 +23,7 @@
 }
 
 
-.user-msg {
+/* .user-msg {
     position: absolute;
     padding: 10px;
     top:200px;
@@ -31,7 +31,7 @@
     transform: translateX(-50%);
     z-index:1;
     border:1px solid grey;
-}
+} */
 
 .shadow {
     box-shadow: 2px -3px 3px 3px rgb(0 0 0 / 40%);
@@ -133,6 +133,20 @@
 .burger-nav-bar:active {
     color: #92949bd2;
 }
+
+.user-msg{
+    position: absolute;
+    bottom:50px;
+    right:20px;
+    padding:10px;
+    color:rgb(49, 49, 49);
+    background-color: #f2c643;
+    z-index:100;
+    box-shadow:1px 1px 3px  2px rgb(0 0 0 / 30%);
+    border-radius:5px;
+    font-weight: bold;
+}
+
 
 @media (max-width: 1080px) {
     .main-container {

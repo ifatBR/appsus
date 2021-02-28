@@ -1,12 +1,13 @@
 import { booksService } from '../services/books.service.js';
 import bookList from '../cmps/book-list.cmp.js';
 import bookFilter from '../cmps/book-filter.cmp.js';
-import bookAdd from './book-add.cmp.js'
+// import bookAdd from './book-add.cmp.js'
 
 export default {
     template: `
     <main class="book-container">
-            <router-link  to="/books/addbooks/">Add Books</router-link>
+            <router-link  to="/books/addBooks">Add Books</router-link>
+            <!-- <button  @click="nevigateToAddBooks">Add Books</button> -->
             <book-filter @filtered="setFilter"/>
             <book-list :books="booksToShow" @selected="selectBook"/>
     </main>
@@ -47,10 +48,14 @@ export default {
         selectBook(bookId) {
             this.selectedBook = this.books.find((book) => book.id === bookId);
         },
+        // nevigateToAddBooks(){
+        //     this.$router.push('/books/addBooks')
+        //     .catch(failure => {if (isNavigationFailure(failure, NavigationFailureType.redirected))  showToast('Login in order to access the admin panel')})
+        //         }
     },
     components: {
         bookList,
         bookFilter,
-        bookAdd
+        // bookAdd
     },
 };
