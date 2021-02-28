@@ -24,9 +24,9 @@ export default{
         getCount(){
             emailService.query()
                 .then(mails=>{
-                    return mails.filter(mail=>mail.isRead===false)
+                    return mails.filter(mail=>{ return (mail.isRead===false && mail.isDeleted===false)})
                 })
-                .then(unreadMails=>this.unreadCount= unreadMails.length)
+                .then(unreadMails=>{ return this.unreadCount= unreadMails.length})
         },
         closeNav(){
             this.$emit('closeNavBar')
@@ -44,5 +44,6 @@ export default{
     created(){
         this.getCount()
         eventBus.$on('mailClicked',this.getCount)
+        eventBus.$on('deleteMail',this.getCount)
     }
 }

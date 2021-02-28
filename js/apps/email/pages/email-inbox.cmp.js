@@ -19,14 +19,18 @@ export default {
   },
   methods: {
     getMails() {
-      emailService.query().then((mails) => (this.mails = mails)).then(()=>this.filterBy=null).then(()=>this.setSort('date'))
+      emailService.query().then((mails) => (this.mails = mails.filter(mail=>mail.isDeleted===false))).then(()=>this.filterBy=null).then(()=>this.setSort('date'))
     },
     openMail(id) {
       emailService.getById(id).then((currMail) => console.log(currMail));
     },
-    deleteMail(mailId) {
-      emailService.remove(mailId).then(() => this.getMails());
+    deleteMail(mail) {
+      mail.isDeleted = true;
+      emailService.put(mail).then(() => this.getMails());
     },
+    // deleteMail(mailId) {
+    //   emailService.remove(mailId).then(() => this.getMails());
+    // },
     starMail(mail) {
         mail.isStarred=!mail.isStarred;
         emailService.put(mail)
